@@ -9,7 +9,7 @@ public class Drink {
 
     private String name;
     private BigDecimal price;
-    private double alcohol;
+    private double alcoholQuantity;
     //private Map<long, double> ingredients; //long IdIngredient, double QuantityIngredient
 
     public String getName() {
@@ -28,12 +28,12 @@ public class Drink {
         this.price = price;
     }
 
-    public double getAlcohol() {
-        return alcohol;
+    public double getAlcoholQuantity() {
+        return alcoholQuantity;
     }
 
-    public void setAlcohol(double alcohol) {
-        this.alcohol = alcohol;
+    public void setAlcoholQuantity(double alcoholQuantity) {
+        this.alcoholQuantity = alcoholQuantity;
     }
 
     @Override
@@ -41,13 +41,13 @@ public class Drink {
         return "Drink{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
-                ", alcohol=" + alcohol +
+                ", alcoholQuantity=" + alcoholQuantity +
                 '}';
     }
 
-    public Drink(String name, BigDecimal price, double alcohol) {
+    public Drink(String name, BigDecimal price, double alcoholQuantity) {
         this.name = name;
         this.price = price;
-        this.alcohol = alcohol;
+        this.alcoholQuantity = alcoholQuantity;
     }
 }
