@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf0d6d01-0f65-49da-8f29-9bf73ec94adb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cz/muni/fi/PB138/test/communication/ParserBarDrinkTest.java" />
+    <list default="true" id="bf0d6d01-0f65-49da-8f29-9bf73ec94adb" name="Default" comment="TS, test">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/BarUTomaDataAnalyst.iml" afterPath="$PROJECT_DIR$/.idea/BarUTomaDataAnalyst.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Drink.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Drink.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarDrink.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarDrink.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BarUTomaDataAnalyst.iws" />
@@ -36,9 +31,34 @@
       <file leaf-file-name="test.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/test.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="170">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="schema.xsd" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/db/schema.xsd">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5968586" vertical-offset="1239" max-vertical-offset="2669">
+              <caret line="93" column="50" selection-start-line="93" selection-start-column="50" selection-end-line="93" selection-end-column="50" />
+              <folding>
+                <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#3;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#4;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#3;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#4;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+                <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -46,42 +66,91 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="323">
+              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParserBarDrink.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ParserUserOrders.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserUserOrders.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="323">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding>
+                <element signature="e#187#188#0" expanded="false" />
+                <element signature="e#214#215#0" expanded="false" />
+                <element signature="e#252#253#0" expanded="false" />
+                <element signature="e#280#281#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParserBarDrink.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarDrink.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21538462" vertical-offset="86" max-vertical-offset="884">
-              <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="64" max-vertical-offset="884">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1425#1426#0" expanded="false" />
+                <element signature="e#1453#1454#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParserBarDrinkTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/test/communication/ParserBarDrinkTest.java">
+      <file leaf-file-name="ParserUser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
-              <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="323">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#181#182#0" expanded="false" />
+                <element signature="e#208#209#0" expanded="false" />
+                <element signature="e#246#247#0" expanded="false" />
+                <element signature="e#274#275#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Currency.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Currency.java">
+      <file leaf-file-name="ParserGetMyBars.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserGetMyBars.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
-              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="323">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding>
+                <element signature="e#186#187#0" expanded="false" />
+                <element signature="e#213#214#0" expanded="false" />
+                <element signature="e#251#252#0" expanded="false" />
+                <element signature="e#279#280#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParserBarOrder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarOrder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="323">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding>
+                <element signature="e#184#185#0" expanded="false" />
+                <element signature="e#211#212#0" expanded="false" />
+                <element signature="e#249#250#0" expanded="false" />
+                <element signature="e#277#278#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetFileFromURL.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/GetFileFromURL.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="816">
+              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -90,8 +159,8 @@
       <file leaf-file-name="Bar.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Bar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
-              <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="782">
+              <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
               <folding>
                 <element signature="e#192#193#0" expanded="false" />
                 <element signature="e#219#220#0" expanded="false" />
@@ -99,34 +168,10 @@
                 <element signature="e#291#292#0" expanded="false" />
                 <element signature="e#322#323#0" expanded="false" />
                 <element signature="e#349#350#0" expanded="false" />
-                <element signature="e#389#390#0" expanded="false" />
-                <element signature="e#421#422#0" expanded="false" />
                 <element signature="e#448#449#0" expanded="false" />
                 <element signature="e#473#474#0" expanded="false" />
                 <element signature="e#507#508#0" expanded="false" />
                 <element signature="e#535#536#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Drink.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Drink.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetFileFromURL.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/GetFileFromURL.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -145,10 +190,12 @@
       <list>
         <option value="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/Parser.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Drink.java" />
-        <option value="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarDrink.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarDrinkTest.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/PB138/test/cz/muni/fi/PB138/test/communication/ParserBarDrinkTest.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/PB138/test/communication/ParserBarDrinkTest.java" />
+        <option value="$PROJECT_DIR$/src/cz/muni/fi/PB138/test.txt" />
+        <option value="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarDrink.java" />
+        <option value="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/db/schema.xsd" />
       </list>
     </option>
   </component>
@@ -166,8 +213,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1378" />
-    <option name="height" value="780" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -194,7 +241,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -253,16 +299,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="communication" />
+              <option name="myItemId" value="entities" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ParserBarDrinkTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ClassTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -287,7 +329,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="entities" />
+              <option name="myItemId" value="db" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -334,12 +376,13 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../MUNI/4.semestr/PB138/json-20141113.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../agency/agency-app" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -351,7 +394,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="options.lastSelected" value="configurable.group.language" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
@@ -530,6 +573,7 @@
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/lib/BaseX811.jar" />
       <envs />
       <method />
     </configuration>
@@ -730,43 +774,54 @@
       <workItem from="1429807208462" duration="136000" />
       <workItem from="1429815241429" duration="1194000" />
       <workItem from="1430390531555" duration="5274000" />
+      <workItem from="1430493336827" duration="3633000" />
+      <workItem from="1430742102432" duration="21291000" />
+      <workItem from="1430894906893" duration="55000" />
+      <workItem from="1430901683915" duration="8201000" />
     </task>
+    <task id="LOCAL-00001" summary="TS, test">
+      <created>1430493526230</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1430493526230</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7166000" />
+    <option name="totallyTimeSpent" value="40346000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1378" height="780" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32905295" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22003035" sideWeight="0.5" order="0" side_tool="true" content_ui="combo" x="725" y="57" width="469" height="926" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2322239" sideWeight="0.5" order="0" side_tool="true" content_ui="combo" x="725" y="57" width="469" height="926" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -809,6 +864,8 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="TS, test" />
+    <option name="LAST_COMMIT_MESSAGE" value="TS, test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -819,6 +876,366 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserGetMyBars.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="323">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#186#187#0" expanded="false" />
+            <element signature="e#213#214#0" expanded="false" />
+            <element signature="e#251#252#0" expanded="false" />
+            <element signature="e#279#280#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="323">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#184#185#0" expanded="false" />
+            <element signature="e#211#212#0" expanded="false" />
+            <element signature="e#249#250#0" expanded="false" />
+            <element signature="e#277#278#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/GetFileFromURL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="816">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Bar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="782">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <element signature="e#192#193#0" expanded="false" />
+            <element signature="e#219#220#0" expanded="false" />
+            <element signature="e#259#260#0" expanded="false" />
+            <element signature="e#291#292#0" expanded="false" />
+            <element signature="e#322#323#0" expanded="false" />
+            <element signature="e#349#350#0" expanded="false" />
+            <element signature="e#448#449#0" expanded="false" />
+            <element signature="e#473#474#0" expanded="false" />
+            <element signature="e#507#508#0" expanded="false" />
+            <element signature="e#535#536#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="170">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/db/schema.xsd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4709">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#3;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#4;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#3;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#4;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="323">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserUserOrders.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="323">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#187#188#0" expanded="false" />
+            <element signature="e#214#215#0" expanded="false" />
+            <element signature="e#252#253#0" expanded="false" />
+            <element signature="e#280#281#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarDrink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="64" max-vertical-offset="884">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="e#1425#1426#0" expanded="false" />
+            <element signature="e#1453#1454#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="323">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#181#182#0" expanded="false" />
+            <element signature="e#208#209#0" expanded="false" />
+            <element signature="e#246#247#0" expanded="false" />
+            <element signature="e#274#275#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserGetMyBars.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="323">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#186#187#0" expanded="false" />
+            <element signature="e#213#214#0" expanded="false" />
+            <element signature="e#251#252#0" expanded="false" />
+            <element signature="e#279#280#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="323">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#184#185#0" expanded="false" />
+            <element signature="e#211#212#0" expanded="false" />
+            <element signature="e#249#250#0" expanded="false" />
+            <element signature="e#277#278#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/GetFileFromURL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="816">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Bar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="782">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <element signature="e#192#193#0" expanded="false" />
+            <element signature="e#219#220#0" expanded="false" />
+            <element signature="e#259#260#0" expanded="false" />
+            <element signature="e#291#292#0" expanded="false" />
+            <element signature="e#322#323#0" expanded="false" />
+            <element signature="e#349#350#0" expanded="false" />
+            <element signature="e#448#449#0" expanded="false" />
+            <element signature="e#473#474#0" expanded="false" />
+            <element signature="e#507#508#0" expanded="false" />
+            <element signature="e#535#536#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="170">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/db/schema.xsd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#3;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#4;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#3;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#4;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="323">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarDrink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="884">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="e#1425#1426#0" expanded="false" />
+            <element signature="e#1453#1454#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Currency.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="238">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Drink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="82" max-vertical-offset="799">
+          <caret line="12" column="91" selection-start-line="12" selection-start-column="91" selection-end-line="12" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="901">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="867">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="323">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#184#185#0" expanded="false" />
+            <element signature="e#211#212#0" expanded="false" />
+            <element signature="e#249#250#0" expanded="false" />
+            <element signature="e#277#278#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/GetFileFromURL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="816">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="323">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarDrink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1425#1426#0" expanded="false" />
+            <element signature="e#1453#1454#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/test/communication/ParserBarDrinkTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="578">
+          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Currency.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="238">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Bar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="748">
+          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+          <folding>
+            <element signature="e#192#193#0" expanded="false" />
+            <element signature="e#219#220#0" expanded="false" />
+            <element signature="e#259#260#0" expanded="false" />
+            <element signature="e#291#292#0" expanded="false" />
+            <element signature="e#322#323#0" expanded="false" />
+            <element signature="e#349#350#0" expanded="false" />
+            <element signature="e#448#449#0" expanded="false" />
+            <element signature="e#473#474#0" expanded="false" />
+            <element signature="e#507#508#0" expanded="false" />
+            <element signature="e#535#536#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Drink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="799">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/GetFileFromURL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="731">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/test.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
@@ -834,37 +1251,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/libraries/json_20141113.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="596">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/GetFileFromURL.java">
+    <entry file="file://$PROJECT_DIR$/licence.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="717">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/Parser.java">
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/test/communication/ParserBarDrinkTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
+          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -872,14 +1276,124 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
           <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Drink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="82" max-vertical-offset="799">
+          <caret line="12" column="91" selection-start-line="12" selection-start-column="91" selection-end-line="12" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserUserOrders.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#187#188#0" expanded="false" />
+            <element signature="e#214#215#0" expanded="false" />
+            <element signature="e#252#253#0" expanded="false" />
+            <element signature="e#280#281#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#181#182#0" expanded="false" />
+            <element signature="e#208#209#0" expanded="false" />
+            <element signature="e#246#247#0" expanded="false" />
+            <element signature="e#274#275#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserGetMyBars.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#186#187#0" expanded="false" />
+            <element signature="e#213#214#0" expanded="false" />
+            <element signature="e#251#252#0" expanded="false" />
+            <element signature="e#279#280#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#184#185#0" expanded="false" />
+            <element signature="e#211#212#0" expanded="false" />
+            <element signature="e#249#250#0" expanded="false" />
+            <element signature="e#277#278#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarDrink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="e#1425#1426#0" expanded="false" />
+            <element signature="e#1453#1454#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/GetFileFromURL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Bar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
-          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="782">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
           <folding>
             <element signature="e#192#193#0" expanded="false" />
             <element signature="e#219#220#0" expanded="false" />
@@ -887,8 +1401,6 @@
             <element signature="e#291#292#0" expanded="false" />
             <element signature="e#322#323#0" expanded="false" />
             <element signature="e#349#350#0" expanded="false" />
-            <element signature="e#389#390#0" expanded="false" />
-            <element signature="e#421#422#0" expanded="false" />
             <element signature="e#448#449#0" expanded="false" />
             <element signature="e#473#474#0" expanded="false" />
             <element signature="e#507#508#0" expanded="false" />
@@ -897,30 +1409,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/entities/Drink.java">
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/db/schema.xsd">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/test/communication/ParserBarDrinkTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
-          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.5968586" vertical-offset="1239" max-vertical-offset="2669">
+          <caret line="93" column="50" selection-start-line="93" selection-start-column="50" selection-end-line="93" selection-end-column="50" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/ParserBarDrink.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21538462" vertical-offset="86" max-vertical-offset="884">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#3;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#4;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#3;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#4;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#0;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
+            <element signature="n#xs:element#1;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#2;n#xs:sequence#0;n#xs:complexType#0;n#xs:element#0;n#xs:schema#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -966,7 +1473,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.7</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -983,7 +1490,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
