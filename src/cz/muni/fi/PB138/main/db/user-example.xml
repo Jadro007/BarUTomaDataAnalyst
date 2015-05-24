@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<data>
+    <user user_id="1">
+        <date value="2015-05-14">
+            <payment>340.00</payment>
+            <drinks>
+                <drink name="Cuba Libre">4</drink>
+                <drink name="Jägerbomb">2</drink>
+            </drinks>
+        </date>
+        <date value="2015-05-16">
+            <payment>450.00</payment>
+            <drinks>
+                <drink name="Margarita">3</drink>
+                <drink name="Gin and Tonic">2</drink>
+                <drink name="Jameson on the Rocks">4</drink>
+            </drinks>
+        </date>
+    </user>
+    <user user_id="2">
+        <date value="2015-05-14">
+            <payment>120.00</payment>
+            <drinks>
+                <drink name="Cuba Libre">2</drink>
+            </drinks>
+        </date>
+        <date value="2015-05-15">
+            <payment>1030.00</payment>
+            <drinks>
+                <drink name="Gin and Tonic">2</drink>
+                <drink name="Jägerbomb">13</drink>
+            </drinks>
+        </date>
+    </user>
+</data>
