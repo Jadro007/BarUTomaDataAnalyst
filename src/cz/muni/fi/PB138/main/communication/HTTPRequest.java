@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
@@ -37,7 +38,7 @@ public class HTTPRequest {
         HttpGet httpGet = new HttpGet(BASE_URL + url);
 
         HttpResponse response = null;
-        HttpClient httpClient = new DefaultHttpClient();
+        HttpClient httpClient = HttpClientBuilder.create().build(); //new DefaultHttpClient();
         try {
             response = httpClient.execute(httpGet);
 
@@ -67,7 +68,7 @@ public class HTTPRequest {
         httpGet.setHeader("Authorization", "Bearer " + token);
 
         HttpResponse response = null;
-        HttpClient httpClient = new DefaultHttpClient();
+        HttpClient httpClient = HttpClientBuilder.create().build(); //new DefaultHttpClient();
         try {
             response = httpClient.execute(httpGet);
 
@@ -102,7 +103,7 @@ public class HTTPRequest {
         params.add(new BasicNameValuePair("grant_type", "password"));
 
         HttpResponse response = null;
-        HttpClient client = new DefaultHttpClient(); //HttpClientBuilder.create().build();
+        HttpClient client = HttpClientBuilder.create().build(); //new DefaultHttpClient();
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(params));
             response = client.execute(httpPost);
