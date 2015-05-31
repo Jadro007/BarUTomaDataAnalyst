@@ -1,6 +1,6 @@
 package communication;
 
-import cz.muni.fi.PB138.main.communication.GetFileFromURL;
+//import cz.muni.fi.PB138.main.communication.GetFileFromURL;
 import cz.muni.fi.PB138.main.communication.HTTPRequest;
 import cz.muni.fi.PB138.main.communication.ParserGetMyBars;
 import cz.muni.fi.PB138.main.entities.Bar;
