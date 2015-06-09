@@ -30,12 +30,11 @@ public class CreateDocument {
 
     private static final Logger logger = Logger.getLogger(CreateDocument.class.getName());
 
+    //todo test
     public static void main(String[] args) {
         CreateDocument create = new CreateDocument();
 
-        Order myOrder = new Order(LocalDate.now(), new BigDecimal("150.00"), 2, 5);
-        List<Order> orderList = new ArrayList<>();
-        orderList.add(myOrder);
+
 
         Drink myDrink = new Drink("Pina Colada", new BigDecimal("120.00"), 0.16);
         Drink myDrink2 = new Drink("Jager + Cola", new BigDecimal("55.00"), 0.12);
@@ -43,11 +42,15 @@ public class CreateDocument {
         drinkList.add(myDrink);
         drinkList.add(myDrink2);
 
+        Order myOrder = new Order(LocalDate.now(), new BigDecimal("150.00"), 2, 5, drinkList);
+        List<Order> orderList = new ArrayList<>();
+        orderList.add(myOrder);
+
         System.out.println("ADMIN XML");
-        create.createAdminDocument(orderList, drinkList);
+        create.createAdminDocument(orderList);
 
         System.out.println("\n USER XML");
-        create.createUserDocument(orderList, drinkList);
+        create.createUserDocument(orderList);
     }
 
     /**
@@ -145,11 +148,11 @@ public class CreateDocument {
         return element;
     }
 
-    //Todo Dorobit ziskat order example a skusit dorobit iba s orderList-om
-    public void createUserDocument(List<Order> orderList, List<Drink> drinkList) {
+    //Todo Dorobit ziskat order example
+    public void createUserDocument(List<Order> orderList) {
         Document document = newDocument();
 
-        Element rootElement = createRootElement(document, "data", 1);
+        Element rootElement = createRootElement(document, "data", 0);
 
         for (Order order : orderList) {
             Element userElement =
@@ -167,19 +170,19 @@ public class CreateDocument {
             Element drinksElement = document.createElement("drinks");
             dateElement.appendChild(drinksElement);
 
-            for (Drink drink : drinkList) {
-                drinksElement.appendChild(createElementWithAttributeAndText(document, "drink", "name", drink.getName(), countOfDrink(drinkList, drink.getName())));//pocet drinkov
+            for (Drink drink : order.getDrinkList()) {
+                drinksElement.appendChild(createElementWithAttributeAndText(document, "drink", "name", drink.getName(), countOfDrink(order.getDrinkList(), drink.getName())));//pocet drinkov
             }
         }
 
       transformToConsoleStream(document);
     }
 
-    //Todo Dorobit ziskat order example a skusit dorobit iba s orderList-om
-    public void createAdminDocument(List<Order> orderList, List<Drink> drinkList) {
+    //Todo Dorobit ziskat order example
+    public void createAdminDocument(List<Order> orderList) {
         Document document = newDocument();
 
-        Element rootElement = createRootElement(document, "data", 0);
+        Element rootElement = createRootElement(document, "data", 1);
 
         for (Order order : orderList) {
             Element userElement =
@@ -209,9 +212,9 @@ public class CreateDocument {
             Element ingredientsElement = document.createElement("ingredients");
             barElement.appendChild(ingredientsElement);
 
-            for (Drink drink : drinkList) {
+            for (Drink drink : order.getDrinkList()) {
 
-                drinksElement.appendChild(createElementWithAttributeAndText(document, "drink", "name", drink.getName(), countOfDrink(drinkList, drink.getName())));//pocet drinkov
+                drinksElement.appendChild(createElementWithAttributeAndText(document, "drink", "name", drink.getName(), countOfDrink(order.getDrinkList(), drink.getName())));//pocet drinkov
 
                 //todo map iterator na ingrediencie
                 ingredientsElement.appendChild(createElementWithTwoAttributeAndText(document, "ingredient", "name", "rum", "amount", "0.04", "2"));
