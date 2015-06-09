@@ -1,6 +1,5 @@
 package communication;
 
-//import cz.muni.fi.PB138.main.communication.GetFileFromURL;
 import cz.muni.fi.PB138.main.communication.HTTPRequest;
 import cz.muni.fi.PB138.main.communication.ParserGetMyBars;
 import cz.muni.fi.PB138.main.entities.Bar;
@@ -18,7 +17,7 @@ public class ParserGetMyBarsTest extends TestCase {
     @Test
     public void testParse() throws Exception {
         HTTPRequest httpRequest = new HTTPRequest();
-        String json = httpRequest.getRequest("/bar");
+        String json = httpRequest.getRequest("/bar"); //todo to iste len s bar/getMyBars pre uzivatela
         ParserGetMyBars parserGetMyBars = new ParserGetMyBars();
         List<Bar> actualList = parserGetMyBars.parse(json);
 
@@ -26,7 +25,7 @@ public class ParserGetMyBarsTest extends TestCase {
         Bar bar2 = new Bar("myBar1", "", 2);
         Bar bar3 = new Bar("myBar1", "", 3);
 
-        Assert.assertTrue(actualList.size() == 5);
+        Assert.assertTrue(actualList.size() == 16);
         Assert.assertEquals(actualList.get(0).getName(), bar1.getName());
         //Assert.assertEquals(actualList.get(0).getInfo(), bar1.getInfo());
         Assert.assertEquals(actualList.get(0).getId(), bar1.getId());

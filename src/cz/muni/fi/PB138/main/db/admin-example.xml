@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<data>
+<data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="admin.xsd">
     <user user_id="1">
         <date value="2015-05-14">
             <bar bar_id="1">
