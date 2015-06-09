@@ -58,7 +58,7 @@ public class HTTPRequest {
     }
 
     /**
-     *
+     * Get data with authorization
      * @param token
      * @param url
      * @return JSON

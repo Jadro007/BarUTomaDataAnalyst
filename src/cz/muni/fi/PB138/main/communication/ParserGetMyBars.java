@@ -17,19 +17,18 @@ public class ParserGetMyBars implements Parser {
 
         String name = null, info = null;
 
+        //Todo OptJSONArray vrati null ked neexistuje kluc alebo neni typu JSONArray
+        //Todo GetJSONArray vyhodi v˝nimku JSONException ked neexistuje kluc alebo neni typu JSONArray
+        //Todo tak podobne funguju dalsie metody opt% get%, treba sa rozhodnut Ëi budeme pracovaù s v˝nimkami alebo nie
+
         JSONObject obj = new JSONObject(json);
         List<Bar> barList = new ArrayList<>();
         JSONArray array = obj.getJSONArray("Data");
         for (int i = 0; i < array.length(); i++)
         {
-            int id = array.getJSONObject(i).getInt("BarId");
-            name = array.getJSONObject(i).getString("Name");
-            try {
-                info = array.getJSONObject(i).getString("Info");
-            } catch (JSONException e) {
-                System.err.println("Object \"Info\" is null.");
-                info = null;
-            }
+            int id = array.getJSONObject(i).optInt("BarId");
+            name = array.getJSONObject(i).optString("Name");
+            info = array.getJSONObject(i).optString("Info");
             Bar bar = new Bar(name, info, id);
             barList.add(bar);
         }
