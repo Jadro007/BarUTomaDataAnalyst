@@ -8,10 +8,13 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.math.BigDecimal;
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +45,13 @@ public class CreateDocument {
         drinkList.add(myDrink);
         drinkList.add(myDrink2);
 
-        Order myOrder = new Order(LocalDate.now(), new BigDecimal("150.00"), 2, 5, drinkList);
+        Order myOrder1 = new Order(LocalDate.now(), new BigDecimal("150.00"), 2, 5, drinkList);
+        Order myOrder2 = new Order(LocalDate.now(), new BigDecimal("50.00"), 2, 8, drinkList);
+        Order myOrder3 = new Order(LocalDate.now(), new BigDecimal("74.00"), 4, 5, drinkList);
         List<Order> orderList = new ArrayList<>();
-        orderList.add(myOrder);
+        orderList.add(myOrder1);
+        orderList.add(myOrder2);
+        orderList.add(myOrder3);
 
         System.out.println("ADMIN XML");
         create.createAdminDocument(orderList);
@@ -148,7 +155,6 @@ public class CreateDocument {
         return element;
     }
 
-    //Todo Dorobit ziskat order example
     public void createUserDocument(List<Order> orderList) {
         Document document = newDocument();
 
@@ -252,6 +258,30 @@ public class CreateDocument {
         } catch (TransformerException ex) {
             logger.log(Level.SEVERE, "", ex);//Todo
         }
+    }
+
+    public Document transformToXML(String data) {
+        Document document = newDocument();
+
+        try {
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+            DOMResult domResult = new DOMResult(document);
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data.getBytes(Charset.forName("utf-8")));
+            StreamSource streamSource = new StreamSource(byteArrayInputStream);
+            transformer.transform(streamSource, domResult);
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Transform is OK \n \n");
+        transformToConsoleStream(document);//todo ukazkovy vypis, upravit kodovanie
+        return document;
     }
 
     public InputStream transformToInputStream(Document document) throws TransformerException {

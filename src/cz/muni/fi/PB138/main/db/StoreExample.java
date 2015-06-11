@@ -34,9 +34,9 @@ public class StoreExample {
 
             // create new XMLResource; an id will be assigned to the new resource
                     res = (XMLResource)col.createResource(null, "XMLResource");
-            File f = new File(System.getProperty("user.dir") + "\\database\\missingheadcompany.xml");
+            File f = new File(System.getProperty("user.dir") + "\\database\\user-example.xml");
             if(!f.canRead()) {
-                System.out.println("cannot read file " + System.getProperty("user.dir") + "\\database\\missingheadcompany.xml");
+                System.out.println("cannot read file " + System.getProperty("user.dir") + "\\database\\user-example.xml");
                 return;
             }
 
