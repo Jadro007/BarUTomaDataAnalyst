@@ -30,7 +30,7 @@ public class HTTPRequest {
     private final String CONTENT_TYPE_TOKEN = "application/x-www-form-urlencoded";
 
     /**
-     *
+     * Without authetication
      * @param url
      * @return JSON
      */

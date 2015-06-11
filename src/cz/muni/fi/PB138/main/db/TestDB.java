@@ -20,9 +20,18 @@ public class TestDB {
         String resources[] = col.listResources();
         System.out.println("Resources:");
         for (int i = 0; i < resources.length; i++) {
-            System.out.println(resources[i]);
+            //System.out.println(resources[i]);
             System.out.println(col.getResource(resources[i]).getContent());
         }
+
+        /*StringBuilder builder = new StringBuilder();
+        for(int k = 0; k < resources.length; k++) {
+            builder.append(col.getResource(resources[k]).getContent());
+        }
+        String data = builder.toString();
+        CreateDocument createDocument = new CreateDocument();
+        createDocument.transformToXML(data);*/
+
 
         // shut down the database
         DatabaseInstanceManager manager = (DatabaseInstanceManager)
