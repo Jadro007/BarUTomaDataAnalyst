@@ -27,7 +27,6 @@ public class LoadUserImpl implements LoadUser {
             }
         }
 
-
         return null;
     }
 
