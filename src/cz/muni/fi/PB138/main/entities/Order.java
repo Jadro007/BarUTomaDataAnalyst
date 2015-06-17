@@ -2,6 +2,7 @@ package cz.muni.fi.PB138.main.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * BarUTomaDataAnalyst
@@ -12,6 +13,7 @@ public class Order {
     private long userID;
     private long barID;
     private BigDecimal price;
+    private List<Drink> drinkList;
 
     public LocalDate getDatetime() {
         return datetime;
@@ -45,6 +47,14 @@ public class Order {
         this.price = price;
     }
 
+    public List<Drink> getDrinkList() {
+        return drinkList;
+    }
+
+    public void setDrinkList(List<Drink> drinkList) {
+        this.drinkList = drinkList;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -52,13 +62,15 @@ public class Order {
                 ", userID=" + userID +
                 ", barID=" + barID +
                 ", price=" + price +
+                ", drinkList=" + drinkList +
                 '}';
     }
 
-    public Order(LocalDate datetime, BigDecimal price, long barID, long userID) {
+    public Order(LocalDate datetime, BigDecimal price, long barID, long userID, List<Drink> drinkList) {
         this.datetime = datetime;
         this.price = price;
         this.barID = barID;
         this.userID = userID;
+        this.drinkList = drinkList;
     }
 }

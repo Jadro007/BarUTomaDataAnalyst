@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="bar.xsd">
+    <bars>
+        <bar owner_id="1">
+            <name>Bar U Toma</name>
+            <bar_id>1</bar_id>
+        </bar>
+        <bar owner_id="2">
+            <name>Bar BarBar</name>
+            <bar_id>2</bar_id>
+        </bar>
+    </bars>
+</data>
