@@ -15,15 +15,15 @@ public class LoadUserImpl implements LoadUser {
 
     public BigDecimal getPayment(LocalDate from, LocalDate to) {
         ReadDatabase readDatabase = new ReadDatabase();
-        Document document = readDatabase.read("first");
+        Document document = readDatabase.read("user");
 
-        //System.out.println(document);
+        System.out.println(document);
 
         NodeList userNode = document.getElementsByTagName("user");
         for (int i = 0; i < userNode.getLength(); i++) {
             Element userElement = (Element) userNode.item(i);
-            if (userElement.getAttribute("user_id").equals("2")) {
-                System.out.println("user2");
+            if (userElement.getAttribute("user_id").equals("5")) {
+                System.out.println("user5");
             }
         }
 
