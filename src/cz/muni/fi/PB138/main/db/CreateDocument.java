@@ -1,5 +1,6 @@
 package cz.muni.fi.PB138.main.db;
 
+import cz.muni.fi.PB138.main.entities.Bar;
 import cz.muni.fi.PB138.main.entities.Drink;
 import cz.muni.fi.PB138.main.entities.Order;
 import org.w3c.dom.Document;
@@ -100,6 +101,8 @@ public class CreateDocument {
             rootElement.setAttribute(SCHEMA_LOCATION, USER_XSD);
         } else if (schemaRole == 1) {
             rootElement.setAttribute(SCHEMA_LOCATION, ADMIN_XSD);
+        } else if (schemaRole == 2) {
+            rootElement.setAttribute(SCHEMA_LOCATION, BAR_XSD);
         }
         return rootElement;
     }
@@ -242,12 +245,28 @@ public class CreateDocument {
         return transformToInputStream(document);
     }
 
-    //todo dorobit
-    public InputStream createBarDocument(){
+    public InputStream createBarDocument(List<Bar> barList){
         Document document = newDocument();
 
         Element rootElement = createRootElement(document, "data", 2);
 
+        Element barsElements = document.createElement("bars");
+        rootElement.appendChild(barsElements);
+
+        for (Bar bar : barList) {
+            Element barElement = createElementWithOneAttribute(document, "bar", "owner_id", String.valueOf(bar.getOwnerId()));
+
+            Element barIdElement = createElementWithText(document, "bar_id", String.valueOf(bar.getId()));
+            barElement.appendChild(barIdElement);
+
+            Element nameElement = createElementWithText(document, "name", bar.getName());
+            barElement.appendChild(nameElement);
+
+            Element infoElement = createElementWithText(document, "info", bar.getInfo());
+            barElement.appendChild(infoElement);
+
+            barsElements.appendChild(barElement);
+        }
 
         return transformToInputStream(document);
     }
