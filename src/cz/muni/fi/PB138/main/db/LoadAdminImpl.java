@@ -17,10 +17,18 @@ import java.util.TreeMap;
  */
 public class LoadAdminImpl implements LoadAdmin {
 
+    private Document document;
+
+
+    public LoadAdminImpl() {
+        ReadDatabase readDatabase = new ReadDatabase();
+        this.document = readDatabase.read("admin");
+    }
+
     @Override
     public BigDecimal getIncome(LocalDate from, LocalDate to, long barId) {
-        ReadDatabase readDatabase = new ReadDatabase();
-        Document document = readDatabase.read("admin");
+        //ReadDatabase readDatabase = new ReadDatabase();
+        //Document document = readDatabase.read("admin");
         BigDecimal totalIncome = BigDecimal.ZERO;
 
         NodeList dateList = document.getElementsByTagName("date");
@@ -48,8 +56,8 @@ public class LoadAdminImpl implements LoadAdmin {
 
     @Override
     public double getAlcohol(LocalDate from, LocalDate to, long barId) {
-        ReadDatabase readDatabase = new ReadDatabase();
-        Document document = readDatabase.read("admin");
+        //ReadDatabase readDatabase = new ReadDatabase();
+        //Document document = readDatabase.read("admin");
         double totalAlcohol = 0.0;
 
         NodeList dateList = document.getElementsByTagName("date");
@@ -77,8 +85,8 @@ public class LoadAdminImpl implements LoadAdmin {
 
     @Override
     public Map<String, Integer> getMostSoldDrinks(LocalDate from, LocalDate to, long barId) {
-        ReadDatabase readDatabase = new ReadDatabase();
-        Document document = readDatabase.read("admin");
+        //ReadDatabase readDatabase = new ReadDatabase();
+        //Document document = readDatabase.read("admin");
         Map<String, Integer> drinkMap = new TreeMap<>();
 
         NodeList dateList = document.getElementsByTagName("date");
@@ -116,8 +124,8 @@ public class LoadAdminImpl implements LoadAdmin {
 
     @Override
     public Map<String, Double> getMostUsedIngredients(LocalDate from, LocalDate to, long barId) {
-        ReadDatabase readDatabase = new ReadDatabase();
-        Document document = readDatabase.read("admin");
+        //ReadDatabase readDatabase = new ReadDatabase();
+        //Document document = readDatabase.read("admin");
         Map<String, Double> ingredientMap = new TreeMap<>();
 
         NodeList dateList = document.getElementsByTagName("date");
@@ -158,8 +166,8 @@ public class LoadAdminImpl implements LoadAdmin {
 
     @Override
     public List<Bar> getAdminsBars() {
-        ReadDatabase readDatabase = new ReadDatabase();
-        Document document = readDatabase.read("bar");
+        //ReadDatabase readDatabase = new ReadDatabase();
+        //Document document = readDatabase.read("bar");
         List<Bar> barArrayList = new ArrayList<>();
         UserInformation userInfo = new UserInformationImpl();
 

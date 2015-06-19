@@ -128,4 +128,23 @@ public class HTTPRequest {
         return null;
     }
 
+    /**
+     * Check if the user is registered
+     * @param username
+     * @param password
+     * @return
+     */
+    public Boolean hasRegistered(String username, String password) {
+        String token = postRequestToken(username, password);
+        String json = getRequestWithToken(token, "/Account/UserInfo");
+
+        String response = (new JSONObject(json)).optString("HasRegistered");
+
+        if (response.equals("true")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

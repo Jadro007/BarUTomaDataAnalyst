@@ -1,1 +1,0 @@
-Ked už nebudeme potrebovat tak treba vymazat StoreExample.java, TestDB.java, CreateDocumentDatabase.java
