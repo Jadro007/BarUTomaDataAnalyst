@@ -8,29 +8,36 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.math.BigDecimal;
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ * Create XML document in memory
+ * @author Benjamin Varga
+ * @version 17.6.2015
+ */
 public class CreateDocument {
 
-    public static final String ADMIN_XSD = "admin.xsd";//Todo upravit cestu
-    public static final String USER_XSD = "user.xsd";//todo
-    public static final String BAR_XSD = "bar.xsd";//Todo
+    public static final String ADMIN_XSD = "database\\admin.xsd";
+    public static final String USER_XSD = "database\\user.xsd";
+    public static final String BAR_XSD = "database\\bar.xsd";
     public static final String SCHEMA_LOCATION = "xsi:noNamespaceSchemaLocation";
     public static final String XMLNS_XSI = "xmlns:xsi";
     public static final String SCHEMA_INSTANCE = "http://www.w3.org/2001/XMLSchema-instance";
 
     private static final Logger logger = Logger.getLogger(CreateDocument.class.getName());
 
-    //todo test
+    //todo test zmazat
     public static void main(String[] args) {
         CreateDocument create = new CreateDocument();
 
@@ -42,15 +49,24 @@ public class CreateDocument {
         drinkList.add(myDrink);
         drinkList.add(myDrink2);
 
-        Order myOrder = new Order(LocalDate.now(), new BigDecimal("150.00"), 2, 5, drinkList);
+        Order myOrder1 = new Order(LocalDate.now(), new BigDecimal("150.00"), 2, 5, drinkList);
+        Order myOrder2 = new Order(LocalDate.now(), new BigDecimal("50.00"), 2, 8, drinkList);
+        Order myOrder3 = new Order(LocalDate.now(), new BigDecimal("74.00"), 4, 5, drinkList);
         List<Order> orderList = new ArrayList<>();
-        orderList.add(myOrder);
+        orderList.add(myOrder1);
+        orderList.add(myOrder2);
+        orderList.add(myOrder3);
 
         System.out.println("ADMIN XML");
         create.createAdminDocument(orderList);
 
-        System.out.println("\n USER XML");
-        create.createUserDocument(orderList);
+        /*System.out.println("\n USER XML");
+        InputStream inputStream = create.createUserDocument(orderList);
+
+        StoreDatabase storeDatabase = new StoreDatabase();
+        storeDatabase.store("user", inputStream);*/
+
+        //storeDatabase.deleteDatabaseData();
     }
 
     /**
@@ -148,12 +164,15 @@ public class CreateDocument {
         return element;
     }
 
-    //Todo Dorobit ziskat order example
-    public void createUserDocument(List<Order> orderList) {
+    /**
+     * Create a new XML document for user
+     * @param orderList list of orders
+     * @return input stream which contain xml document
+     */
+    public InputStream createUserDocument(List<Order> orderList) {
         Document document = newDocument();
 
         Element rootElement = createRootElement(document, "data", 0);
-
         for (Order order : orderList) {
             Element userElement =
                     createElementWithOneAttribute(document, "user", "user_id", "" + order.getUserID());
@@ -171,19 +190,22 @@ public class CreateDocument {
             dateElement.appendChild(drinksElement);
 
             for (Drink drink : order.getDrinkList()) {
-                drinksElement.appendChild(createElementWithAttributeAndText(document, "drink", "name", drink.getName(), countOfDrink(order.getDrinkList(), drink.getName())));//pocet drinkov
+                drinksElement.appendChild(createElementWithAttributeAndText(document, "drink", "name", drink.getName(), countOfDrink(order.getDrinkList(), drink.getName())));
             }
         }
 
-      transformToConsoleStream(document);
+        return transformToInputStream(document);
     }
 
-    //Todo Dorobit ziskat order example
-    public void createAdminDocument(List<Order> orderList) {
+    /**
+     * Create a new XML Document for ADMIN
+     * @param orderList list of orders
+     * @return input stream which contain xml document
+     */
+    public InputStream createAdminDocument(List<Order> orderList) {
         Document document = newDocument();
 
         Element rootElement = createRootElement(document, "data", 1);
-
         for (Order order : orderList) {
             Element userElement =
                     createElementWithOneAttribute(document, "user", "user_id", "" + order.getUserID());
@@ -198,13 +220,12 @@ public class CreateDocument {
             dateElement.appendChild(barElement);
 
             Element incomeElement =
-                    createElementWithText(document, "income", order.getPrice().toString()); //todo celkova cena objednavky alebo budeme pocitat cenu podla drinkov??
+                    createElementWithText(document, "income", order.getPrice().toString());
             barElement.appendChild(incomeElement);
 
-            //todo celkovy alkohol drinkov
-            /*Element alcoholElement =
-                    createElementWithText(document, "alcohol", "" + drink.getAlcoholQuantity());
-            barElement.appendChild(alcoholElement);*/
+            Element alcoholElement =
+                    createElementWithText(document, "alcohol", "" + alcoholQuantityOfOrder(order.getDrinkList()));
+            barElement.appendChild(alcoholElement);
 
             Element drinksElement = document.createElement("drinks");
             barElement.appendChild(drinksElement);
@@ -213,27 +234,49 @@ public class CreateDocument {
             barElement.appendChild(ingredientsElement);
 
             for (Drink drink : order.getDrinkList()) {
-
                 drinksElement.appendChild(createElementWithAttributeAndText(document, "drink", "name", drink.getName(), countOfDrink(order.getDrinkList(), drink.getName())));//pocet drinkov
 
-                //todo map iterator na ingrediencie
-                ingredientsElement.appendChild(createElementWithTwoAttributeAndText(document, "ingredient", "name", "rum", "amount", "0.04", "2"));
+                //ingredientsElement.appendChild(createElementWithTwoAttributeAndText(document, "ingredient", "name", "rum", "amount", "0.04", "2"));
             }
         }
-
-        transformToConsoleStream(document);
+        return transformToInputStream(document);
     }
 
-    public void createBarDocument(){
+    //todo dorobit
+    public InputStream createBarDocument(){
+        Document document = newDocument();
 
+        Element rootElement = createRootElement(document, "data", 2);
+
+
+        return transformToInputStream(document);
     }
 
+    /**
+     * Calculate how much nameOfDrink contain list of drinks
+     * @param drinkList list of drinks
+     * @param nameOfDrink name of counting drink
+     * @return count of drink
+     */
     private String countOfDrink(List<Drink> drinkList, String nameOfDrink) {
         int counter = 0;
         for (Drink drink : drinkList) {
             if (drink.getName().equals(nameOfDrink)) counter++;
         }
         return "" + counter;
+    }
+
+    /**
+     *
+     * @param drinkList
+     * @return
+     */
+    private String alcoholQuantityOfOrder(List<Drink> drinkList) {
+        double alcohol = 0;
+        for (Drink drink : drinkList) {
+            alcohol += drink.getAlcoholQuantity();
+        }
+        return "" + alcohol;
     }
 
 
@@ -248,27 +291,51 @@ public class CreateDocument {
             StreamResult result = new StreamResult(System.out);
             transformer.transform(source, result);
         } catch (TransformerConfigurationException ex) {
-            logger.log(Level.SEVERE, "", ex);//Todo
+            logger.log(Level.SEVERE, "Transform exception. ", ex);
         } catch (TransformerException ex) {
-            logger.log(Level.SEVERE, "", ex);//Todo
+            logger.log(Level.SEVERE, "Transform exception. ", ex);
         }
     }
 
-    public InputStream transformToInputStream(Document document) throws TransformerException {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-        DOMSource source = new DOMSource(document);
-        StreamResult result = new StreamResult(outputStream);
-
-        transformer.transform(source, result);
-
-        System.out.println("OK");
-        return new ByteArrayInputStream(outputStream.toByteArray());
+    public InputStream transformToInputStream(Document document) {
+        try {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult(outputStream);
+            transformer.transform(source, result);
+            return new ByteArrayInputStream(outputStream.toByteArray());
+        } catch (TransformerConfigurationException ex) {
+            logger.log(Level.SEVERE, "Transform exception. ", ex);
+        } catch (TransformerException ex) {
+            logger.log(Level.SEVERE, "Transform exception. ", ex);
+        }
+        return null;
     }
 
-
+    public Document transformToXML(String data) {
+        Document document = newDocument();
+        try {
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+            DOMResult domResult = new DOMResult(document);
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data.getBytes(Charset.forName("utf-8")));
+            StreamSource streamSource = new StreamSource(byteArrayInputStream);
+            transformer.transform(streamSource, domResult);
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Transform is OK \n \n");
+        transformToConsoleStream(document);//todo ukazkovy vypis, upravit kodovanie
+        return document;
+    }
 }

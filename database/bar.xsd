@@ -39,8 +39,9 @@ BAR-SCHEMA
                             <xs:element name="bar" minOccurs="1" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="name" type="nonEmptyString"/>
                                         <xs:element name="bar_id" type="idInteger"/>
+                                        <xs:element name="name" type="nonEmptyString"/>
+                                        <xs:element name="info" type="nonEmptyString"/>
                                     </xs:sequence>
                                     <xs:attribute name="owner_id" type="idInteger" use="required"/>
                                 </xs:complexType>

@@ -7,7 +7,7 @@
 <!--
 
 ADMIN-SCHEMA
-<user user_id="">
+<admin admin_id="">
   <date value="">
     <bar bar_id="">
       <income/>
@@ -20,7 +20,7 @@ ADMIN-SCHEMA
       </ingredients>
     </bar>
   </date>
-</userID>
+</admin>
 
 
 - u xs:element je minOccurs="1" maxOccurs="1" vzdy default
@@ -50,7 +50,7 @@ ADMIN-SCHEMA
     <xs:element name="data">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="user" minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="admin" minOccurs="0" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="date" minOccurs="1" maxOccurs="unbounded">
@@ -76,15 +76,15 @@ ADMIN-SCHEMA
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
-                                                    <xs:element name="ingredients">
+                                                    <xs:element name="ingredients" minOccurs="0" maxOccurs="1">
                                                         <xs:complexType>
                                                             <xs:sequence>
                                                                 <xs:element name="ingredient" maxOccurs="unbounded">
                                                                     <xs:complexType>
                                                                         <xs:simpleContent>
                                                                             <xs:extension base="xs:integer">
-                                                                                <xs:attribute name="name" type="nonEmptyString" use="required"/>
                                                                                 <xs:attribute name="amount" type="simpleDecimal" use="required"/>
+                                                                                <xs:attribute name="name" type="nonEmptyString" use="required"/>
                                                                             </xs:extension>
                                                                         </xs:simpleContent>
                                                                     </xs:complexType>
@@ -101,7 +101,7 @@ ADMIN-SCHEMA
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute name="user_id" type="idInteger" use="required"/>
+                        <xs:attribute name="admin_id" type="idInteger" use="required"/>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>

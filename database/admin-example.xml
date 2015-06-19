@@ -2,7 +2,7 @@
 
 <data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="admin.xsd">
-    <user user_id="1">
+    <admin admin_id="1">
         <date value="2015-05-14">
             <bar bar_id="1">
                 <income>340.00</income>     <!-- jak se bude pocitat celkova cena? -->
@@ -12,12 +12,12 @@
                     <drink name="Jägerbomb">2</drink>
                 </drinks>
                 <ingredients>
-                    <ingredient name="rum" amount="0.04">4</ingredient>     <!-- 4cl -->
-                    <ingredient name="cola" amount="0.10">4</ingredient>    <!-- 10cl -->
-                    <ingredient name="lime" amount="1.00">2</ingredient>    <!-- ks -->
-                    <ingredient name="jagermeister" amount="0.04">2</ingredient>
-                    <ingredient name="red bull" amount="0.25">2</ingredient>
-                    <ingredient name="ice cube" amount="1.00">12</ingredient>
+                    <ingredient amount="0.04" name="rum">4</ingredient>     <!-- 4cl -->
+                    <ingredient amount="0.10" name="cola">4</ingredient>    <!-- 10cl -->
+                    <ingredient amount="1.00" name="lime">2</ingredient>    <!-- ks -->
+                    <ingredient amount="0.04" name="jagermeister">2</ingredient>
+                    <ingredient amount="0.25" name="red bull">2</ingredient>
+                    <ingredient amount="1.00" name="ice cube">12</ingredient>
                 </ingredients>
             </bar>
         </date>
@@ -30,13 +30,13 @@
                     <drink name="Gin and Tonic">2</drink>
                 </drinks>
                 <ingredients>
-                    <ingredient name="tequilla" amount="0.04">3</ingredient>
-                    <ingredient name="lime juice" amount="0.02">3</ingredient>
-                    <ingredient name="cointreau" amount="0.02">3</ingredient>
-                    <ingredient name="gin" amount="0.05">2</ingredient>
-                    <ingredient name="tonic" amount="0.10">2</ingredient>
-                    <ingredient name="lemon" amount="1.00">2</ingredient>
-                    <ingredient name="ice cube" amount="1.00">10</ingredient>
+                    <ingredient amount="0.04" name="tequilla">3</ingredient>
+                    <ingredient amount="0.02" name="lime juice">3</ingredient>
+                    <ingredient amount="0.02" name="cointreau">3</ingredient>
+                    <ingredient amount="0.05" name="gin">2</ingredient>
+                    <ingredient amount="0.10" name="tonic">2</ingredient>
+                    <ingredient amount="1.00" name="lemon">2</ingredient>
+                    <ingredient amount="1.00" name="ice cube">10</ingredient>
                 </ingredients>
             </bar>
             <bar bar_id="2">
@@ -46,13 +46,13 @@
                     <drink name="Jameson on the Rocks">4</drink>
                 </drinks>
                 <ingredients>
-                    <ingredient name="jameson" amount="0.04">4</ingredient>
-                    <ingredient name="ice cube" amount="1.00">12</ingredient>
+                    <ingredient amount="0.04" name="jameson">4</ingredient>
+                    <ingredient amount="1.00" name="ice cube">12</ingredient>
                 </ingredients>
             </bar>
         </date>
-    </user>
-    <user user_id="2">
+    </admin>
+    <admin admin_id="2">
         <date value="2015-05-14">
             <bar bar_id="2">
                 <income>120.00</income>
@@ -61,10 +61,10 @@
                     <drink name="Cuba Libre">2</drink>
                 </drinks>
                 <ingredients>
-                    <ingredient name="rum" amount="0.04">2</ingredient>
-                    <ingredient name="cola" amount="0.10">2</ingredient>
-                    <ingredient name="lime" amount="1.00">1</ingredient>
-                    <ingredient name="ice cube" amount="1.00">4</ingredient>
+                    <ingredient amount="0.04" name="rum">2</ingredient>
+                    <ingredient amount="0.10" name="cola">2</ingredient>
+                    <ingredient amount="1.00" name="lime">1</ingredient>
+                    <ingredient amount="1.00" name="ice cube">4</ingredient>
                 </ingredients>
             </bar>
         </date>
@@ -77,14 +77,14 @@
                     <drink name="Jägerbomb">13</drink>
                 </drinks>
                 <ingredients>
-                    <ingredient name="gin" amount="0.05">2</ingredient>
-                    <ingredient name="tonic" amount="0.10">2</ingredient>
-                    <ingredient name="lemon" amount="1.00">2</ingredient>
-                    <ingredient name="jagermeister" amount="0.04">13</ingredient>
-                    <ingredient name="red bull" amount="0.25">13</ingredient>
-                    <ingredient name="ice cube" amount="1.00">30</ingredient>
+                    <ingredient amount="0.05" name="gin">2</ingredient>
+                    <ingredient amount="0.10" name="tonic">2</ingredient>
+                    <ingredient amount="1.00" name="lemon">2</ingredient>
+                    <ingredient amount="0.04" name="jagermeister">13</ingredient>
+                    <ingredient amount="0.25" name="red bull">13</ingredient>
+                    <ingredient amount="1.00" name="ice cube">30</ingredient>
                 </ingredients>
             </bar>
         </date>
-    </user>
+    </admin>
 </data>
