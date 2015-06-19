@@ -79,6 +79,16 @@ public class BarsTableModel extends AbstractTableModel {
         fireTableCellUpdated(row, column);
     }
 
+    public List<Bar> getChckedBarList() {
+        List<Bar> checkedBarList = new ArrayList<>();
+        for (int i = 0; i < checkList.size(); i++) {
+            if (checkList.get(i)) {
+                checkedBarList.add(this.barList.get(i));
+            }
+        }
+        return checkedBarList;
+    }
+
     private static List<Boolean> initCheckList() {
         List<Boolean> checkList = new ArrayList<>();
         for (int i = 0; i < barList.size(); i++) {
