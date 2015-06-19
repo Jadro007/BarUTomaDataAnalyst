@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="admin.xsd">
+    <admin admin_id="1">
+        <date value="2015-05-14">
+            <bar bar_id="1">
+                <income>340.00</income>     <!-- jak se bude pocitat celkova cena? -->
+                <alcohol>0.24</alcohol>     <!-- 4x rum + 2x jager -->
+                <drinks>
+                    <drink name="Cuba Libre">4</drink>
+                    <drink name="Jägerbomb">2</drink>
+                </drinks>
+                <ingredients>
+                    <ingredient amount="0.04" name="rum">4</ingredient>     <!-- 4cl -->
+                    <ingredient amount="0.10" name="cola">4</ingredient>    <!-- 10cl -->
+                    <ingredient amount="1.00" name="lime">2</ingredient>    <!-- ks -->
+                    <ingredient amount="0.04" name="jagermeister">2</ingredient>
+                    <ingredient amount="0.25" name="red bull">2</ingredient>
+                    <ingredient amount="1.00" name="ice cube">12</ingredient>
+                </ingredients>
+            </bar>
+        </date>
+        <date value="2015-05-16">
+            <bar bar_id="1">
+                <income>290.00</income>
+                <alcohol>0.28</alcohol>
+                <drinks>
+                    <drink name="Margarita">3</drink>
+                    <drink name="Gin and Tonic">2</drink>
+                </drinks>
+                <ingredients>
+                    <ingredient amount="0.04" name="tequilla">3</ingredient>
+                    <ingredient amount="0.02" name="lime juice">3</ingredient>
+                    <ingredient amount="0.02" name="cointreau">3</ingredient>
+                    <ingredient amount="0.05" name="gin">2</ingredient>
+                    <ingredient amount="0.10" name="tonic">2</ingredient>
+                    <ingredient amount="1.00" name="lemon">2</ingredient>
+                    <ingredient amount="1.00" name="ice cube">10</ingredient>
+                </ingredients>
+            </bar>
+            <bar bar_id="2">
+                <income>160.00</income>
+                <alcohol>0.16</alcohol>
+                <drinks>
+                    <drink name="Jameson on the Rocks">4</drink>
+                </drinks>
+                <ingredients>
+                    <ingredient amount="0.04" name="jameson">4</ingredient>
+                    <ingredient amount="1.00" name="ice cube">12</ingredient>
+                </ingredients>
+            </bar>
+        </date>
+    </admin>
+    <admin admin_id="2">
+        <date value="2015-05-14">
+            <bar bar_id="2">
+                <income>120.00</income>
+                <alcohol>0.08</alcohol>
+                <drinks>
+                    <drink name="Cuba Libre">2</drink>
+                </drinks>
+                <ingredients>
+                    <ingredient amount="0.04" name="rum">2</ingredient>
+                    <ingredient amount="0.10" name="cola">2</ingredient>
+                    <ingredient amount="1.00" name="lime">1</ingredient>
+                    <ingredient amount="1.00" name="ice cube">4</ingredient>
+                </ingredients>
+            </bar>
+        </date>
+        <date value="2015-05-15">
+            <bar bar_id="1">
+                <income>1030.00</income>
+                <alcohol>0.62</alcohol>
+                <drinks>
+                    <drink name="Gin and Tonic">2</drink>
+                    <drink name="Jägerbomb">13</drink>
+                </drinks>
+                <ingredients>
+                    <ingredient amount="0.05" name="gin">2</ingredient>
+                    <ingredient amount="0.10" name="tonic">2</ingredient>
+                    <ingredient amount="1.00" name="lemon">2</ingredient>
+                    <ingredient amount="0.04" name="jagermeister">13</ingredient>
+                    <ingredient amount="0.25" name="red bull">13</ingredient>
+                    <ingredient amount="1.00" name="ice cube">30</ingredient>
+                </ingredients>
+            </bar>
+        </date>
+    </admin>
+</data>
