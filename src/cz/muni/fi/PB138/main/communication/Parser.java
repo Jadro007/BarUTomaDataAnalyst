@@ -8,6 +8,5 @@ import java.util.List;
 public interface Parser {
 
     List parse(String json);
-    boolean save(List list);
 
 }
