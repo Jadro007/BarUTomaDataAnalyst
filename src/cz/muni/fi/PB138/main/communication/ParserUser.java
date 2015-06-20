@@ -9,10 +9,8 @@ public class ParserUser implements Parser {
 
     public List parse(String json) {
         //todo /user
+        //todo zbytocne??
         return null;
     }
 
-    public boolean save(List list) {
-        return false;
-    }
 }

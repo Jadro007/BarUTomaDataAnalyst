@@ -5,14 +5,21 @@ import cz.muni.fi.PB138.main.entities.Drink;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.json.*;
 
 /**
- * BarUTomaDataAnalyst
+ *
+ * Rest link /bar/{barID}/drink
+ * @author Martina Minátová
+ * @author Benjamin Varga
+ * @version 20.6.2015
  */
 public class ParserBarDrink implements Parser {
 
-
+    private static final Logger logger = Logger.getLogger(ParserBarDrink.class.getName());
 
     public List<Drink> parse(String json) {
 
@@ -22,19 +29,35 @@ public class ParserBarDrink implements Parser {
         for (int i = 0; i < array.length(); i++)
         {
             JSONObject jsonDrink = array.getJSONObject(i).getJSONObject("Drink");
-            String name = jsonDrink.getString("Name");
+            String name = jsonDrink.optString("Name");
 
             JSONObject jsonPrice = array.getJSONObject(i).getJSONObject("Price");
 
-            BigDecimal price = BigDecimal.valueOf(jsonPrice.getDouble("Amount"));
-            double multiplierToBase = jsonPrice.getJSONObject("Unit").getDouble("MultiplierToBase");
+            BigDecimal price = BigDecimal.ZERO;
+            try {
+                price = BigDecimal.valueOf(jsonPrice.getDouble("Amount"));
+            } catch (JSONException ex) {
+                logger.log(Level.SEVERE, "Amount is null.", ex);
+            }
+            double multiplierToBase = 0.0;
+            try {
+                multiplierToBase = jsonPrice.getJSONObject("Unit").getDouble("MultiplierToBase");
+            } catch (JSONException ex) {
+                logger.log(Level.SEVERE, "MultiplierToBase is null.", ex);
+            }
             price = price.multiply(BigDecimal.valueOf(multiplierToBase));
 
-            JSONArray jsonIngredients = jsonDrink.getJSONArray("IngredientsUsed");
-            double alcoholQuantity = 0;
+            double alcoholQuantity = 0.0;
+            try {
+                alcoholQuantity = 0;//FixMe odkial dostanem alkohol???
+            } catch (JSONException ex) {
+                logger.log(Level.SEVERE, "", ex);
+            }
+            /*JSONArray jsonIngredients = jsonDrink.getJSONArray("IngredientsUsed");
             for (int j = 0; j < jsonIngredients.length(); j++) {
                 //TODO: Ingredients
-            }
+            }*/
+
             Drink drink = new Drink(name, price, alcoholQuantity);
             drinkList.add(drink);
         }
@@ -42,7 +65,4 @@ public class ParserBarDrink implements Parser {
         return drinkList;
     }
 
-    public boolean save(List list) {
-        return false;
-    }
 }

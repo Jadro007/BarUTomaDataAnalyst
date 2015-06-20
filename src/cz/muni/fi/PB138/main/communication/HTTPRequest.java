@@ -136,6 +136,7 @@ public class HTTPRequest {
      */
     public Boolean hasRegistered(String username, String password) {
         String token = postRequestToken(username, password);
+        if (token == null) return false;
         String json = getRequestWithToken(token, "/Account/UserInfo");
 
         String response = (new JSONObject(json)).optString("HasRegistered");
