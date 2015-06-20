@@ -2,6 +2,8 @@ package cz.muni.fi.PB138.main.gui;
 
 import cz.muni.fi.PB138.main.db.UserInformation;
 
+import java.time.LocalDate;
+
 /**
  * Class used for testing of GUI.
  *
@@ -17,5 +19,20 @@ public class UserInformationChunkImpl implements UserInformation{
     @Override
     public boolean isCurrentUserAdmin() {
         return true;
+    }
+
+    @Override
+    public LocalDate getCurrentUserLastTimeOfUpdate() {
+        return null;
+    }
+
+    @Override
+    public void saveCurrentUserInformation(long id, boolean isAdmin) {
+
+    }
+
+    @Override
+    public void saveCurrentUserLastTimeOfUpdate() {
+
     }
 }
