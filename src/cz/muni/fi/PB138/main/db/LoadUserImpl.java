@@ -1,5 +1,6 @@
 package cz.muni.fi.PB138.main.db;
 
+import cz.muni.fi.PB138.main.entities.Bar;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -7,7 +8,9 @@ import org.w3c.dom.NodeList;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  * BarUTomaDataAnalyst
@@ -77,6 +80,25 @@ public class LoadUserImpl implements LoadUser {
             }
         }
         return drinkMap;
+    }
+
+    @Override
+    public Set<Long> getAllBars() {
+        Set<Long> barIds = new TreeSet<>();
+
+        ReadDatabase readDatabase = new ReadDatabase();
+        Document document = readDatabase.read("bar");
+
+
+            NodeList barNodeList = document.getElementsByTagName("bar_id");
+            for (int i = 0; i < barNodeList.getLength(); i++) {
+                Element barElement = (Element) barNodeList.item(i);
+                String idString = barElement.getTextContent();
+                Long id = Long.getLong(idString);
+                if (id != null) barIds.add(id);
+            }
+
+        return barIds;
     }
 
     public static void main(String[] args) {

@@ -35,4 +35,9 @@ public class UserInformationChunkImpl implements UserInformation{
     public void saveCurrentUserLastTimeOfUpdate() {
 
     }
+
+    @Override
+    public long getUserId(String name) {
+        return 0;
+    }
 }
