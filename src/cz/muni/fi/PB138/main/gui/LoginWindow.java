@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ *
  * Created by Eva on 21.5.2015.
  */
 public class LoginWindow {
