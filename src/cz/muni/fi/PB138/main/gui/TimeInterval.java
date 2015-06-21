@@ -51,7 +51,11 @@ public class TimeInterval implements Comparable<TimeInterval> {
     //TODO Change this
     @Override
     public String toString() {
-        return from.toString() + " - " + to.toString();
+        if (to.equals(from)) {
+            return from.getDayOfMonth() + "." + from.getMonthValue() + ".";
+        }
+        return from.getDayOfMonth() + "." + from.getMonthValue() + "." + from.getYear() + "-" +
+                to.getDayOfMonth() + "." + to.getMonthValue() + "." + to.getYear();
     }
 
     @Override

@@ -5,9 +5,7 @@ import org.jfree.chart.ChartPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
 
 import static cz.muni.fi.PB138.main.gui.LoadManager.getUserInformation;
@@ -17,10 +15,9 @@ import static cz.muni.fi.PB138.main.gui.LoadManager.getUserInformation;
  * Created by Eva on 21.5.2015.
  */
 //TODO correct resizing
-//TODO visual loading of chart
 public class MainWindow {
     private static final int MAX_SELECTED_BARS = 4;
-    private static final int MAX_SELECTED_TIME_INTERVALS = 20;
+    private static final int MAX_SELECTED_TIME_INTERVALS = 14;
     private static final int MAX_SELECTED_DISPLAY_LIMIT = 10;
     private static final int INITIAL_SELECTED_DISPLAY_LIMIT = 3;
 
@@ -36,6 +33,7 @@ public class MainWindow {
     private JTable barsTable;
     private ChartPanel chartPanel;
     private JButton chartButton;
+    private JScrollPane tableScrollPane;
     private BarsTableModel barsTableModel;
     private Boolean isAdmin;
 
@@ -49,8 +47,6 @@ public class MainWindow {
         if (isAdmin) {
             chartOptions.add(new ChartOption("Best selling drinks at bars", "Number of drinks", "Drink",
                     Arrays.asList(ChartType.BAR, ChartType.PIE), "Drinks to display:", ChartData.SELLING_DRINKS));
-            chartOptions.add(new ChartOption("Most used ingredients at bars", "Amount", "Ingredient",
-                    Arrays.asList(ChartType.BAR, ChartType.PIE), "Ingredients to display:", ChartData.USED_INGREDIENTS));
             chartOptions.add(new ChartOption("Pure alcohol sold at bars", "Amount",  "Time",
                     Arrays.asList(ChartType.BAR, ChartType.XY), "", ChartData.PURE_ALCOHOL_SOLD));
             chartOptions.add(new ChartOption("Earnings of bars", "Earning", "Time",
@@ -61,8 +57,7 @@ public class MainWindow {
     }
 
     private static List<ChartData> getAdminsOptions() {
-        return new ArrayList<>(Arrays.asList(ChartData.SELLING_DRINKS, ChartData.USED_INGREDIENTS, ChartData.PURE_ALCOHOL_SOLD,
-                ChartData.EARNINGS));
+        return new ArrayList<>(Arrays.asList(ChartData.SELLING_DRINKS, ChartData.PURE_ALCOHOL_SOLD, ChartData.EARNINGS));
     }
 
     public MainWindow() {
@@ -99,6 +94,11 @@ public class MainWindow {
                         "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            if (getAdminsOptions().contains(selectedChartOption.getChartData()) && checkedBarsCount == 0) {
+                JOptionPane.showMessageDialog(null, "No bars are selected.\nSelect some of them and try again.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             long datesDiff = TimeUtils.datesDifference(fromDateChooser.getDate(), toDateChooser.getDate());
             if ((datesDiff > MAX_SELECTED_TIME_INTERVALS && graphParamSpinner.getValue() == TimeIntervalType.DAY) ||
                     (datesDiff > MAX_SELECTED_TIME_INTERVALS * 7 && graphParamSpinner.getValue() == TimeIntervalType.WEEK)
@@ -108,6 +108,7 @@ public class MainWindow {
                         "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+
             showChart();
         });
     }
@@ -136,37 +137,42 @@ public class MainWindow {
     }
 
     private void createUIComponents() {
-        //TODO Worker??
         isAdmin = getUserInformation().isCurrentUserAdmin();
         List<ChartOption> chartOptions = getChartOptions();
 
         chartOptionComboBox = new JComboBox();
         chartOptions.forEach(chartOptionComboBox::addItem);
-        chartOptionComboBox.setSelectedItem(0);
 
         chartTypeComboBox = new JComboBox();
         setChartTypeComboBoxItems();
-
         //TODO fromDateChooser & toDateChooser min date restriction
         fromDateChooser = new JDateChooser();
         fromDateChooser.getJCalendar().setMaxSelectableDate(new Date());
+        fromDateChooser.setLocale(Locale.ENGLISH);
 
         toDateChooser = new JDateChooser();
         toDateChooser.getJCalendar().setMaxSelectableDate(new Date());
+        toDateChooser.setLocale(Locale.ENGLISH);
 
         graphParamLabel = new JLabel();
         graphParamSpinner = new JSpinner();
         setChartParamComponents();
 
-        if (this.isAdmin) {
+        if (isAdmin) {
+            tableScrollPane = new JScrollPane();
             barsTableModel = new BarsTableModel();
             barsTable = new JTable(barsTableModel);
             barsTable.removeColumn(barsTable.getColumnModel().getColumn(0));
         } else {
+            tableScrollPane = null;
             barsTable = null;
         }
 
         chartPanel = new ChartPanel(null);
+        chartPanel.setMinimumDrawWidth(0);
+        chartPanel.setMinimumDrawHeight(0);
+        chartPanel.setMaximumDrawWidth(1920);
+        chartPanel.setMaximumDrawHeight(1200);
     }
 
     private void setChartParamComponents() {

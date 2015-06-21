@@ -4,6 +4,8 @@ import cz.muni.fi.PB138.main.entities.Bar;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -21,7 +23,7 @@ import static cz.muni.fi.PB138.main.gui.TimeIntervalType.WEEK;
  * Created by Eva on 2.6.2015.
  */
 
-//TODO create Worker from this class
+//TODO create loading??
 public class ChartWorker extends SwingWorker<Void, Integer> {
     private ChartOption option;
     private ChartType type;
@@ -51,7 +53,8 @@ public class ChartWorker extends SwingWorker<Void, Integer> {
     private JFreeChart createChart() {
         CategoryDataset dataset = createDataset();
         JFreeChart chart;
-        //TODO payments show legend set false
+        CategoryPlot plot;
+        CategoryAxis categoryAxis;
         switch (type) {
             case BAR:
                 chart = ChartFactory.createBarChart(
@@ -61,6 +64,12 @@ public class ChartWorker extends SwingWorker<Void, Integer> {
                         dataset,
                         PlotOrientation.VERTICAL,
                         true, true, false);
+                if (option.getChartData() == ChartData.PAYMENTS) {
+                    chart.removeLegend();
+                }
+                plot = chart.getCategoryPlot();
+                categoryAxis = plot.getDomainAxis();
+                categoryAxis.setMaximumCategoryLabelLines(3);
                 break;
             case PIE:
                 chart = ChartFactory.createMultiplePieChart(
@@ -79,6 +88,12 @@ public class ChartWorker extends SwingWorker<Void, Integer> {
                         PlotOrientation.VERTICAL,
                         true, true, false
                 );
+                if (option.getChartData() == ChartData.PAYMENTS) {
+                    chart.removeLegend();
+                }
+                plot = chart.getCategoryPlot();
+                categoryAxis = plot.getDomainAxis();
+                categoryAxis.setMaximumCategoryLabelLines(3);
                 break;
             default:
                 return null;
@@ -116,19 +131,6 @@ public class ChartWorker extends SwingWorker<Void, Integer> {
                             TimeUtils.utilDateToLocalDate(to), b.getId());
                     i = 0;
                     for (Map.Entry<String, Integer> e : sellingDrinksMap.entrySet()) {
-                        categoryDataset.setValue(e.getValue(), e.getKey(), b.getName());
-                        i++;
-                        if (i == displayLimit) break;
-                    }
-                }
-                return categoryDataset;
-            case USED_INGREDIENTS:
-                Map<String, Double> ingredientsMap;
-                for (Bar b : barList) {
-                    ingredientsMap = LoadManager.getLoadAdmin().getMostUsedIngredients(TimeUtils.utilDateToLocalDate(from),
-                            TimeUtils.utilDateToLocalDate(to), b.getId());
-                    i = 0;
-                    for (Map.Entry<String, Double> e : ingredientsMap.entrySet()) {
                         categoryDataset.setValue(e.getValue(), e.getKey(), b.getName());
                         i++;
                         if (i == displayLimit) break;

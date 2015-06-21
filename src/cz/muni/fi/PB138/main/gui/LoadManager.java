@@ -25,4 +25,5 @@ public final class LoadManager {
     public static UserInformation getUserInformation() {
         return userInformation;
     }
+
 }
