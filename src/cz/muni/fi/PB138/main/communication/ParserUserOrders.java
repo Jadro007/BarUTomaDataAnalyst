@@ -3,6 +3,7 @@ package cz.muni.fi.PB138.main.communication;
 import cz.muni.fi.PB138.main.entities.Drink;
 import cz.muni.fi.PB138.main.entities.Order;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
@@ -10,16 +11,22 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * BarUTomaDataAnalyst
+ * All orders from bar for user
+ * Rest link /bar/{barID}/order/?username={username} + TOKEN
+ * @author Martina Minátová
+ * @author Benjamin Varga
+ * @version 20.6.2015
  */
 public class ParserUserOrders implements Parser {
-
-    public List parse(String json, long barID, long userID) {
-        //todo /bar/{barid}/order pod USER
-        //todo vráti všetky objednavky pre uživatela,
-        /*{
+    /*{
+    "ContentEncoding": null,
+    "ContentType": null,
+    "Data": [
+        {
             "OrderDrinks": [
                 {
                     "Drink": {
@@ -45,18 +52,63 @@ public class ParserUserOrders implements Parser {
                             "Code": "ks",
                             "MultiplierToBase": 1
                         },
-                        "QuantityId": 44,
+                        "QuantityId": 49,
                         "Amount": 1
                     },
-                    "OrderDrinkId": 1
+                    "OrderDrinkId": 4
+                },
+                {
+                    "Drink": {
+                        "IngredientsUsed": [],
+                        "Price": {
+                            "Unit": {
+                                "UnitId": 61,
+                                "Name": "Kè",
+                                "Code": "Kè",
+                                "MultiplierToBase": 0
+                            },
+                            "QuantityId": 14,
+                            "Amount": 30
+                        },
+                        "DrinkId": 10,
+                        "Name": "Jager+Cola",
+                        "Info": "Good"
+                    },
+                    "Quantity": {
+                        "Unit": {
+                            "UnitId": 1,
+                            "Name": "kus",
+                            "Code": "ks",
+                            "MultiplierToBase": 1
+                        },
+                        "QuantityId": 50,
+                        "Amount": 3
+                    },
+                    "OrderDrinkId": 5
                 }
             ],
-            "OrderId": 9,
-            "DateTime": "2015-06-16T20:56:42.867",
+            "Price": {
+                "Unit": {
+                    "UnitId": 1,
+                    "Name": "kus",
+                    "Code": "ks",
+                    "MultiplierToBase": 1
+                },
+                "QuantityId": 51,
+                "Amount": 55
+            },
+            "OrderId": 11,
+            "DateTime": "2015-06-20T06:55:15.353",
             "Place": "TestBar"
-        },*/
+        }
+    ],
+    "JsonRequestBehavior": 1,
+    "MaxJsonLength": null,
+    "RecursionLimit": null
+}*/
+    private Logger logger = Logger.getLogger(ParserBarOrder.class.getName());
 
-
+    public List parse(String json) {
         JSONObject obj = new JSONObject(json);
         List<Order> orderList = new ArrayList<>();
         JSONArray array = obj.getJSONArray("Data");
@@ -69,14 +121,29 @@ public class ParserUserOrders implements Parser {
                 String drinkName = drink.optString("Name");
 
                 JSONObject jsonPrice = drink.getJSONObject("Price");
-                double drinkAmount = jsonPrice.getDouble("Amount");
+                double drinkAmount = 0.0;
+                try {
+                    drinkAmount = jsonPrice.getDouble("Amount");
+                } catch (JSONException ex) {
+                    logger.log(Level.SEVERE, "Price Amount is null.", ex);
+                }
 
                 JSONObject quantity = orderDrinks.getJSONObject(j).getJSONObject("Quantity");
-                double quantityAmount = quantity.getDouble("Amount");
+                double quantityAmount = 0.0;
+                try {
+                    quantityAmount = quantity.getDouble("Amount");
+                } catch (JSONException ex) {
+                    logger.log(Level.SEVERE, "Quantity Amount is null.", ex);
+                }
 
                 BigDecimal price = BigDecimal.valueOf(drinkAmount * quantityAmount);
 
-                double alcoholQuantity = 0; //todo dorobit
+                double alcoholQuantity = 0.0;
+                /*try {
+                    alcoholQuantity = 0;//todo dorobit alkohol ked budú ingrediencie
+                } catch (JSONException ex) {
+                    logger.log(Level.SEVERE, "", ex);
+                }*/
 
                 Drink myDrink = new Drink(drinkName, price, alcoholQuantity);
                 drinkList.add(myDrink);
@@ -90,19 +157,9 @@ public class ParserUserOrders implements Parser {
                 totalPrice = totalPrice.add(drink.getPrice());
             }
 
-            Order order = new Order(LocalDate.parse(dateTime, dateTimeFormatter), totalPrice, barID, userID, drinkList);
+            Order order = new Order(LocalDate.parse(dateTime, dateTimeFormatter), totalPrice, 0 /*todo barID*/, 0 /*todo userID*/, drinkList);
             orderList.add(order);
         }
-
         return orderList;
-    }
-
-    @Override
-    public List parse(String json) {
-        return null;
-    }
-
-    public boolean save(List list) {
-        return false;
     }
 }
