@@ -135,12 +135,10 @@ public class HTTPRequest {
 
     /**
      * Check if the user is registered
-     * @param username
-     * @param password
+     * @param token
      * @return true when user is registered
      */
-    public Boolean hasRegistered(String username, String password) {
-        String token = postRequestToken(username, password);
+    public Boolean hasRegistered(String token) {
         if (token == null) return false;
         String json = getRequestWithToken(token, "/Account/UserInfo");
 
@@ -161,7 +159,7 @@ public class HTTPRequest {
         String json = getRequestWithToken(token, "/bar/getMyBars");
 
         JSONArray response = (new JSONObject(json)).getJSONArray("Data");
-        if (response == null) {
+        if (response == null || response.length() == 0) {
             return false;
         } else {
             return true;

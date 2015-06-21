@@ -25,11 +25,11 @@ public class LoginProcedure {
     private UserInformation ui;
     private long userId;
 
-    public LoginProcedure(String userName, String password) {
+    public LoginProcedure(String userName, String token) {
         this.userName = userName;
+        this.token = token;
         ui = new UserInformationImpl();
         httpRequest = new HTTPRequest();
-        token = httpRequest.postRequestToken(userName, password);
         isAdmin = httpRequest.isUserAdmin(token);
         userId = ui.getUserId(userName);
     }
@@ -39,7 +39,8 @@ public class LoginProcedure {
         ui.saveCurrentUserInformation(userId, isAdmin);
 
         if (isAdmin) UpdateAdmin();
-        else UpdateUser();
+
+        UpdateUser();
 
         ui.saveCurrentUserLastTimeOfUpdate();
     }
@@ -48,7 +49,7 @@ public class LoginProcedure {
         LocalDate lastTimeOfUpdate = ui.getCurrentUserLastTimeOfUpdate();
         CreateDocument createDocument = new CreateDocument();
         StoreDatabase storeDatabase = new StoreDatabase();
-        Parser parserBarOrder = new ParserBarOrder();
+        ParserBarOrder parserBarOrder = new ParserBarOrder();
         List<Order> orderListAllBars = new ArrayList<>();
         List<Bar> barList;
         String jsonBarOrder;
@@ -59,17 +60,17 @@ public class LoginProcedure {
         for (Bar bar : barList) {
             long barId = bar.getId();
             jsonBarOrder = httpRequest.getRequestWithToken(token, BAR_ORDER_PREFIX + barId + BAR_ORDER_POSTFIX);
-            List<Order> barOrders = parserBarOrder.parse(jsonBarOrder);
+            List<Order> barOrders = parserBarOrder.parse(jsonBarOrder, barId);
             orderListAllBars.addAll(barOrders);
         }
 
         //select only in correct date range
         orderListAllBars.removeIf(o -> !o.getDatetime().isAfter(lastTimeOfUpdate));
-
-        InputStream adminStream = createDocument.createAdminDocument(orderListAllBars);
+        if (!orderListAllBars.isEmpty()) {
+            InputStream adminStream = createDocument.createAdminDocument(orderListAllBars);
+            storeDatabase.store("admin", adminStream);
+        }
         InputStream barStream = createDocument.createBarDocument(barList);
-
-        storeDatabase.store("admin", adminStream);
         storeDatabase.store("bar", barStream);
     }
 
@@ -77,7 +78,7 @@ public class LoginProcedure {
         LocalDate lastTimeOfUpdate = ui.getCurrentUserLastTimeOfUpdate();
         CreateDocument createDocument = new CreateDocument();
         StoreDatabase storeDatabase = new StoreDatabase();
-        Parser parserUserOrders = new ParserUserOrders();
+        ParserUserOrders parserUserOrders = new ParserUserOrders();
         List<Long> barIds;
         List<Order> orderListAll = new ArrayList<>();
         String jsonUserOrder;
@@ -89,15 +90,17 @@ public class LoginProcedure {
         for (Long id : barIds) {
             List<Order> orderList;
             jsonUserOrder = httpRequest.getRequestWithToken(token, BAR_ORDER_PREFIX + id + USER_ORDER_POSTFIX + userName);
-            orderList = parserUserOrders.parse(jsonUserOrder);
+            orderList = parserUserOrders.parse(jsonUserOrder, id);
             orderListAll.addAll(orderList);
         }
 
         orderListAll.removeIf(o -> !o.getDatetime().isAfter(lastTimeOfUpdate));
 
-        InputStream userStream = createDocument.createUserDocument(orderListAll);
+        if (!orderListAll.isEmpty()) {
+            InputStream userStream = createDocument.createUserDocument(orderListAll);
+            storeDatabase.store("user", userStream);
+        }
 
-        storeDatabase.store("user", userStream);
     }
 
 

@@ -34,7 +34,7 @@ USER-SCHEMA
     <xs:simpleType name="simpleDecimal">
         <xs:restriction base="xs:decimal">
             <xs:minExclusive value="0"/>
-            <xs:pattern value="\d+\.\d{2}"/>
+            <xs:pattern value="\d+\.\d{1}"/>
         </xs:restriction>
     </xs:simpleType>
 

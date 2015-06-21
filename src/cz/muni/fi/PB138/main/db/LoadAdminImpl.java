@@ -7,10 +7,7 @@ import org.w3c.dom.NodeList;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Created by Tomáš on 17.6.2015.
@@ -27,10 +24,11 @@ public class LoadAdminImpl implements LoadAdmin {
 
     @Override
     public BigDecimal getIncome(LocalDate from, LocalDate to, long barId) {
-        //ReadDatabase readDatabase = new ReadDatabase();
-        //Document document = readDatabase.read("admin");
+        ReadDatabase readDatabase = new ReadDatabase();
+        Document document = readDatabase.read("admin");
         BigDecimal totalIncome = BigDecimal.ZERO;
-
+        CreateDocument cd = new CreateDocument();
+        cd.transformToConsoleStream(document);
         NodeList dateList = document.getElementsByTagName("date");
         for (int i = 0; i < dateList.getLength(); i++) {
             Element dateElement = (Element) dateList.item(i);
@@ -167,12 +165,12 @@ public class LoadAdminImpl implements LoadAdmin {
     @Override
     public List<Bar> getAdminsBars() {
         ReadDatabase readDatabase = new ReadDatabase();
-        Document document = readDatabase.read("bar");
-        List<Bar> barArrayList = new ArrayList<>();
+        Document documentBar = readDatabase.read("bar");
+        Set<Bar> barArrayList = new HashSet<>();
         UserInformation userInfo = new UserInformationImpl();
 
         if (userInfo.isCurrentUserAdmin()) {
-            NodeList barNodeList = document.getElementsByTagName("bar");
+            NodeList barNodeList = documentBar.getElementsByTagName("bar");
             for (int i = 0; i < barNodeList.getLength(); i++) {
                 Element barElement = (Element) barNodeList.item(i);
                 long ownerId = Long.parseLong(barElement.getAttribute("owner_id"));
@@ -189,7 +187,7 @@ public class LoadAdminImpl implements LoadAdmin {
             return null;
         }
 
-        return barArrayList;
+        return new ArrayList<>(barArrayList);
     }
 
     public static void main(String[] args) {

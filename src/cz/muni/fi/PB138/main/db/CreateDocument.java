@@ -211,7 +211,7 @@ public class CreateDocument {
         Element rootElement = createRootElement(document, "data", 1);
         for (Order order : orderList) {
             Element userElement =
-                    createElementWithOneAttribute(document, "user", "user_id", "" + order.getUserID());
+                    createElementWithOneAttribute(document, "admin", "admin_id", "" + order.getUserID());
             rootElement.appendChild(userElement);
 
             Element dateElement =
@@ -354,7 +354,7 @@ public class CreateDocument {
             e.printStackTrace();
         }
         System.out.println("Transform is OK \n \n");
-        transformToConsoleStream(document);//todo ukazkovy vypis, upravit kodovanie
+        //transformToConsoleStream(document);//todo ukazkovy vypis, upravit kodovanie
         return document;
     }
 }
