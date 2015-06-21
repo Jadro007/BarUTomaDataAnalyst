@@ -5,7 +5,6 @@ import cz.muni.fi.PB138.main.db.LoadUser;
 import cz.muni.fi.PB138.main.db.UserInformation;
 
 /**
- *
  * Created by Eva on 30.5.2015.
  */
 public final class LoadManager {

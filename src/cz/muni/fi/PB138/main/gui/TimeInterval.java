@@ -49,7 +49,6 @@ public class TimeInterval implements Comparable<TimeInterval> {
         return result;
     }
 
-    //TODO Change this
     @Override
     public String toString() {
         if (to.equals(from)) {
