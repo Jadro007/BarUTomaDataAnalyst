@@ -3,6 +3,7 @@ package cz.muni.fi.PB138.main.gui;
 import java.util.List;
 
 /**
+ *
  * Created by Eva on 2.6.2015.
  */
 public class ChartOption {

@@ -19,7 +19,6 @@ import static cz.muni.fi.PB138.main.gui.TimeIntervalType.DAY;
 import static cz.muni.fi.PB138.main.gui.TimeIntervalType.WEEK;
 
 /**
- *
  * Created by Eva on 2.6.2015.
  */
 
@@ -139,7 +138,7 @@ public class ChartWorker extends SwingWorker<Void, Integer> {
                 return categoryDataset;
             case PURE_ALCOHOL_SOLD:
                 timeIntervalList = getTimeIntervalList(displayLimit, from, to);
-                Map<String, Double> alcoholMap = new HashMap<>();
+                Map<String, Double> alcoholMap = new LinkedHashMap<>();
                 for (Bar b : barList) {
                     alcoholMap.clear();
                     for (TimeInterval ti : timeIntervalList) {
@@ -153,7 +152,7 @@ public class ChartWorker extends SwingWorker<Void, Integer> {
                 return categoryDataset;
             case EARNINGS:
                 timeIntervalList = getTimeIntervalList(displayLimit, from, to);
-                Map<String, BigDecimal> incomeMap = new HashMap<>();
+                Map<String, BigDecimal> incomeMap = new LinkedHashMap<>();
                 for (Bar b : barList) {
                     incomeMap.clear();
                     for (TimeInterval ti : timeIntervalList) {

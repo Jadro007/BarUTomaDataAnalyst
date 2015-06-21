@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 /**
  * Class used for testing of GUI.
- *
  * Created by Eva on 22.5.2015.
  */
 public class UserInformationChunkImpl implements UserInformation{
