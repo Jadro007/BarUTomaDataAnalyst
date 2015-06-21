@@ -2,7 +2,6 @@ package cz.muni.fi.PB138.main.gui;
 
 import com.toedter.calendar.JDateChooser;
 import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,15 +10,22 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static cz.muni.fi.PB138.main.gui.LoadManager.getUserInformation;
+
 /**
  * Created by Eva on 21.5.2015.
  */
 //TODO correct resizing
-//TODO spinner - find max value & max selected bars restriction?
+//TODO visual loading of chart
 public class MainWindow {
+    private static final int MAX_SELECTED_BARS = 4;
+    private static final int MAX_SELECTED_TIME_INTERVALS = 20;
+    private static final int MAX_SELECTED_DISPLAY_LIMIT = 10;
+    private static final int INITIAL_SELECTED_DISPLAY_LIMIT = 3;
+
     private Frame frame;
-    private JComboBox<ChartOption> chartOptionComboBox;
-    private JComboBox<ChartType> chartTypeComboBox;
+    private JComboBox chartOptionComboBox;
+    private JComboBox chartTypeComboBox;
     private JSpinner graphParamSpinner;
     private JButton logOutButton;
     private JDateChooser toDateChooser;
@@ -30,10 +36,36 @@ public class MainWindow {
     private ChartPanel chartPanel;
     private JButton chartButton;
     private BarsTableModel barsTableModel;
+    private Boolean isAdmin;
 
-    private static List<ChartOption> chartOptions = getChartOptions();
+    private List<ChartOption> getChartOptions() {
+        List<ChartOption> chartOptions = new ArrayList<>();
+
+        chartOptions.add(new ChartOption("My most drunk drinks", "Number of drinks", "Drink",
+                Arrays.asList(ChartType.BAR, ChartType.PIE), "Drinks to display:", ChartData.DRUNK_DRINKS));
+        chartOptions.add(new ChartOption("My payments", "Payment", "Time", Arrays.asList(ChartType.BAR, ChartType.XY), "", ChartData.PAYMENTS));
+
+        if (isAdmin) {
+            chartOptions.add(new ChartOption("Best selling drinks at bars", "Number of drinks", "Drink",
+                    Arrays.asList(ChartType.BAR, ChartType.PIE), "Drinks to display:", ChartData.SELLING_DRINKS));
+            chartOptions.add(new ChartOption("Most used ingredients at bars", "Amount", "Ingredient",
+                    Arrays.asList(ChartType.BAR, ChartType.PIE), "Ingredients to display:", ChartData.USED_INGREDIENTS));
+            chartOptions.add(new ChartOption("Pure alcohol sold at bars", "Amount",  "Time",
+                    Arrays.asList(ChartType.BAR, ChartType.XY), "", ChartData.PURE_ALCOHOL_SOLD));
+            chartOptions.add(new ChartOption("Earnings of bars", "Earning", "Time",
+                    Arrays.asList(ChartType.BAR, ChartType.XY), "", ChartData.EARNINGS));
+        }
+
+        return chartOptions;
+    }
+
+    private static List<ChartData> getAdminsOptions() {
+        return new ArrayList<>(Arrays.asList(ChartData.SELLING_DRINKS, ChartData.USED_INGREDIENTS, ChartData.PURE_ALCOHOL_SOLD,
+                ChartData.EARNINGS));
+    }
 
     public MainWindow() {
+
         chartOptionComboBox.addActionListener(e -> {
             setChartTypeComboBoxItems();
             setChartParamComponents();
@@ -59,13 +91,32 @@ public class MainWindow {
                         "Reselect the dates and try again.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            //TODO TimeIntervalType -> too many intervals restriction
+            int checkedBarsCount = barsTableModel.getChckedBarList().size();
+            ChartOption selectedChartOption = (ChartOption) chartOptionComboBox.getSelectedItem();
+            if (getAdminsOptions().contains(selectedChartOption.getChartData()) && checkedBarsCount > MAX_SELECTED_BARS) {
+                JOptionPane.showMessageDialog(null, "Too many bars are selected.\nDeselect some of them and try again.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            long datesDiff = TimeUtils.datesDifference(fromDateChooser.getDate(), toDateChooser.getDate());
+            if ((datesDiff > MAX_SELECTED_TIME_INTERVALS && graphParamSpinner.getValue() == TimeIntervalType.DAY) ||
+                    (datesDiff > MAX_SELECTED_TIME_INTERVALS * 7 && graphParamSpinner.getValue() == TimeIntervalType.WEEK)
+                    ){
+                JOptionPane.showMessageDialog(null, "Too many time intervals are selected.\n Please change the type of time" +
+                                "interval or select lower range of dates.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             showChart();
         });
     }
 
     public static void main(String[] args) {
         createMainWindow();
+    }
+
+    public void setFrame(Frame frame) {
+        this.frame = frame;
     }
 
     public static void createMainWindow(){
@@ -83,11 +134,11 @@ public class MainWindow {
         });
     }
 
-    public void setFrame(Frame frame) {
-        this.frame = frame;
-    }
-
     private void createUIComponents() {
+        //TODO Worker??
+        isAdmin = getUserInformation().isCurrentUserAdmin();
+        List<ChartOption> chartOptions = getChartOptions();
+
         chartOptionComboBox = new JComboBox();
         chartOptions.forEach(chartOptionComboBox::addItem);
         chartOptionComboBox.setSelectedItem(0);
@@ -106,8 +157,7 @@ public class MainWindow {
         graphParamSpinner = new JSpinner();
         setChartParamComponents();
 
-        //TODO Worker?
-        if (LoadManager.getUserInformation().isCurrentUserAdmin()) {
+        if (this.isAdmin) {
             barsTableModel = new BarsTableModel();
             barsTable = new JTable(barsTableModel);
             barsTable.removeColumn(barsTable.getColumnModel().getColumn(0));
@@ -122,8 +172,7 @@ public class MainWindow {
         ChartOption option = (ChartOption) chartOptionComboBox.getSelectedItem();
 
         if (option.getGraphParamName() != null && option.getGraphParamName().length() != 0) {
-            //TODO reasonable starting value, maybe max value according to number of all e.g. drunk drinks
-            graphParamSpinner.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+            graphParamSpinner.setModel(new SpinnerNumberModel(INITIAL_SELECTED_DISPLAY_LIMIT, 1, MAX_SELECTED_DISPLAY_LIMIT, 1));
             graphParamLabel.setText(option.getGraphParamName());
         } else {
             TimeIntervalType[] timeIntervalTypes = {TimeIntervalType.DAY, TimeIntervalType.WEEK, TimeIntervalType.MONTH};
@@ -148,37 +197,16 @@ public class MainWindow {
         } else {
             displayLimit = (int) graphParamSpinner.getValue();
         }
-        JFreeChart chart = GraphManager.createGraph(
+        ChartWorker chartWorker = new ChartWorker(
                 chartOption,
                 (ChartType) chartTypeComboBox.getSelectedItem(),
                 barsTableModel.getChckedBarList(),
                 fromDateChooser.getDate(),
                 toDateChooser.getDate(),
-                displayLimit
+                displayLimit,
+                chartPanel
         );
-        chartPanel.setChart(chart);
-    }
-
-    private static List<ChartOption> getChartOptions() {
-        List<ChartOption> chartOptions = new ArrayList<>();
-
-        chartOptions.add(new ChartOption("My most drunk drinks", "Number of drinks", "Drink",
-                Arrays.asList(ChartType.BAR, ChartType.PIE), "Drinks to display:", ChartData.DRUNK_DRINKS));
-        chartOptions.add(new ChartOption("My payments", "Payment", "Time", Arrays.asList(ChartType.BAR, ChartType.XY), "", ChartData.PAYMENTS));
-
-        //TODO worker?
-        if (LoadManager.getUserInformation().isCurrentUserAdmin()) {
-            chartOptions.add(new ChartOption("Best selling drinks at bars", "Number of drinks", "Drink",
-                    Arrays.asList(ChartType.BAR, ChartType.PIE), "Drinks to display:", ChartData.SELLING_DRINKS));
-            chartOptions.add(new ChartOption("Most used ingredients at bars", "Amount", "Ingredient",
-                    Arrays.asList(ChartType.BAR, ChartType.PIE), "Ingredients to display:", ChartData.USED_INGREDIENTS));
-            chartOptions.add(new ChartOption("Pure alcohol sold at bars", "Amount",  "Time",
-                    Arrays.asList(ChartType.BAR, ChartType.XY), "", ChartData.PURE_ALCOHOL_SOLD));
-            chartOptions.add(new ChartOption("Earnings of bars", "Earning", "Time",
-                    Arrays.asList(ChartType.BAR, ChartType.XY), "", ChartData.EARNINGS));
-        }
-
-        return chartOptions;
+        chartWorker.execute();
     }
 
 }
