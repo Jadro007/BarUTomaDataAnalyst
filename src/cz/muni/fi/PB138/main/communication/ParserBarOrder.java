@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 /**
  * All orders from bar
  * Rest link /bar/{barID}/order
- * @author Martina Minátová
+ * @author Martina Minï¿½tovï¿½
  * @author Benjamin Varga
  * @version 20.6.2015
  */
@@ -57,7 +57,7 @@ public class ParserBarOrder implements Parser{
 
                 double alcoholQuantity = 0.0;
                 /*try {
-                    alcoholQuantity = 0;//todo dorobit alkohol ked budú ingrediencie
+                    alcoholQuantity = 0;//todo dorobit alkohol ked budï¿½ ingrediencie
                 } catch (JSONException ex) {
                     logger.log(Level.SEVERE, "", ex);
                 }*/
@@ -74,10 +74,17 @@ public class ParserBarOrder implements Parser{
                 totalPrice = totalPrice.add(drink.getPrice());
             }
 
-            Order order = new Order(LocalDate.parse(dateTime, dateTimeFormatter), totalPrice, 0 /*todo barID*/, 0 /*todo userID*/, drinkList);
+            Order order = new Order(LocalDate.parse(dateTime, dateTimeFormatter), totalPrice, 0, 0, drinkList);
             orderList.add(order);
         }
         return orderList;
     }
 
+    public List parse(String json, long barId) {
+        List<Order> list = parse(json);
+        for(Order order : list) {
+            order.setBarID(barId);
+        }
+        return list;
+    }
 }

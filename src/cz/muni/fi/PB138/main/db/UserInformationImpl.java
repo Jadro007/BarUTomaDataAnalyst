@@ -15,6 +15,8 @@ public class UserInformationImpl implements UserInformation {
     public static final String ADMIN = "admin";
     public static final String USER = "user";
     public static final String ID_PREFIX = "id_";
+    public static final String NAME_PREFIX = "name_";
+    public static final String LAST_ID = "last_id";
 
     @Override
     public long getCurrentUserId() {
@@ -174,6 +176,55 @@ public class UserInformationImpl implements UserInformation {
                 }
             }
         }
+    }
+
+    @Override
+    public long getUserId(String name) {
+        Properties properties = new Properties();
+        InputStream input = null;
+        OutputStream output = null;
+        long userId = -1;
+        try {
+            input = new FileInputStream(CONFIG);
+            properties.load(input);
+            String id = properties.getProperty(NAME_PREFIX + name);
+            if (id == null) {
+                String lastIdString = properties.getProperty(LAST_ID);
+                long lastId;
+                if (lastIdString == null) lastId = 1;
+                else lastId = Long.parseLong(lastIdString);
+                properties.setProperty(NAME_PREFIX + name, String.valueOf(lastId + 1));
+            }
+            else {
+                userId = Long.parseLong(id);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        try {
+            output = new FileOutputStream(CONFIG);
+            properties.store(output, "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (output != null) {
+                try {
+                    output.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return userId;
     }
 
 }
