@@ -9,7 +9,7 @@ import cz.muni.fi.PB138.main.db.UserInformation;
  */
 public final class LoadManager {
 
-    //TODO change theese before launching
+    //TODO change these before launching
     private static final LoadAdmin loadAdmin = new LoadAdminChunkImpl();
     private static final LoadUser loadUser = new LoadUserChunkImpl();
     private static final UserInformation userInformation = new UserInformationChunkImpl();

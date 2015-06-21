@@ -5,11 +5,13 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
+ *
  * Created by Eva on 10.6.2015.
  */
-public interface TimeUtils {
+public final class TimeUtils {
 
     static LocalDate utilDateToLocalDate(Date date) {
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -66,5 +68,8 @@ public interface TimeUtils {
         return getMonthIntervals(utilDateToLocalDate(from), utilDateToLocalDate(to));
     }
 
-    //TODO calculation of days between two dates
+    static long datesDifference(Date from, Date to) {
+        long diff = from.getTime() - to.getTime();
+        return Math.abs(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+    }
 }

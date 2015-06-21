@@ -1,9 +1,12 @@
 package cz.muni.fi.PB138.main.gui;
 
+import cz.muni.fi.PB138.main.communication.HTTPRequest;
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
+ *
  * Created by Eva on 21.5.2015.
  */
 public class LoginWindow {
@@ -25,7 +28,12 @@ public class LoginWindow {
                 JOptionPane.showMessageDialog(null, "Please enter your password", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            //TODO authentication
+            HTTPRequest httpRequest = new HTTPRequest();
+            if (!httpRequest.hasRegistered(username, String.valueOf(password))) {
+                JOptionPane.showMessageDialog(null, "Incorrect combination of username and password.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             MainWindow.createMainWindow();
             this.frame.setVisible(false);
             this.frame.dispose();
