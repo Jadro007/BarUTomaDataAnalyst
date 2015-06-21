@@ -22,18 +22,13 @@ public class ParserGetMyBars implements Parser {
     private static final Logger logger = Logger.getLogger(ParserGetMyBars.class.getName());
 
     public List<Bar> parse(String json) {
-
-        String name = null, info = null;
-
-        //Todo OptJSONArray vrati null ked neexistuje kluc alebo neni typu JSONArray
-        //Todo GetJSONArray vyhodi v˝nimku JSONException ked neexistuje kluc alebo neni typu JSONArray
-        //Todo tak podobne funguju dalsie metody opt% get%, treba sa rozhodnut Ëi budeme pracovaù s v˝nimkami alebo nie
+        String name, info;
 
         JSONObject obj = new JSONObject(json);
         List<Bar> barList = new ArrayList<>();
         JSONArray array = obj.getJSONArray("Data");
         for (int i = 0; i < array.length(); i++) {
-            int id = -1; //todo ???
+            int id = -1;
             try {
                 id = array.getJSONObject(i).getInt("BarId");
             } catch (JSONException ex) {
