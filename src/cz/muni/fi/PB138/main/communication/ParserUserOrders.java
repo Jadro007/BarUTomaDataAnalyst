@@ -1,5 +1,7 @@
 package cz.muni.fi.PB138.main.communication;
 
+import cz.muni.fi.PB138.main.db.UserInformation;
+import cz.muni.fi.PB138.main.db.UserInformationImpl;
 import cz.muni.fi.PB138.main.entities.Drink;
 import cz.muni.fi.PB138.main.entities.Order;
 import org.json.JSONArray;
@@ -17,7 +19,7 @@ import java.util.logging.Logger;
 /**
  * All orders from bar for user
  * Rest link /bar/{barID}/order/?username={username} + TOKEN
- * @author Martina Minátová
+ * @author Martina Minï¿½tovï¿½
  * @author Benjamin Varga
  * @version 20.6.2015
  */
@@ -34,8 +36,8 @@ public class ParserUserOrders implements Parser {
                         "Price": {
                             "Unit": {
                                 "UnitId": 67,
-                                "Name": "Kè",
-                                "Code": "Kè",
+                                "Name": "Kï¿½",
+                                "Code": "Kï¿½",
                                 "MultiplierToBase": 0
                             },
                             "QuantityId": 19,
@@ -63,8 +65,8 @@ public class ParserUserOrders implements Parser {
                         "Price": {
                             "Unit": {
                                 "UnitId": 61,
-                                "Name": "Kè",
-                                "Code": "Kè",
+                                "Name": "Kï¿½",
+                                "Code": "Kï¿½",
                                 "MultiplierToBase": 0
                             },
                             "QuantityId": 14,
@@ -109,6 +111,7 @@ public class ParserUserOrders implements Parser {
     private Logger logger = Logger.getLogger(ParserBarOrder.class.getName());
 
     public List parse(String json) {
+        UserInformation ui = new UserInformationImpl();
         JSONObject obj = new JSONObject(json);
         List<Order> orderList = new ArrayList<>();
         JSONArray array = obj.getJSONArray("Data");
@@ -140,7 +143,7 @@ public class ParserUserOrders implements Parser {
 
                 double alcoholQuantity = 0.0;
                 /*try {
-                    alcoholQuantity = 0;//todo dorobit alkohol ked budú ingrediencie
+                    alcoholQuantity = 0;//todo dorobit alkohol ked budï¿½ ingrediencie
                 } catch (JSONException ex) {
                     logger.log(Level.SEVERE, "", ex);
                 }*/
@@ -156,10 +159,18 @@ public class ParserUserOrders implements Parser {
             for (Drink drink : drinkList) {
                 totalPrice = totalPrice.add(drink.getPrice());
             }
-
-            Order order = new Order(LocalDate.parse(dateTime, dateTimeFormatter), totalPrice, 0 /*todo barID*/, 0 /*todo userID*/, drinkList);
+            long userId = ui.getCurrentUserId();
+            Order order = new Order(LocalDate.parse(dateTime, dateTimeFormatter), totalPrice, 0 , userId, drinkList);
             orderList.add(order);
         }
         return orderList;
+    }
+
+    public List parse(String json, long barId) {
+        List<Order> list = parse(json);
+        for(Order order: list) {
+            order.setBarID(barId);
+        }
+        return list;
     }
 }
