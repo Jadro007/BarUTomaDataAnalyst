@@ -81,4 +81,11 @@ public class ReadDatabase {
         }
         return null;
     }
+
+
+    public static void main(String[] args) {
+        ReadDatabase rd = new ReadDatabase();
+        rd.read("admin");
+        rd.read("bar");
+    }
 }

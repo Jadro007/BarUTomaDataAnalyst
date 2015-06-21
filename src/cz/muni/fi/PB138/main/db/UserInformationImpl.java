@@ -193,7 +193,9 @@ public class UserInformationImpl implements UserInformation {
                 long lastId;
                 if (lastIdString == null) lastId = 1;
                 else lastId = Long.parseLong(lastIdString);
-                properties.setProperty(NAME_PREFIX + name, String.valueOf(lastId + 1));
+                userId = lastId + 1;
+                properties.setProperty(NAME_PREFIX + name, String.valueOf(userId));
+                properties.setProperty(LAST_ID, String.valueOf(userId));
             }
             else {
                 userId = Long.parseLong(id);

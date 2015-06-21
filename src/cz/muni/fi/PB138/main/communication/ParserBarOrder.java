@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -55,7 +56,11 @@ public class ParserBarOrder implements Parser{
 
                 BigDecimal price = BigDecimal.valueOf(drinkAmount * quantityAmount);
 
-                double alcoholQuantity = 0.0;
+
+                //randomized alcohol
+                Random random = new Random();
+                //double alcoholQuantity = Math.round(((random.nextDouble() % 1) * 10000) / 10000);
+                double alcoholQuantity = 0.1234;
                 /*try {
                     alcoholQuantity = 0;//todo dorobit alkohol ked bud� ingrediencie
                 } catch (JSONException ex) {
