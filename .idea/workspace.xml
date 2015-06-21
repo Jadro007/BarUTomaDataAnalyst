@@ -4,16 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf0d6d01-0f65-49da-8f29-9bf73ec94adb" name="Default" comment="Little changes in the parsers">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/gui/LoadingWorker.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/gui/LoginWorker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/BarUTomaDataAnalyst.iml" afterPath="$PROJECT_DIR$/.idea/BarUTomaDataAnalyst.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/HTTPRequest.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/communication/HTTPRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/gui/LoadUserChunkImpl.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/gui/LoadUserChunkImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/gui/LoginWindow.form" afterPath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/gui/LoginWindow.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/gui/LoginWindow.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/PB138/main/gui/LoginWindow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+    <list default="true" id="bf0d6d01-0f65-49da-8f29-9bf73ec94adb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BarUTomaDataAnalyst.iws" />
@@ -942,7 +933,7 @@
       <workItem from="1434810003297" duration="1341000" />
       <workItem from="1434863224495" duration="1008000" />
       <workItem from="1434873122738" duration="3619000" />
-      <workItem from="1434889601807" duration="14970000" />
+      <workItem from="1434889601807" duration="14985000" />
     </task>
     <task id="LOCAL-00001" summary="TS, test">
       <created>1430493526230</created>
@@ -1004,11 +995,17 @@
       <option name="project" value="LOCAL" />
       <updated>1434901217615</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="loading for login screen added">
+      <created>1434904602145</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1434904602145</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139010000" />
+    <option name="totallyTimeSpent" value="139025000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1102,7 +1099,8 @@
     <MESSAGE value="Login method for gui" />
     <MESSAGE value="Some minor changes in GUI" />
     <MESSAGE value="Little changes in the parsers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Little changes in the parsers" />
+    <MESSAGE value="loading for login screen added" />
+    <option name="LAST_COMMIT_MESSAGE" value="loading for login screen added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
