@@ -11,7 +11,6 @@ import java.util.TreeMap;
 
 /**
  * Class used for testing of GUI.
- *
  * Created by Eva on 22.5.2015.
  */
 public class LoadUserChunkImpl implements LoadUser {

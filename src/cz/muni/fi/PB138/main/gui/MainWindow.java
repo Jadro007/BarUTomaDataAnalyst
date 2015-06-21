@@ -11,7 +11,6 @@ import java.util.List;
 import static cz.muni.fi.PB138.main.gui.LoadManager.getUserInformation;
 
 /**
- *
  * Created by Eva on 21.5.2015.
  */
 //TODO correct resizing

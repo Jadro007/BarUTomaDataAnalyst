@@ -92,7 +92,7 @@
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="7" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
             <minimum-size width="5" height="5"/>
-            <preferred-size width="40" height="40"/>
+            <preferred-size width="39" height="39"/>
           </grid>
         </constraints>
       </vspacer>

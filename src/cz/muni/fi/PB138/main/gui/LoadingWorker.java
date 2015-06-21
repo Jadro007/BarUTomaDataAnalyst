@@ -3,6 +3,7 @@ package cz.muni.fi.PB138.main.gui;
 import javax.swing.*;
 
 /**
+ *
  * Created by Eva on 21.6.2015.
  */
 public class LoadingWorker extends SwingWorker<Void, Integer> {

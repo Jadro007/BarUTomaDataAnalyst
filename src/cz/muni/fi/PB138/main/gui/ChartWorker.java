@@ -19,7 +19,6 @@ import static cz.muni.fi.PB138.main.gui.TimeIntervalType.DAY;
 import static cz.muni.fi.PB138.main.gui.TimeIntervalType.WEEK;
 
 /**
- *
  * Created by Eva on 2.6.2015.
  */
 

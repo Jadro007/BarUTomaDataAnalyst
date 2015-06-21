@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ *
  * Created by Eva on 21.6.2015.
  */
 public class LoginWorker extends SwingWorker<Void, Integer> {

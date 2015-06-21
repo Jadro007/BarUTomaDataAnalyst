@@ -55,7 +55,7 @@
       <vspacer id="7f334">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-            <minimum-size width="-1" height="50"/>
+            <minimum-size width="-1" height="49"/>
           </grid>
         </constraints>
       </vspacer>
