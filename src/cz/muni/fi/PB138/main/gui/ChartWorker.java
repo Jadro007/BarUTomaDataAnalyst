@@ -2,12 +2,14 @@ package cz.muni.fi.PB138.main.gui;
 
 import cz.muni.fi.PB138.main.entities.Bar;
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.util.TableOrder;
 
+import javax.swing.*;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -15,15 +17,41 @@ import static cz.muni.fi.PB138.main.gui.TimeIntervalType.DAY;
 import static cz.muni.fi.PB138.main.gui.TimeIntervalType.WEEK;
 
 /**
+ *
  * Created by Eva on 2.6.2015.
  */
 
 //TODO create Worker from this class
-public abstract class GraphManager {
+public class ChartWorker extends SwingWorker<Void, Integer> {
+    private ChartOption option;
+    private ChartType type;
+    private List<Bar> barList;
+    private Date from;
+    private Date to;
+    private int displayLimit;
+    private ChartPanel chartPanel;
 
-    public static JFreeChart createGraph(ChartOption option, ChartType type, List<Bar> barList, Date from, Date to, int displayLimit) {
-        CategoryDataset dataset = createDataset(option, type, barList, from, to, displayLimit);
+    public ChartWorker(ChartOption option, ChartType type, List<Bar> barList, Date from, Date to, int displayLimit,
+        ChartPanel chartPanel) {
+        this.option = option;
+        this.type = type;
+        this.barList = barList;
+        this.from = from;
+        this.to = to;
+        this.displayLimit = displayLimit;
+        this.chartPanel = chartPanel;
+    }
+
+    @Override
+    protected Void doInBackground() throws Exception {
+        chartPanel.setChart(createChart());
+        return null;
+    }
+
+    private JFreeChart createChart() {
+        CategoryDataset dataset = createDataset();
         JFreeChart chart;
+        //TODO payments show legend set false
         switch (type) {
             case BAR:
                 chart = ChartFactory.createBarChart(
@@ -58,7 +86,7 @@ public abstract class GraphManager {
         return chart;
     }
 
-    public static CategoryDataset createDataset(ChartOption option, ChartType type, List<Bar> barList, Date from, Date to, int displayLimit) {
+    private CategoryDataset createDataset() {
         DefaultCategoryDataset categoryDataset = new DefaultCategoryDataset();
         List<TimeInterval> timeIntervalList;
         int i;
@@ -131,7 +159,7 @@ public abstract class GraphManager {
                                 ti.getTo(), b.getId()));
                     }
                     for (Map.Entry<String, BigDecimal> e : incomeMap.entrySet()) {
-                        categoryDataset.setValue(e.getValue(), e.getKey(), b.getName());
+                        categoryDataset.setValue(e.getValue(), b.getName(), e.getKey());
                     }
                 }
                 return categoryDataset;
@@ -150,4 +178,5 @@ public abstract class GraphManager {
         }
         return Collections.unmodifiableList(timeIntervalList);
     }
+
 }
