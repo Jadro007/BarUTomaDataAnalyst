@@ -139,11 +139,11 @@ public class ParserUserOrders implements Parser {
                 BigDecimal price = BigDecimal.valueOf(drinkAmount * quantityAmount);
 
                 double alcoholQuantity = 0.0;
-                try {
-                    alcoholQuantity = 0;//todo dorobit rovnako ako parserBarDrink
+                /*try {
+                    alcoholQuantity = 0;//todo dorobit alkohol ked budú ingrediencie
                 } catch (JSONException ex) {
                     logger.log(Level.SEVERE, "", ex);
-                }
+                }*/
 
                 Drink myDrink = new Drink(drinkName, price, alcoholQuantity);
                 drinkList.add(myDrink);
