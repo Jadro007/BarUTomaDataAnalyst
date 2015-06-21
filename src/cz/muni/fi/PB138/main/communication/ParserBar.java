@@ -1,13 +1,13 @@
 package cz.muni.fi.PB138.main.communication;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+        import org.json.JSONArray;
+        import org.json.JSONException;
+        import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+        import java.util.ArrayList;
+        import java.util.List;
+        import java.util.logging.Level;
+        import java.util.logging.Logger;
 
 /**
  * Created by Martina on 21.6.2015.
