@@ -24,90 +24,7 @@ import java.util.logging.Logger;
  * @version 20.6.2015
  */
 public class ParserUserOrders implements Parser {
-    /*{
-    "ContentEncoding": null,
-    "ContentType": null,
-    "Data": [
-        {
-            "OrderDrinks": [
-                {
-                    "Drink": {
-                        "IngredientsUsed": [],
-                        "Price": {
-                            "Unit": {
-                                "UnitId": 67,
-                                "Name": "K�",
-                                "Code": "K�",
-                                "MultiplierToBase": 0
-                            },
-                            "QuantityId": 19,
-                            "Amount": 25
-                        },
-                        "DrinkId": 15,
-                        "Name": "Captain+Cola",
-                        "Info": "Very Good"
-                    },
-                    "Quantity": {
-                        "Unit": {
-                            "UnitId": 1,
-                            "Name": "kus",
-                            "Code": "ks",
-                            "MultiplierToBase": 1
-                        },
-                        "QuantityId": 49,
-                        "Amount": 1
-                    },
-                    "OrderDrinkId": 4
-                },
-                {
-                    "Drink": {
-                        "IngredientsUsed": [],
-                        "Price": {
-                            "Unit": {
-                                "UnitId": 61,
-                                "Name": "K�",
-                                "Code": "K�",
-                                "MultiplierToBase": 0
-                            },
-                            "QuantityId": 14,
-                            "Amount": 30
-                        },
-                        "DrinkId": 10,
-                        "Name": "Jager+Cola",
-                        "Info": "Good"
-                    },
-                    "Quantity": {
-                        "Unit": {
-                            "UnitId": 1,
-                            "Name": "kus",
-                            "Code": "ks",
-                            "MultiplierToBase": 1
-                        },
-                        "QuantityId": 50,
-                        "Amount": 3
-                    },
-                    "OrderDrinkId": 5
-                }
-            ],
-            "Price": {
-                "Unit": {
-                    "UnitId": 1,
-                    "Name": "kus",
-                    "Code": "ks",
-                    "MultiplierToBase": 1
-                },
-                "QuantityId": 51,
-                "Amount": 55
-            },
-            "OrderId": 11,
-            "DateTime": "2015-06-20T06:55:15.353",
-            "Place": "TestBar"
-        }
-    ],
-    "JsonRequestBehavior": 1,
-    "MaxJsonLength": null,
-    "RecursionLimit": null
-}*/
+
     private Logger logger = Logger.getLogger(ParserBarOrder.class.getName());
 
     public List parse(String json) {
@@ -115,6 +32,8 @@ public class ParserUserOrders implements Parser {
         JSONObject obj = new JSONObject(json);
         List<Order> orderList = new ArrayList<>();
         JSONArray array = obj.getJSONArray("Data");
+        if (array == null) return orderList;
+
         for (int i = 0; i < array.length(); i++) {
             JSONArray orderDrinks = array.getJSONObject(i).getJSONArray("OrderDrinks");
 
