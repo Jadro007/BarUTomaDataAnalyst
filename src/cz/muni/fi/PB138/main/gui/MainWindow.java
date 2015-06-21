@@ -157,14 +157,14 @@ public class MainWindow {
         graphParamSpinner = new JSpinner();
         setChartParamComponents();
 
+        tableScrollPane = new JScrollPane();
         if (isAdmin) {
-            tableScrollPane = new JScrollPane();
             barsTableModel = new BarsTableModel();
             barsTable = new JTable(barsTableModel);
             barsTable.removeColumn(barsTable.getColumnModel().getColumn(0));
         } else {
-            tableScrollPane = null;
             barsTable = null;
+
         }
 
         chartPanel = new ChartPanel(null);
