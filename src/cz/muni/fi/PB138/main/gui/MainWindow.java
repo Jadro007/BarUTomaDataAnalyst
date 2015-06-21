@@ -1,6 +1,7 @@
 package cz.muni.fi.PB138.main.gui;
 
 import com.toedter.calendar.JDateChooser;
+import cz.muni.fi.PB138.main.entities.Bar;
 import org.jfree.chart.ChartPanel;
 
 import javax.swing.*;
@@ -33,6 +34,7 @@ public class MainWindow {
     private ChartPanel chartPanel;
     private JButton chartButton;
     private JScrollPane tableScrollPane;
+    private JPanel tablePanel;
     private BarsTableModel barsTableModel;
     private Boolean isAdmin;
 
@@ -86,17 +88,19 @@ public class MainWindow {
                         "Reselect the dates and try again.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            int checkedBarsCount = barsTableModel.getChckedBarList().size();
-            ChartOption selectedChartOption = (ChartOption) chartOptionComboBox.getSelectedItem();
-            if (getAdminsOptions().contains(selectedChartOption.getChartData()) && checkedBarsCount > MAX_SELECTED_BARS) {
-                JOptionPane.showMessageDialog(null, "Too many bars are selected.\nDeselect some of them and try again.",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (getAdminsOptions().contains(selectedChartOption.getChartData()) && checkedBarsCount == 0) {
-                JOptionPane.showMessageDialog(null, "No bars are selected.\nSelect some of them and try again.",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+            if (isAdmin) {
+                int checkedBarsCount = barsTableModel.getChckedBarList().size();
+                ChartOption selectedChartOption = (ChartOption) chartOptionComboBox.getSelectedItem();
+                if (getAdminsOptions().contains(selectedChartOption.getChartData()) && checkedBarsCount > MAX_SELECTED_BARS) {
+                    JOptionPane.showMessageDialog(null, "Too many bars are selected.\nDeselect some of them and try again.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (getAdminsOptions().contains(selectedChartOption.getChartData()) && checkedBarsCount == 0) {
+                    JOptionPane.showMessageDialog(null, "No bars are selected.\nSelect some of them and try again.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
             long datesDiff = TimeUtils.datesDifference(fromDateChooser.getDate(), toDateChooser.getDate());
             if ((datesDiff > MAX_SELECTED_TIME_INTERVALS && graphParamSpinner.getValue() == TimeIntervalType.DAY) ||
@@ -157,14 +161,16 @@ public class MainWindow {
         graphParamSpinner = new JSpinner();
         setChartParamComponents();
 
-        tableScrollPane = new JScrollPane();
+
+        tablePanel = new JPanel();
         if (isAdmin) {
             barsTableModel = new BarsTableModel();
             barsTable = new JTable(barsTableModel);
             barsTable.removeColumn(barsTable.getColumnModel().getColumn(0));
         } else {
             barsTable = null;
-
+            tableScrollPane.setVisible(false);
+            tablePanel.setVisible(false);
         }
 
         chartPanel = new ChartPanel(null);
@@ -186,6 +192,10 @@ public class MainWindow {
             graphParamSpinner.setModel(spinnerListModel);
             graphParamLabel.setText("Time interval:");
         }
+
+        JSpinner.DefaultEditor spinnerEditor = (JSpinner.DefaultEditor)graphParamSpinner.getEditor();
+        spinnerEditor.getTextField().setHorizontalAlignment(JTextField.RIGHT);
+
     }
 
     private void setChartTypeComboBoxItems() {
@@ -203,10 +213,16 @@ public class MainWindow {
         } else {
             displayLimit = (int) graphParamSpinner.getValue();
         }
+        List<Bar> barList;
+        if (isAdmin) {
+            barList = barsTableModel.getChckedBarList();
+        } else {
+            barList = null;
+        }
         ChartWorker chartWorker = new ChartWorker(
                 chartOption,
                 (ChartType) chartTypeComboBox.getSelectedItem(),
-                barsTableModel.getChckedBarList(),
+                barList,
                 fromDateChooser.getDate(),
                 toDateChooser.getDate(),
                 displayLimit,
