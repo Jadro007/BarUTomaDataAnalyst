@@ -1,5 +1,7 @@
 package cz.muni.fi.PB138.main.communication;
 
+import cz.muni.fi.PB138.main.db.UserInformation;
+import cz.muni.fi.PB138.main.db.UserInformationImpl;
 import cz.muni.fi.PB138.main.entities.Bar;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,7 +15,7 @@ import java.util.logging.Logger;
 /**
  *
  * Rest link /bar/GetMyBars
- * @author Martina Minátová
+ * @author Martina Minï¿½tovï¿½
  * @author Benjamin Varga
  * @version 20.6.2015
  */
@@ -23,6 +25,7 @@ public class ParserGetMyBars implements Parser {
 
     public List<Bar> parse(String json) {
         String name, info;
+        UserInformation ui = new UserInformationImpl();
 
         JSONObject obj = new JSONObject(json);
         List<Bar> barList = new ArrayList<>();
@@ -36,7 +39,8 @@ public class ParserGetMyBars implements Parser {
             }
             name = array.getJSONObject(i).optString("Name");
             info = array.getJSONObject(i).optString("Info");
-            Bar bar = new Bar(name, info, id);
+            long ownerId = ui.getCurrentUserId();
+            Bar bar = new Bar(name, info, id, ownerId);
             barList.add(bar);
         }
         return barList;

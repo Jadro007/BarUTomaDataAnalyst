@@ -35,4 +35,11 @@ public interface UserInformation {
      * Always has to be preceded by saveCurrentUserInformation, saves today as the last day of update
      */
     void saveCurrentUserLastTimeOfUpdate();
+
+    /**
+     * Gets id associated with name, if does not exist, create new id
+     * @param name
+     * @return
+     */
+    long getUserId(String name);
 }

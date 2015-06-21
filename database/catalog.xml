@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
 
-    <uri name="http://www.w3.org/2001/XMLSchema" uri="company.xsd"/>
+    <uri name="http://www.w3.org/2001/XMLSchema" uri="bar.xsd"/>
+
+    <uri name="http://www.w3.org/2001/XMLSchema" uri="user.xsd"/>
+
+    <uri name="http://www.w3.org/2001/XMLSchema" uri="admin.xsd"/>
 
 </catalog>
