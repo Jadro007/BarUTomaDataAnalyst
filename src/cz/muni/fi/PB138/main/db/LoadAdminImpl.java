@@ -190,17 +190,5 @@ public class LoadAdminImpl implements LoadAdmin {
         return new ArrayList<>(barArrayList);
     }
 
-    public static void main(String[] args) {
-        LoadAdminImpl loadAdmin = new LoadAdminImpl();
-        BigDecimal payment = loadAdmin.getIncome(LocalDate.of(2015, 5, 14), LocalDate.of(2015, 5, 15), 1);
-        double alc = loadAdmin.getAlcohol(LocalDate.of(2015, 5, 14), LocalDate.of(2015, 5, 15), 1);
-        Map<String, Integer> map = loadAdmin.getMostSoldDrinks(LocalDate.of(2015, 5, 14), LocalDate.of(2015, 5, 15), 1);
-        Map<String, Double> map1 = loadAdmin.getMostUsedIngredients(LocalDate.of(2015, 5, 14), LocalDate.of(2015, 5, 15), 1);
-        List<Bar> bars = loadAdmin.getAdminsBars();
-        System.out.println(payment); //ok
-        System.out.println(map); //ok
-        System.out.println(map1); //ok
-        System.out.println(alc); //ok
-        System.out.println(bars); //ok
-    }
+
 }

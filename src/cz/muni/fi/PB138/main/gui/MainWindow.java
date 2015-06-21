@@ -116,9 +116,6 @@ public class MainWindow {
         });
     }
 
-    public static void main(String[] args) {
-        createMainWindow();
-    }
 
     public void setFrame(Frame frame) {
         this.frame = frame;
@@ -161,8 +158,8 @@ public class MainWindow {
         graphParamSpinner = new JSpinner();
         setChartParamComponents();
 
-
         tablePanel = new JPanel();
+        tableScrollPane = new JScrollPane();
         if (isAdmin) {
             barsTableModel = new BarsTableModel();
             barsTable = new JTable(barsTableModel);

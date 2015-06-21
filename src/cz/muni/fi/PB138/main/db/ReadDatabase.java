@@ -54,8 +54,9 @@ public class ReadDatabase {
         // try to read collection
         try {
             Collection collection = DatabaseManager.getCollection("xmldb:exist:///db//" + collectionName, "admin", "");
+            if (collection == null) return null;
             String resources[] = collection.listResources();
-
+            if (resources == null || resources.length == 0) return null;
             StringBuilder builder = new StringBuilder();
             for(int i = 0; i < resources.length; i++) {
                 //we cant easily transform into string because it will contain multiple roots
@@ -82,10 +83,4 @@ public class ReadDatabase {
         return null;
     }
 
-
-    public static void main(String[] args) {
-        ReadDatabase rd = new ReadDatabase();
-        rd.read("admin");
-        rd.read("bar");
-    }
 }

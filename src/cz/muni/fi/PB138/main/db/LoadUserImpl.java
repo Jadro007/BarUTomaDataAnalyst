@@ -101,11 +101,5 @@ public class LoadUserImpl implements LoadUser {
         return barIds;
     }
 
-    public static void main(String[] args) {
-        LoadUserImpl loadUser = new LoadUserImpl();
-        BigDecimal payment = loadUser.getPayment(LocalDate.of(2015, 5, 14), LocalDate.of(2015, 5, 15));
-        Map<String, Integer> map = loadUser.getMostPurchasedDrinks(LocalDate.of(2015, 5, 14), LocalDate.of(2015, 5, 15));
-        System.out.println(payment); //ok
-        System.out.println(map); //ok
-    }
+
 }
