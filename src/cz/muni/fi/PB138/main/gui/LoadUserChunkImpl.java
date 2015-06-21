@@ -4,7 +4,9 @@ import cz.muni.fi.PB138.main.db.LoadUser;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -28,5 +30,21 @@ public class LoadUserChunkImpl implements LoadUser {
         drinksMap.put("Tequila", to.getMonthValue()*2);
         drinksMap.put("Whisky", from.getDayOfMonth()*1);
         return drinksMap;
+    }
+
+    @Override
+    public Set<Long> getAllBars() {
+        Set<Long> barSet = new HashSet<>();
+        barSet.add(new Long(1));
+        barSet.add(new Long(2));
+        barSet.add(new Long(3));
+        barSet.add(new Long(4));
+        barSet.add(new Long(5));
+        barSet.add(new Long(6));
+        barSet.add(new Long(7));
+        barSet.add(new Long(8));
+        barSet.add(new Long(9));
+        barSet.add(new Long(10));
+        return barSet;
     }
 }
