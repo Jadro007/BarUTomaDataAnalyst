@@ -1,6 +1,7 @@
 package cz.muni.fi.PB138.main.gui;
 
 import cz.muni.fi.PB138.main.communication.HTTPRequest;
+import cz.muni.fi.PB138.main.communication.LoginProcedure;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,13 +30,16 @@ public class LoginWorker extends SwingWorker<Void, Integer> {
     protected Void doInBackground() throws Exception {
         logInButton.setVisible(false);
         HTTPRequest httpRequest = new HTTPRequest();
-        if (!httpRequest.hasRegistered(username, String.valueOf(password))) {
+        String token = httpRequest.postRequestToken(username, String.valueOf(password));
+        if (!httpRequest.hasRegistered(token)) {
             logInButton.setVisible(true);
             loadingLabel.setVisible(false);
             JOptionPane.showMessageDialog(null, "Incorrect combination of username and password.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
+        LoginProcedure lp = new LoginProcedure(username, token);
+        lp.UpdateDatabase();
         MainWindow.createMainWindow();
         loginFrame.setVisible(false);
         loginFrame.dispose();
