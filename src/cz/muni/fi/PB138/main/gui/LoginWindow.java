@@ -11,6 +11,7 @@ public class LoginWindow {
     private JButton logInButton;
     private JPasswordField passwordField;
     private JPanel panel;
+    private JLabel loadingLabel;
     private Frame frame;
 
     public LoginWindow() {
@@ -25,10 +26,11 @@ public class LoginWindow {
                 JOptionPane.showMessageDialog(null, "Please enter your password", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            //TODO authentication
-            MainWindow.createMainWindow();
-            this.frame.setVisible(false);
-            this.frame.dispose();
+
+            LoginWorker loginWorker = new LoginWorker(this.frame, username, password, loadingLabel, logInButton);
+            loginWorker.execute();
+            LoadingWorker loadingWorker = new LoadingWorker(loginWorker, loadingLabel);
+            loadingWorker.execute();
         });
     }
 

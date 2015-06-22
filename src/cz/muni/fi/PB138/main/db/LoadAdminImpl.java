@@ -7,37 +7,43 @@ import org.w3c.dom.NodeList;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Created by Tomáš on 17.6.2015.
  */
 public class LoadAdminImpl implements LoadAdmin {
 
+    private Document document;
+
+
+    public LoadAdminImpl() {
+        ReadDatabase readDatabase = new ReadDatabase();
+        this.document = readDatabase.read("admin");
+    }
+
     @Override
     public BigDecimal getIncome(LocalDate from, LocalDate to, long barId) {
         ReadDatabase readDatabase = new ReadDatabase();
         Document document = readDatabase.read("admin");
         BigDecimal totalIncome = BigDecimal.ZERO;
-
+        CreateDocument cd = new CreateDocument();
+        cd.transformToConsoleStream(document);
         NodeList dateList = document.getElementsByTagName("date");
         for (int i = 0; i < dateList.getLength(); i++) {
             Element dateElement = (Element) dateList.item(i);
             LocalDate dateValue = LocalDate.parse(dateElement.getAttribute("value"));
 
-            if (dateValue.isBefore(to) && (dateValue.isAfter(from))) {
+            if (!dateValue.isBefore(from) && !(dateValue.isAfter(to))) {
                 NodeList barList = dateElement.getElementsByTagName("bar");
                 for (int j = 0; j < barList.getLength(); j++) {
                     Element barElement = (Element) barList.item(j);
                     long barIdAttr = Long.parseLong(barElement.getAttribute("bar_id"));
 
                     if (barIdAttr == barId) {
-                        Element incomeElement = (Element) barElement.getElementsByTagName("income");
+                        Element incomeElement = (Element) barElement.getElementsByTagName("income").item(0);
                         BigDecimal income = new BigDecimal(incomeElement.getTextContent());
-                        totalIncome.add(income);
+                        totalIncome = totalIncome.add(income);
                     }
                 }
             }
@@ -48,8 +54,8 @@ public class LoadAdminImpl implements LoadAdmin {
 
     @Override
     public double getAlcohol(LocalDate from, LocalDate to, long barId) {
-        ReadDatabase readDatabase = new ReadDatabase();
-        Document document = readDatabase.read("admin");
+        //ReadDatabase readDatabase = new ReadDatabase();
+        //Document document = readDatabase.read("admin");
         double totalAlcohol = 0.0;
 
         NodeList dateList = document.getElementsByTagName("date");
@@ -57,14 +63,14 @@ public class LoadAdminImpl implements LoadAdmin {
             Element dateElement = (Element) dateList.item(i);
             LocalDate dateValue = LocalDate.parse(dateElement.getAttribute("value"));
 
-            if (dateValue.isBefore(to) && (dateValue.isAfter(from))) {
+            if (!dateValue.isBefore(from) && !(dateValue.isAfter(to))) {
                 NodeList barList = dateElement.getElementsByTagName("bar");
                 for (int j = 0; j < barList.getLength(); j++) {
                     Element barElement = (Element) barList.item(j);
                     long barIdAttr = Long.parseLong(barElement.getAttribute("bar_id"));
 
                     if (barIdAttr == barId) {
-                        Element alcoholElement = (Element) barElement.getElementsByTagName("alcohol");
+                        Element alcoholElement = (Element) barElement.getElementsByTagName("alcohol").item(0);
                         double alcohol = Double.parseDouble(alcoholElement.getTextContent());
                         totalAlcohol += alcohol;
                     }
@@ -77,8 +83,8 @@ public class LoadAdminImpl implements LoadAdmin {
 
     @Override
     public Map<String, Integer> getMostSoldDrinks(LocalDate from, LocalDate to, long barId) {
-        ReadDatabase readDatabase = new ReadDatabase();
-        Document document = readDatabase.read("admin");
+        //ReadDatabase readDatabase = new ReadDatabase();
+        //Document document = readDatabase.read("admin");
         Map<String, Integer> drinkMap = new TreeMap<>();
 
         NodeList dateList = document.getElementsByTagName("date");
@@ -86,7 +92,7 @@ public class LoadAdminImpl implements LoadAdmin {
             Element dateElement = (Element) dateList.item(i);
             LocalDate dateValue = LocalDate.parse(dateElement.getAttribute("value"));
 
-            if (dateValue.isBefore(to) && (dateValue.isAfter(from))) {
+            if (!dateValue.isBefore(from) && !(dateValue.isAfter(to))) {
                 NodeList barList = dateElement.getElementsByTagName("bar");
                 for (int j = 0; j < barList.getLength(); j++) {
                     Element barElement = (Element) barList.item(j);
@@ -116,8 +122,8 @@ public class LoadAdminImpl implements LoadAdmin {
 
     @Override
     public Map<String, Double> getMostUsedIngredients(LocalDate from, LocalDate to, long barId) {
-        ReadDatabase readDatabase = new ReadDatabase();
-        Document document = readDatabase.read("admin");
+        //ReadDatabase readDatabase = new ReadDatabase();
+        //Document document = readDatabase.read("admin");
         Map<String, Double> ingredientMap = new TreeMap<>();
 
         NodeList dateList = document.getElementsByTagName("date");
@@ -125,14 +131,14 @@ public class LoadAdminImpl implements LoadAdmin {
             Element dateElement = (Element) dateList.item(i);
             LocalDate dateValue = LocalDate.parse(dateElement.getAttribute("value"));
 
-            if (dateValue.isBefore(to) && (dateValue.isAfter(from))) {
+            if (!dateValue.isBefore(from) && !(dateValue.isAfter(to))) {
                 NodeList barList = dateElement.getElementsByTagName("bar");
                 for (int j = 0; j < barList.getLength(); j++) {
                     Element barElement = (Element) barList.item(j);
                     long barIdAttr = Long.parseLong(barElement.getAttribute("bar_id"));
 
                     if (barIdAttr == barId) {
-                        NodeList IngredientNodeList = barElement.getElementsByTagName("drink");
+                        NodeList IngredientNodeList = barElement.getElementsByTagName("ingredient");
                         for (int k = 0; k < IngredientNodeList.getLength(); k++) {
                             Element ingredientElement = (Element) IngredientNodeList.item(k);
                             double ingredientAmount = Double.parseDouble(ingredientElement.getAttribute("amount"));
@@ -159,22 +165,20 @@ public class LoadAdminImpl implements LoadAdmin {
     @Override
     public List<Bar> getAdminsBars() {
         ReadDatabase readDatabase = new ReadDatabase();
-        Document document = readDatabase.read("bar");
-        List<Bar> barArrayList = new ArrayList<>();
+        Document documentBar = readDatabase.read("bar");
+        Set<Bar> barArrayList = new HashSet<>();
         UserInformation userInfo = new UserInformationImpl();
 
         if (userInfo.isCurrentUserAdmin()) {
-            NodeList barNodeList = document.getElementsByTagName("bar");
+            NodeList barNodeList = documentBar.getElementsByTagName("bar");
             for (int i = 0; i < barNodeList.getLength(); i++) {
                 Element barElement = (Element) barNodeList.item(i);
                 long ownerId = Long.parseLong(barElement.getAttribute("owner_id"));
 
                 if (ownerId == userInfo.getCurrentUserId()) {
-                    NodeList barProperties = barElement.getChildNodes();
-
-                    String name = barProperties.item(0).getTextContent();
-                    String info = barProperties.item(1).getTextContent();
-                    long id = Long.parseLong(barProperties.item(2).getTextContent());
+                    String name = barElement.getElementsByTagName("name").item(0).getTextContent();
+                    String info = barElement.getElementsByTagName("info").item(0).getTextContent();
+                    long id = Long.parseLong(barElement.getElementsByTagName("bar_id").item(0).getTextContent());
 
                     barArrayList.add(new Bar(name, info, id));
                 }
@@ -183,6 +187,8 @@ public class LoadAdminImpl implements LoadAdmin {
             return null;
         }
 
-        return barArrayList;
+        return new ArrayList<>(barArrayList);
     }
+
+
 }

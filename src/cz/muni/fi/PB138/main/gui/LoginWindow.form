@@ -92,10 +92,19 @@
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="7" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
             <minimum-size width="5" height="5"/>
-            <preferred-size width="40" height="40"/>
+            <preferred-size width="39" height="39"/>
           </grid>
         </constraints>
       </vspacer>
+      <component id="5f70a" class="javax.swing.JLabel" binding="loadingLabel">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Loading"/>
+          <visible value="false"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

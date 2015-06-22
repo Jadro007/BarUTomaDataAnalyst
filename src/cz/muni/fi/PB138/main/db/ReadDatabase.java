@@ -54,11 +54,20 @@ public class ReadDatabase {
         // try to read collection
         try {
             Collection collection = DatabaseManager.getCollection("xmldb:exist:///db//" + collectionName, "admin", "");
+            if (collection == null) return null;
             String resources[] = collection.listResources();
-
+            if (resources == null || resources.length == 0) return null;
             StringBuilder builder = new StringBuilder();
             for(int i = 0; i < resources.length; i++) {
-                builder.append(collection.getResource(resources[i]).getContent());
+                //we cant easily transform into string because it will contain multiple roots
+                //it's ugly but it works
+                if (i == 0) {
+                    builder.append(collection.getResource(resources[i]).getContent());
+                }
+                else {
+                    builder.replace(0, builder.indexOf(".xsd\">") + ".xsd\">".length(),
+                            collection.getResource(resources[i]).getContent().toString().replace("</data>", ""));
+                }
             }
             String data = builder.toString();
             CreateDocument createDocument = new CreateDocument();
@@ -73,4 +82,5 @@ public class ReadDatabase {
         }
         return null;
     }
+
 }

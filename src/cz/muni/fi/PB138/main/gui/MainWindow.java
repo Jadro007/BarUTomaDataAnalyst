@@ -1,22 +1,29 @@
 package cz.muni.fi.PB138.main.gui;
 
 import com.toedter.calendar.JDateChooser;
+import cz.muni.fi.PB138.main.entities.Bar;
+import org.jfree.chart.ChartPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
+
+import static cz.muni.fi.PB138.main.gui.LoadManager.getUserInformation;
 
 /**
  * Created by Eva on 21.5.2015.
  */
-//TODO graphs
+//TODO correct resizing
 public class MainWindow {
+    private static final int MAX_SELECTED_BARS = 4;
+    private static final int MAX_SELECTED_TIME_INTERVALS = 14;
+    private static final int MAX_SELECTED_DISPLAY_LIMIT = 10;
+    private static final int INITIAL_SELECTED_DISPLAY_LIMIT = 3;
+
     private Frame frame;
-    private JComboBox dataComboBox;
-    private JComboBox<String> chartComboBox;
+    private JComboBox chartOptionComboBox;
+    private JComboBox chartTypeComboBox;
     private JSpinner graphParamSpinner;
     private JButton logOutButton;
     private JDateChooser toDateChooser;
@@ -24,12 +31,40 @@ public class MainWindow {
     private JLabel graphParamLabel;
     private JPanel panel;
     private JTable barsTable;
+    private ChartPanel chartPanel;
+    private JButton chartButton;
+    private JScrollPane tableScrollPane;
+    private JPanel tablePanel;
+    private BarsTableModel barsTableModel;
+    private Boolean isAdmin;
 
-    private static List<ChartOption> chartOptions = getChartOptions();
+    private List<ChartOption> getChartOptions() {
+        List<ChartOption> chartOptions = new ArrayList<>();
+
+        chartOptions.add(new ChartOption("My most drunk drinks", "Number of drinks", "Drink",
+                Arrays.asList(ChartType.BAR, ChartType.PIE), "Drinks to display:", ChartData.DRUNK_DRINKS));
+        chartOptions.add(new ChartOption("My payments", "Payment", "Time", Arrays.asList(ChartType.BAR, ChartType.XY), "", ChartData.PAYMENTS));
+
+        if (isAdmin) {
+            chartOptions.add(new ChartOption("Best selling drinks at bars", "Number of drinks", "Drink",
+                    Arrays.asList(ChartType.BAR, ChartType.PIE), "Drinks to display:", ChartData.SELLING_DRINKS));
+            chartOptions.add(new ChartOption("Pure alcohol sold at bars", "Amount",  "Time",
+                    Arrays.asList(ChartType.BAR, ChartType.XY), "", ChartData.PURE_ALCOHOL_SOLD));
+            chartOptions.add(new ChartOption("Earnings of bars", "Earning", "Time",
+                    Arrays.asList(ChartType.BAR, ChartType.XY), "", ChartData.EARNINGS));
+        }
+
+        return chartOptions;
+    }
+
+    private static List<ChartData> getAdminsOptions() {
+        return new ArrayList<>(Arrays.asList(ChartData.SELLING_DRINKS, ChartData.PURE_ALCOHOL_SOLD, ChartData.EARNINGS));
+    }
 
     public MainWindow() {
-        dataComboBox.addActionListener(e -> {
-            setChartComboBoxItems();
+
+        chartOptionComboBox.addActionListener(e -> {
+            setChartTypeComboBoxItems();
             setChartParamComponents();
         });
         logOutButton.addActionListener(e -> {
@@ -37,10 +72,53 @@ public class MainWindow {
             this.frame.setVisible(false);
             this.frame.dispose();
         });
+        chartButton.addActionListener(e -> {
+            if (fromDateChooser.getDate() == null) {
+                JOptionPane.showMessageDialog(null, "Date \"from\" is not selected.\nReselect the date and try again.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (toDateChooser.getDate() == null) {
+                JOptionPane.showMessageDialog(null, "Date \"to\" is not selected.\nReselect the date and try again.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (toDateChooser.getDate().compareTo(fromDateChooser.getDate()) < 0) {
+                JOptionPane.showMessageDialog(null, "Selected date \"from\" is higher than selected date \"to\". \n " +
+                        "Reselect the dates and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (isAdmin) {
+                int checkedBarsCount = barsTableModel.getChckedBarList().size();
+                ChartOption selectedChartOption = (ChartOption) chartOptionComboBox.getSelectedItem();
+                if (getAdminsOptions().contains(selectedChartOption.getChartData()) && checkedBarsCount > MAX_SELECTED_BARS) {
+                    JOptionPane.showMessageDialog(null, "Too many bars are selected.\nDeselect some of them and try again.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (getAdminsOptions().contains(selectedChartOption.getChartData()) && checkedBarsCount == 0) {
+                    JOptionPane.showMessageDialog(null, "No bars are selected.\nSelect some of them and try again.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+            long datesDiff = TimeUtils.datesDifference(fromDateChooser.getDate(), toDateChooser.getDate());
+            if ((datesDiff > MAX_SELECTED_TIME_INTERVALS && graphParamSpinner.getValue() == TimeIntervalType.DAY) ||
+                    (datesDiff > MAX_SELECTED_TIME_INTERVALS * 7 && graphParamSpinner.getValue() == TimeIntervalType.WEEK)
+                    ){
+                JOptionPane.showMessageDialog(null, "Too many time intervals are selected.\n Please change the type of time" +
+                                "interval or select lower range of dates.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            showChart();
+        });
     }
 
-    public static void main(String[] args) {
-        createMainWindow();
+
+    public void setFrame(Frame frame) {
+        this.frame = frame;
     }
 
     public static void createMainWindow(){
@@ -59,101 +137,95 @@ public class MainWindow {
     }
 
     private void createUIComponents() {
-        dataComboBox = new JComboBox();
-        chartOptions.forEach(dataComboBox::addItem);
-        dataComboBox.setSelectedItem(0);
+        isAdmin = getUserInformation().isCurrentUserAdmin();
+        List<ChartOption> chartOptions = getChartOptions();
 
-        chartComboBox = new JComboBox();
-        setChartComboBoxItems();
+        chartOptionComboBox = new JComboBox();
+        chartOptions.forEach(chartOptionComboBox::addItem);
 
+        chartTypeComboBox = new JComboBox();
+        setChartTypeComboBoxItems();
         //TODO fromDateChooser & toDateChooser min date restriction
-        //TODO solve from greater than to
         fromDateChooser = new JDateChooser();
         fromDateChooser.getJCalendar().setMaxSelectableDate(new Date());
+        fromDateChooser.setLocale(Locale.ENGLISH);
 
         toDateChooser = new JDateChooser();
         toDateChooser.getJCalendar().setMaxSelectableDate(new Date());
+        toDateChooser.setLocale(Locale.ENGLISH);
 
         graphParamLabel = new JLabel();
         graphParamSpinner = new JSpinner();
         setChartParamComponents();
 
-        BarsTableModel barsTableModel = new BarsTableModel();
-        barsTable = new JTable(barsTableModel);
-        barsTable.removeColumn(barsTable.getColumnModel().getColumn(0));
-        //TODO ChartPanel
-    }
+        tablePanel = new JPanel();
+        tableScrollPane = new JScrollPane();
+        if (isAdmin) {
+            barsTableModel = new BarsTableModel();
+            barsTable = new JTable(barsTableModel);
+            barsTable.removeColumn(barsTable.getColumnModel().getColumn(0));
+        } else {
+            barsTable = null;
+            tableScrollPane.setVisible(false);
+            tablePanel.setVisible(false);
+        }
 
-    public void setFrame(Frame frame) {
-        this.frame = frame;
+        chartPanel = new ChartPanel(null);
+        chartPanel.setMinimumDrawWidth(0);
+        chartPanel.setMinimumDrawHeight(0);
+        chartPanel.setMaximumDrawWidth(1920);
+        chartPanel.setMaximumDrawHeight(1200);
     }
 
     private void setChartParamComponents() {
-        ChartOption option = (ChartOption)dataComboBox.getSelectedItem();
+        ChartOption option = (ChartOption) chartOptionComboBox.getSelectedItem();
 
-        if (option.graphParamName == null || option.graphParamName.length() != 0) {
-            graphParamSpinner.setVisible(true);
-            graphParamLabel.setVisible(true);
-            //TODO avg initial value? min & max restriction
-            graphParamSpinner.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-            graphParamLabel.setText(option.graphParamName);
+        if (option.getGraphParamName() != null && option.getGraphParamName().length() != 0) {
+            graphParamSpinner.setModel(new SpinnerNumberModel(INITIAL_SELECTED_DISPLAY_LIMIT, 1, MAX_SELECTED_DISPLAY_LIMIT, 1));
+            graphParamLabel.setText(option.getGraphParamName());
         } else {
-            graphParamSpinner.setVisible(false);
-            graphParamLabel.setVisible(false);
+            TimeIntervalType[] timeIntervalTypes = {TimeIntervalType.DAY, TimeIntervalType.WEEK, TimeIntervalType.MONTH};
+            SpinnerListModel spinnerListModel = new SpinnerListModel(timeIntervalTypes);
+            graphParamSpinner.setModel(spinnerListModel);
+            graphParamLabel.setText("Time interval:");
         }
+
+        JSpinner.DefaultEditor spinnerEditor = (JSpinner.DefaultEditor)graphParamSpinner.getEditor();
+        spinnerEditor.getTextField().setHorizontalAlignment(JTextField.RIGHT);
+
     }
 
-    private void setChartComboBoxItems() {
-        chartComboBox.removeAllItems();
-        ChartOption option = (ChartOption) dataComboBox.getSelectedItem();
-        if (option.chartTypes.contains(ChartType.PIE)) {
-            chartComboBox.addItem("Pie chart");
-        }
-        if (option.chartTypes.contains(ChartType.BAR)) {
-            chartComboBox.addItem("Bar chart");
-        }
-        if (option.chartTypes.contains(ChartType.XY)) {
-            chartComboBox.addItem("XY chart");
-        }
+    private void setChartTypeComboBoxItems() {
+        chartTypeComboBox.removeAllItems();
+        ChartOption option = (ChartOption) chartOptionComboBox.getSelectedItem();
+        option.getChartTypes().forEach(chartTypeComboBox::addItem);
     }
 
-    private static List<ChartOption> getChartOptions() {
-        List<ChartOption> chartOptions = new ArrayList<>();
-
-        chartOptions.add(new ChartOption("My most drunk drinks", Arrays.asList(ChartType.BAR, ChartType.PIE), "Drinks to display:"));
-        chartOptions.add(new ChartOption("My payments", Arrays.asList(ChartType.BAR, ChartType.XY), ""));
-
-        //TODO worker
-        if (LoadManager.getUserInformation().isCurrentUserAdmin()) {
-            chartOptions.add(new ChartOption("Best selling drinks at bars", Arrays.asList(ChartType.BAR, ChartType.PIE),
-                    "Drinks to display:"));
-            chartOptions.add(new ChartOption("Most used ingredients at bars", Arrays.asList(ChartType.BAR, ChartType.PIE),
-                    "Ingredients to display:"));
-            chartOptions.add(new ChartOption("Pure alcohol sold at bars", Arrays.asList(ChartType.BAR, ChartType.XY), ""));
-            chartOptions.add(new ChartOption("Earnings of bars", Arrays.asList(ChartType.BAR, ChartType.XY), ""));
+    private void showChart() {
+        ChartOption chartOption = (ChartOption) chartOptionComboBox.getSelectedItem();
+        int displayLimit;
+        if (chartOption.getGraphParamName() == null || chartOption.getGraphParamName().length() == 0) {
+            TimeIntervalType timeIntervalType = (TimeIntervalType) graphParamSpinner.getValue();
+            displayLimit = timeIntervalType.getValue();
+        } else {
+            displayLimit = (int) graphParamSpinner.getValue();
         }
-
-        return chartOptions;
+        List<Bar> barList;
+        if (isAdmin) {
+            barList = barsTableModel.getChckedBarList();
+        } else {
+            barList = null;
+        }
+        ChartWorker chartWorker = new ChartWorker(
+                chartOption,
+                (ChartType) chartTypeComboBox.getSelectedItem(),
+                barList,
+                fromDateChooser.getDate(),
+                toDateChooser.getDate(),
+                displayLimit,
+                chartPanel
+        );
+        chartWorker.execute();
     }
 
-    private static class ChartOption {
-        String name;
-        List<ChartType> chartTypes;
-        String graphParamName;
-
-        public ChartOption(String name, List<ChartType> chartTypes, String graphParamName) {
-            this.name = name;
-            this.chartTypes = chartTypes;
-            this.graphParamName = graphParamName;
-        }
-
-        @Override
-        public String toString() {
-            return name;
-        }
-    }
-
-    private enum ChartType {
-        BAR, XY, PIE
-    }
 }
