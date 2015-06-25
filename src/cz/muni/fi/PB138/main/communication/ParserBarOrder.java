@@ -61,11 +61,7 @@ public class ParserBarOrder implements Parser{
                 Random random = new Random();
                 //double alcoholQuantity = Math.round(((random.nextDouble() % 1) * 10000) / 10000);
                 double alcoholQuantity = 0.1234;
-                /*try {
-                    alcoholQuantity = 0;//todo dorobit alkohol ked bud� ingrediencie
-                } catch (JSONException ex) {
-                    logger.log(Level.SEVERE, "", ex);
-                }*/
+
 
                 Drink myDrink = new Drink(drinkName, price, alcoholQuantity);
                 drinkList.add(myDrink);

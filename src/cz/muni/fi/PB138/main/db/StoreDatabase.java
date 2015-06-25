@@ -16,6 +16,7 @@ import java.io.InputStream;
 /**
  * BarUTomaDataAnalyst
  * @author Benjamin Varga
+ * @author Martina Minatova
  * @version 17.6.2015
  */
 public class StoreDatabase {
@@ -91,7 +92,7 @@ public class StoreDatabase {
                     col.close();
                 } catch(XMLDBException xe) { xe.printStackTrace();}
             }
-            //Destroy Database
+            //Shutdown Database
             try {
                 DatabaseInstanceManager instanceManager = (DatabaseInstanceManager) col.getService("DatabaseInstanceManager", "1.0");
                 instanceManager.shutdown();
