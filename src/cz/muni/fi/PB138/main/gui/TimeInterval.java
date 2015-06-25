@@ -3,6 +3,7 @@ package cz.muni.fi.PB138.main.gui;
 import java.time.LocalDate;
 
 /**
+ *
  * Created by Eva on 18.6.2015.
  */
 public class TimeInterval implements Comparable<TimeInterval> {
@@ -48,10 +49,13 @@ public class TimeInterval implements Comparable<TimeInterval> {
         return result;
     }
 
-    //TODO Change this
     @Override
     public String toString() {
-        return from.toString() + " - " + to.toString();
+        if (to.equals(from)) {
+            return from.getDayOfMonth() + "." + from.getMonthValue() + ".";
+        }
+        return from.getDayOfMonth() + "." + from.getMonthValue() + "." + from.getYear() + "-" +
+                to.getDayOfMonth() + "." + to.getMonthValue() + "." + to.getYear();
     }
 
     @Override

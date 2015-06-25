@@ -41,8 +41,16 @@ ADMIN-SCHEMA
 
     <xs:simpleType name="simpleDecimal">        <!-- jednoduchy nenulovy decimal s dvemi desetinnymi misty -->
         <xs:restriction base="xs:decimal">
-            <xs:minExclusive value="0"/>
-            <xs:pattern value="\d+\.\d{2}"/>
+            <xs:minInclusive value="0"/>
+            <xs:pattern value="\d+\.\d{1}"/> <!-- changed to 1 -->
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="alcoholDecimal">        <!-- jednoduchy nenulovy decimal s dvemi desetinnymi misty -->
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+            <xs:pattern value="\d+\.\d{4}"/> <!-- changed to 1 -->
         </xs:restriction>
     </xs:simpleType>
 
@@ -60,7 +68,7 @@ ADMIN-SCHEMA
                                             <xs:complexType>
                                                 <xs:sequence>
                                                     <xs:element name="income" type="simpleDecimal"/>
-                                                    <xs:element name="alcohol" type="simpleDecimal"/>
+                                                    <xs:element name="alcohol" type="alcoholDecimal"/>
                                                     <xs:element name="drinks">
                                                         <xs:complexType>
                                                             <xs:sequence>
@@ -79,7 +87,7 @@ ADMIN-SCHEMA
                                                     <xs:element name="ingredients" minOccurs="0" maxOccurs="1">
                                                         <xs:complexType>
                                                             <xs:sequence>
-                                                                <xs:element name="ingredient" maxOccurs="unbounded">
+                                                                <xs:element name="ingredient" minOccurs="0" maxOccurs="unbounded">
                                                                     <xs:complexType>
                                                                         <xs:simpleContent>
                                                                             <xs:extension base="xs:integer">

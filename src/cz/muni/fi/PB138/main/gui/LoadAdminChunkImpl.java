@@ -12,19 +12,18 @@ import java.util.TreeMap;
 
 /**
  * Class used for testing of GUI.
- *
  * Created by Eva on 22.5.2015.
  */
 public class LoadAdminChunkImpl implements LoadAdmin {
 
     @Override
     public BigDecimal getIncome(LocalDate from, LocalDate to, long barId) {
-        return new BigDecimal(barId*12457*Math.abs(Math.sin(barId / 3.35 * Math.PI)) + 5000);
+        return new BigDecimal(barId*12457*Math.abs(Math.sin(barId / 3.35 * Math.PI * from.getDayOfMonth() *to.getMonthValue())) + 5000 );
     }
 
     @Override
     public double getAlcohol(LocalDate from, LocalDate to, long barId) {
-        return barId*23.5*Math.abs(Math.sin(barId / 4.28 * Math.PI)) + 6;
+        return barId*23.5*Math.abs(Math.sin(barId / 4.28 * Math.PI * to.getDayOfMonth() * from.getMonthValue())) + 6;
     }
 
     @Override
