@@ -35,8 +35,8 @@ public class HTTPRequest {
     private Logger logger = Logger.getLogger(HTTPRequest.class.getName());
 
     /**
-     * Without authetication
-     * @param url
+     * Without authorization
+     * @param url Request link
      * @return JSON
      */
     public String getRequest(String url) {
@@ -64,8 +64,8 @@ public class HTTPRequest {
 
     /**
      * Get data with authorization
-     * @param token
-     * @param url
+     * @param token Users token
+     * @param url Request link
      * @return JSON
      */
     public String getRequestWithToken(String token, String url) {
@@ -93,9 +93,9 @@ public class HTTPRequest {
     }
 
     /**
-     *
-     * @param username
-     * @param password
+     * Gets token when user is registered
+     * @param username username
+     * @param password password
      * @return Access Token
      */
     public String postRequestToken(String username, String password) {

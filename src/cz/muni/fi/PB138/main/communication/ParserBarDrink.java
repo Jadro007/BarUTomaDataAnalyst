@@ -47,17 +47,8 @@ public class ParserBarDrink implements Parser {
             }
             price = price.multiply(BigDecimal.valueOf(multiplierToBase));
 
-            /*JSONArray jsonIngredients = jsonDrink.getJSONArray("IngredientsUsed");
-            for (int j = 0; j < jsonIngredients.length(); j++) {
-                //TODO: Ingredients
-            }*/
-
             double alcoholQuantity = 0.0;
-            /*try {
-                alcoholQuantity = 0;//todo dorobit alkohol ked budú ingrediencie
-            } catch (JSONException ex) {
-                logger.log(Level.SEVERE, "", ex);
-            }*/
+
 
             Drink drink = new Drink(name, price, alcoholQuantity);
             drinkList.add(drink);
