@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.0//EN"  "http://www.oasis-open.org/docbook/xml/4.0/docbookx.dtd">
+
+<article>
+    <info>
+        <title>Bar management and ordering data analysis</title>
+        <author>
+            <personname>Tomáš Schmidl</personname>
+        </author>
+    </info>
+    <sect1>
+        <title>XML Schema</title>
+        <para>
+            Po prvním nepromyšleném návrhu založeném na ERD originální aplikace, jsem se rozhodl schéma rozdělit na 3 menší.
+            Schéma popisující strukturu dokumentu pro data administrátora (majitele baru) - admin.xsd, data uživatele - user.xsd
+            a informace o baru - bar.xsd.
+            <itemizedlist>
+                <listitem>
+                    <para> admin.xsd - popisuje výdělek, čistý alkohol, prodané drinky a ingredience na každém baru pro daného admina </para>
+                </listitem>
+                <listitem>
+                    <para> user.xsd - platby a koupené drinky uživatele </para>
+                </listitem>
+                <listitem>
+                    <para> bar.xsd - jméno a informace o baru samotném a hlavně jeho majitele </para>
+                </listitem>
+            </itemizedlist>
+            Protože databáze eXist dokáže vytvářet kolekce a po určitém čase vytvoří nový dokument a protože většina grafů v analýze
+            je závislá na čase, další dělení po kořenovém elementu v dokumentech probíhalo podle data. Členění na dny se nakonec pro
+            účely aplikace ukázalo jako nejvhodnější. Elementy s více atributy měly v dokumentech atributy seřazené podle abecedy,
+            protože se tato vlastnost nedala změnit, musel jsem podle toho upravit schéma. Ke schématům jsem vytvořil ukázkové soubory
+            a byly ovalidovány nástrojem xmllint.
+        </para>
+    </sect1>
+    <sect1>
+        <title>LoadAdmin, LoadUser</title>
+        <para> Dále jsem implementoval třídy LoadAdmin a LoadUser v package db. Ty zajišťují operace nad vzniklým dokumentem vytvořeným
+            z databáze. Data vytažená pomocí těchto tříd jsou používána přímo pro tvorbu výsledných grafů. V konstruktoru třídy se
+            zajistí připojení k databázi. Jednotlivé metody pak vrací přímo hodnoty typu double např. pro platby zákazníka, nebo seznamy
+            drinků, barů uspořádaných do vhodné kolekce. V těle metody se podle dané struktury dokumentu pomocí JAXP vyberou potřebná
+            data. Implementace LoadAdmin a LoadUser se liší v podstatě tím, že u uživatele se nezjišťuje konkrétní bar na kterém objednávky
+            proběhly a pouze se pohybujeme v dokumentu na základě konkrétního data.
+        </para>
+    </sect1>
+    <sect1>
+        <title>UserInformation</title>
+        <para> Třída UserInformation spravuje data o přihlášeném uživateli. Operuje nad souborem config.properties. Konfigurační soubor
+            o uživatelích uchovává jejich ID, jméno, roli (zda je adminem nebo uživatelem). Pomocí rozhraní Properties přistupujeme k
+            jednotlivým položkám v souboru. Metody zjišťují např. zda je přihlášený uživatel administrátorem nebo čas posledního přihlášení.
+        </para>
+    </sect1>
+</article>
