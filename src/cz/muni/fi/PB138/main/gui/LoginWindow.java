@@ -4,9 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * Window used for authentication of the user.
  * Created by Eva on 21.5.2015.
  */
 public class LoginWindow {
+
+    //GUI components
     private JTextField usernameTextField;
     private JButton logInButton;
     private JPasswordField passwordField;
@@ -14,6 +17,9 @@ public class LoginWindow {
     private JLabel loadingLabel;
     private Frame frame;
 
+    /**
+     * Constructor of the class.
+     */
     public LoginWindow() {
         logInButton.addActionListener(e -> {
             String username = usernameTextField.getText();
@@ -34,14 +40,25 @@ public class LoginWindow {
         });
     }
 
+    /**
+     * Main of the app.
+     * @param args
+     */
     public static void main(String args[]) {
         createLoginWindow();
     }
 
+    /**
+     * Sets frame of the LoginWindow.
+     * @param frame of the LoginWindow
+     */
     public void setFrame(Frame frame) {
         this.frame = frame;
     }
 
+    /**
+     * Creates new JFrame with LoginWindow.
+     */
     public static void createLoginWindow() {
         EventQueue.invokeLater(() -> {
             JFrame frame = new JFrame();

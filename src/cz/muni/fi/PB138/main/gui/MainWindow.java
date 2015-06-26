@@ -12,15 +12,20 @@ import java.util.List;
 import static cz.muni.fi.PB138.main.gui.LoadManager.getUserInformation;
 
 /**
+ * The class for main window of the app. Enables user to choose all options for data displayed in the charts.
  * Created by Eva on 21.5.2015.
  */
-//TODO correct resizing
 public class MainWindow {
+
+    //constants for settings of the GUI
     private static final int MAX_SELECTED_BARS = 4;
     private static final int MAX_SELECTED_TIME_INTERVALS = 14;
     private static final int MAX_SELECTED_DISPLAY_LIMIT = 10;
     private static final int INITIAL_SELECTED_DISPLAY_LIMIT = 3;
+    private static final int HORIZONTAL_PREFERRED_SIZE = 1150;
+    private static final int VERTICAL_PREFERRED_SIZE = 600;
 
+    //GUI components
     private Frame frame;
     private JComboBox chartOptionComboBox;
     private JComboBox chartTypeComboBox;
@@ -28,7 +33,7 @@ public class MainWindow {
     private JButton logOutButton;
     private JDateChooser toDateChooser;
     private JDateChooser fromDateChooser;
-    private JLabel graphParamLabel;
+    private JLabel chartParamLabel;
     private JPanel panel;
     private JTable barsTable;
     private ChartPanel chartPanel;
@@ -36,8 +41,14 @@ public class MainWindow {
     private JScrollPane tableScrollPane;
     private JPanel tablePanel;
     private BarsTableModel barsTableModel;
+    private TimeIntervalType lastSelectedInterval = TimeIntervalType.DAY;
+
     private Boolean isAdmin;
 
+    /**
+     * Method used for creation of options of customisation of the chart for user.
+     * @return List<ChartOption> available for user
+     */
     private List<ChartOption> getChartOptions() {
         List<ChartOption> chartOptions = new ArrayList<>();
 
@@ -57,12 +68,19 @@ public class MainWindow {
         return chartOptions;
     }
 
-    private static List<ChartData> getAdminsOptions() {
+    /**
+     * Method returns list of chart data which are available only for user who is admin.
+     * @return List<ChartData> available only for user who is admin
+     */
+    private static List<ChartData> getAdminsChartData() {
         return new ArrayList<>(Arrays.asList(ChartData.SELLING_DRINKS, ChartData.PURE_ALCOHOL_SOLD, ChartData.EARNINGS));
     }
 
+    /**
+     * Constructor of the class.
+     * Initialises main window of the app and
+     */
     public MainWindow() {
-
         chartOptionComboBox.addActionListener(e -> {
             setChartTypeComboBoxItems();
             setChartParamComponents();
@@ -89,14 +107,14 @@ public class MainWindow {
                 return;
             }
             if (isAdmin) {
-                int checkedBarsCount = barsTableModel.getChckedBarList().size();
+                int checkedBarsCount = barsTableModel.getSelectedBars().size();
                 ChartOption selectedChartOption = (ChartOption) chartOptionComboBox.getSelectedItem();
-                if (getAdminsOptions().contains(selectedChartOption.getChartData()) && checkedBarsCount > MAX_SELECTED_BARS) {
+                if (getAdminsChartData().contains(selectedChartOption.getChartData()) && checkedBarsCount > MAX_SELECTED_BARS) {
                     JOptionPane.showMessageDialog(null, "Too many bars are selected.\nDeselect some of them and try again.",
                             "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                if (getAdminsOptions().contains(selectedChartOption.getChartData()) && checkedBarsCount == 0) {
+                if (getAdminsChartData().contains(selectedChartOption.getChartData()) && checkedBarsCount == 0) {
                     JOptionPane.showMessageDialog(null, "No bars are selected.\nSelect some of them and try again.",
                             "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -117,10 +135,17 @@ public class MainWindow {
     }
 
 
+    /**
+     * Sets frame of the MainWindow.
+     * @param frame of the MainWindow
+     */
     public void setFrame(Frame frame) {
         this.frame = frame;
     }
 
+    /**
+     * Creates new JFrame with MainWindow.
+     */
     public static void createMainWindow(){
         EventQueue.invokeLater(() -> {
             JFrame frame = new JFrame();
@@ -129,13 +154,16 @@ public class MainWindow {
             MainWindow window = new MainWindow();
             window.setFrame(frame);
             frame.setContentPane(window.panel);
-            frame.setPreferredSize(new Dimension(1150, 600));
+            frame.setPreferredSize(new Dimension(HORIZONTAL_PREFERRED_SIZE, VERTICAL_PREFERRED_SIZE));
 
             frame.pack();
             frame.setVisible(true);
         });
     }
 
+    /**
+     * Method for initialisation of GUI components.
+     */
     private void createUIComponents() {
         isAdmin = getUserInformation().isCurrentUserAdmin();
         List<ChartOption> chartOptions = getChartOptions();
@@ -145,7 +173,6 @@ public class MainWindow {
 
         chartTypeComboBox = new JComboBox();
         setChartTypeComboBoxItems();
-        //TODO fromDateChooser & toDateChooser min date restriction
         fromDateChooser = new JDateChooser();
         fromDateChooser.getJCalendar().setMaxSelectableDate(new Date());
         fromDateChooser.setLocale(Locale.ENGLISH);
@@ -154,7 +181,7 @@ public class MainWindow {
         toDateChooser.getJCalendar().setMaxSelectableDate(new Date());
         toDateChooser.setLocale(Locale.ENGLISH);
 
-        graphParamLabel = new JLabel();
+        chartParamLabel = new JLabel();
         graphParamSpinner = new JSpinner();
         setChartParamComponents();
 
@@ -177,34 +204,47 @@ public class MainWindow {
         chartPanel.setMaximumDrawHeight(1200);
     }
 
+    /**
+     * Method for changing graphParam label and spinner according to selected chart data type.
+     */
     private void setChartParamComponents() {
+        if (graphParamSpinner.getModel().getClass() != SpinnerNumberModel.class) {
+            lastSelectedInterval = (TimeIntervalType) graphParamSpinner.getValue();
+        }
+
         ChartOption option = (ChartOption) chartOptionComboBox.getSelectedItem();
 
-        if (option.getGraphParamName() != null && option.getGraphParamName().length() != 0) {
+        if (option.getChartParamName() != null && option.getChartParamName().length() != 0) {
             graphParamSpinner.setModel(new SpinnerNumberModel(INITIAL_SELECTED_DISPLAY_LIMIT, 1, MAX_SELECTED_DISPLAY_LIMIT, 1));
-            graphParamLabel.setText(option.getGraphParamName());
+            chartParamLabel.setText(option.getChartParamName());
         } else {
             TimeIntervalType[] timeIntervalTypes = {TimeIntervalType.DAY, TimeIntervalType.WEEK, TimeIntervalType.MONTH};
             SpinnerListModel spinnerListModel = new SpinnerListModel(timeIntervalTypes);
             graphParamSpinner.setModel(spinnerListModel);
-            graphParamLabel.setText("Time interval:");
+            graphParamSpinner.setValue(lastSelectedInterval);
+            chartParamLabel.setText("Time interval:");
         }
 
         JSpinner.DefaultEditor spinnerEditor = (JSpinner.DefaultEditor)graphParamSpinner.getEditor();
         spinnerEditor.getTextField().setHorizontalAlignment(JTextField.RIGHT);
-
     }
 
+    /**
+     * Method for changing chart type combo box according to selected chart data type.
+     */
     private void setChartTypeComboBoxItems() {
         chartTypeComboBox.removeAllItems();
         ChartOption option = (ChartOption) chartOptionComboBox.getSelectedItem();
         option.getChartTypes().forEach(chartTypeComboBox::addItem);
     }
 
+    /**
+     * Method creates chart from options selected by user.
+     */
     private void showChart() {
         ChartOption chartOption = (ChartOption) chartOptionComboBox.getSelectedItem();
         int displayLimit;
-        if (chartOption.getGraphParamName() == null || chartOption.getGraphParamName().length() == 0) {
+        if (chartOption.getChartParamName() == null || chartOption.getChartParamName().length() == 0) {
             TimeIntervalType timeIntervalType = (TimeIntervalType) graphParamSpinner.getValue();
             displayLimit = timeIntervalType.getValue();
         } else {
@@ -212,7 +252,7 @@ public class MainWindow {
         }
         List<Bar> barList;
         if (isAdmin) {
-            barList = barsTableModel.getChckedBarList();
+            barList = barsTableModel.getSelectedBars();
         } else {
             barList = null;
         }

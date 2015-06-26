@@ -26,9 +26,9 @@ import java.util.logging.Logger;
  */
 public class CreateDocument {
 
-    public static final String ADMIN_XSD = "database\\admin.xsd";
-    public static final String USER_XSD = "database\\user.xsd";
-    public static final String BAR_XSD = "database\\bar.xsd";
+    public static final String ADMIN_XSD = "database/admin.xsd";
+    public static final String USER_XSD = "database/user.xsd";
+    public static final String BAR_XSD = "database/bar.xsd";
     public static final String SCHEMA_LOCATION = "xsi:noNamespaceSchemaLocation";
     public static final String XMLNS_XSI = "xmlns:xsi";
     public static final String SCHEMA_INSTANCE = "http://www.w3.org/2001/XMLSchema-instance";

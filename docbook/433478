@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+    <info>
+        <title>Bar's management and ordering</title>
+
+        <author>
+            <firstname>Eva</firstname>
+
+            <surname>Šmijáková</surname>
+        </author>
+    </info>
+
+    <sect1>
+        <title>Úvod</title>
+
+        <para>Mojou úlohou v tímovom projekte bolo implementovať grafické rozhranie aplikácie, teda zobraziť spracované
+            dáta do prehľadných grafov a umožniť užívateľovi pomocou volieb vybrať, aké údaje chce zobraziť.</para>
+    </sect1>
+
+    <sect1>
+        <title>Prihlásenie užívateľa</title>
+
+        <para>Pre prihlásenie užívateľa som vytvorila jednoduché okno v triede LoginWindow. Užívateľské meno sa zadáva
+            do natívnej java grafickej komponenty JTextField a heslo do JPasswordField. Prihlásenie rieši v separátnom
+            vlákne trieda LoginWorker, ktorá využíva autentizáciu z implementačnej časti projektu. Po pokuse o
+            prihlásenie trieda LoadingWorker zabezpečí, aby sa užívateľ nepokúsil o prihlásenie znova počas sťahovania
+            dát z databázy.</para>
+
+    </sect1>
+
+    <sect1>
+        <title>Voľby pre vytvorenie grafu</title>
+
+        <para>Všetky voľby aj samotný graf sú obsiahnuté v triede MainWindow, ktorá zhlukuje grafické komponenty.</para>
+
+        <sect2>
+            <title>Dáta zobrazené v grafe a typ grafu zobraziteľný k daným dátam</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> Užívateľom najnakupovanejšie nápoje (koláčový a stĺpcový graf) </para>
+                    </listitem>
+                    <listitem>
+                        <para> Užívateľove výdavky v priebehu času (čiarový a stĺpcový graf) </para>
+                    </listitem>
+                </itemizedlist>
+                (nasledujúce voľby sú prístupné iba pre užívateľa, ktorý je vlastník baru)
+                <itemizedlist>
+                    <listitem>
+                        <para> Najpredávanejšie nápoje vo vybraných užívateľových baroch (koláčový a stĺpcový graf) </para>
+                    </listitem>
+                    <listitem>
+                        <para> Množstvo etanolu predaného vo vybraných užívateľových baroch (v litroch) v priebehu času
+                            (čiarový a stĺpcový graf) </para>
+                    </listitem>
+                    <listitem>
+                        <para> Príjmy vo vybraných užívateľových baroch v priebehu času (čiarový a stĺpcový graf) </para>
+                    </listitem>
+                </itemizedlist>
+                Voľba dát zobrazených v grafe a typu grafu je umožnená užívateľovi pomocou grafickej komponenty JComboBox.
+            </para>
+        </sect2>
+        <sect2>
+            <title>Časové obdobie, počas ktorého dáta vznikli</title>
+            <para>Na vybranie zvoleného obdobia slúžia komponenty JDateChooser z knižnice com.toedter.calendar.JDateChooser</para>
+        </sect2>
+        <sect2>
+            <title>Bary užívateľa</title>
+            <para>Na vybranie barov, slúži grafický komponent JTable, ktorej údaje sú sprostredkované triedou BarsTableModel.</para>
+        </sect2>
+        <sect2>
+            <title>Časový interval / maximum zobrazovaných údajov</title>
+            <para>
+                Tieto voľby prebiehajú pomocou grafického komponentu JSpinner. V prípade, že dáta obsiahnuté v grafe majú
+                byť závislé na čase, komponent umožňuje vybrať typ časového obdobia. V inom prípade umožňuje vybrať maximálny
+                počet zobrazovaných údajov, napr. maximálny počet zobrazených najpopulárnejších drinkov baru.
+            </para>
+        </sect2>
+    </sect1>
+    <sect1>
+        <title>Zobrazenie grafu</title>
+        <para>
+            Graf sa vytvorí po užívateľovom kliknutí myšou na grafický komponent JButton s nápisom „Create Chart“.
+            V prípade, že užívateľ zadá nejaké neplatné voľby (napr. nevyberie žiaden bar), žiaden graf sa nezobrazí
+            a na neplatnú voľbu upozorní užívateľa dialógové okno. Graf sa zobrazuje na grafickom komponente ChartPanel,
+            pre ktorú graf na (základe volieb užívateľa) vytvorí trieda ChartWorker. Na vytváranie grafov som použila
+            knižnicu org.jfree.chart.
+        </para>
+    </sect1>
+    <sect1>
+        <title>Odhlásenie užívateľa</title>
+        <para>
+            Odhlásenie užívateľa umožňuje JButton v ľavom dolnom rohu. Po odhlásení užívateľa sa hlavné okno zatvorí a
+            je umožnené prihlásenie ďalšiemu užívateľovi v novom okne pre prihlásenie.
+        </para>
+    </sect1>
+    <sect1>
+        <title>Ďalšie pomocné triedy</title>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    ChartData – enumerácia druhov dát, ktoré môže užívateľ zobraziť v grafe
+                </listitem>
+                <listitem>
+                    ChartOption – trieda obsahuje informácie, aké voľby je možné vybrať k danému druhu dát a údaje
+                    potrebné pre zobrazenie grafu, ako napr. mená osí grafov. Tieto základné voľby sú inicializované
+                    v triede MainWindow, pre uľahčenie prípadnej zmeny kódu.
+                </listitem>
+                <listitem>
+                    ChartType – enumerácia typov grafov
+                </listitem>
+                <listitem>
+                    LoadManager – poskytuje implementáciu aplikačných rozhraní poskytnutých pre GUI
+                </listitem>
+                <listitem>
+                    LoadAdminChunkImpl, LoadUserChunkImpl, UserInformationChunkImpl  - triedy použité pri vizuálnom testovaní GUI
+                </listitem>
+                <listitem>
+                    TimeInterval – trieda obsahujúca začiatok a koniec časového intervalu
+                </listitem>
+                <listitem>
+                    TimeIntervalType – enumerácia základných typov pravidelných časových údajov, ktoré si môže vybrať užívateľ
+                </listitem>
+                <listitem>
+                    TimeUtils – trieda rieši prevod medzi triedami time.util.Date a java.time.LocalDate, vypočíta počet dní,
+                    medzi dvoma dňami a rozdelí časový interval zadaný uživateľom na menšie časové intervaly
+                </listitem>
+            </itemizedlist>
+        </para>
+    </sect1>
+</article>

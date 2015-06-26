@@ -3,13 +3,20 @@ package cz.muni.fi.PB138.main.gui;
 import javax.swing.*;
 
 /**
- *
+ * Class continues visual loading while logging in is proceeding.
  * Created by Eva on 21.6.2015.
  */
 public class LoadingWorker extends SwingWorker<Void, Integer> {
+    //LoginWorker for which job is waited
     private LoginWorker loginWorker;
+    //Label where loading is proceeding
     private JLabel loadingLabel;
 
+    /**
+     * Constructor of the class.
+     * @param loginWorker
+     * @param loadingLabel
+     */
     public LoadingWorker(LoginWorker loginWorker, JLabel loadingLabel) {
         this.loginWorker = loginWorker;
         this.loadingLabel = loadingLabel;

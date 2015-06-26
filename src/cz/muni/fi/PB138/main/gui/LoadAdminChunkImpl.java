@@ -5,13 +5,10 @@ import cz.muni.fi.PB138.main.entities.Bar;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
- * Class used for testing of GUI.
+ * Class used for visual testing of GUI.
  * Created by Eva on 22.5.2015.
  */
 public class LoadAdminChunkImpl implements LoadAdmin {
@@ -84,7 +81,7 @@ public class LoadAdminChunkImpl implements LoadAdmin {
                 drinksMap.put("Water", 7*to.getMonthValue());
                 break;
         }
-        return drinksMap;
+        return Collections.unmodifiableMap(drinksMap);
     }
 
     @Override
@@ -153,7 +150,7 @@ public class LoadAdminChunkImpl implements LoadAdmin {
                 ingredientsMap.put("Water", 7.8*to.getMonthValue()*2.3*Math.abs(Math.sin(barId / 4.28 * Math.PI)) + 9);
                 break;
         }
-        return ingredientsMap;
+        return Collections.unmodifiableMap(ingredientsMap);
     }
 
     @Override
@@ -169,6 +166,6 @@ public class LoadAdminChunkImpl implements LoadAdmin {
         barList.add(new Bar("The Cool Bar", "So cool you can't handle it.", 8));
         barList.add(new Bar("The Smelling Sock", "No sandals allowed.", 9));
         barList.add(new Bar("Ogre's Inn", "For green ones.", 10));
-        return barList;
+        return Collections.unmodifiableList(barList);
     }
 }
