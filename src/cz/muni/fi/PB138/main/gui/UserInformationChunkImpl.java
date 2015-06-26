@@ -26,17 +26,11 @@ public class UserInformationChunkImpl implements UserInformation{
     }
 
     @Override
-    public void saveCurrentUserInformation(long id, boolean isAdmin) {
-
-    }
+    public void saveCurrentUserInformation(long id, boolean isAdmin) {   }
 
     @Override
-    public void saveCurrentUserLastTimeOfUpdate() {
-
-    }
+    public void saveCurrentUserLastTimeOfUpdate() {   }
 
     @Override
-    public long getUserId(String name) {
-        return 0;
-    }
+    public long getUserId(String name) { return 0; }
 }

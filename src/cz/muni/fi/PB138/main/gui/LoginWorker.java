@@ -7,11 +7,13 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- *
+ * Class used for authentication of the user.
+ * If logging in is successful closes login window and opens new main window of app.
  * Created by Eva on 21.6.2015.
  */
 public class LoginWorker extends SwingWorker<Void, Integer> {
 
+    //frame of the login screen
     private Frame loginFrame;
     private String username;
     private char[] password;
