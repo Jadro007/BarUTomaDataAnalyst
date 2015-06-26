@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <info>
+        <title>Bar management and ordering</title>
+        <author>
+            <personname>Martina Minátová</personname>
+        </author>
+    </info>
+    <sect1>
+        <title>Využité technologie</title>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <para> eXist DB </para>
+                </listitem>
+                <listitem>
+                    <para> XML:DB API </para>
+                </listitem>
+				<listitem>
+                    <para> json </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </sect1>
+    <sect1>
+        <title>Popis práce</title>
+        <para> V projektu jsem implementovala části zabývající se parsováním dat, které jsme obdrželi ze serveru; části týkající se přímo databáze, tedy zprovoznění eXist a ukládání/načítání dat a metody sdružující celou logiku za procesem aktualizace dat po přihlášení uživatele.
+</para>
+        <sect2>
+            <title><emphasis role="underline">Communication</emphasis></title>
+            <sect3>
+              	<title>Parser</title>
+                <para>Interface sdružující pod sebe třídy parsující obdržený JSON do kolekcí námi vytvořených entit – Bar, Drink, Order, User. Byly implementovány jako poslední protože po většinu vývoje nebylo doimplementované serverové API. <?linebreak?>
+                      •	ParserBar – získání id všech existujících barů <?linebreak?>
+                      •	ParserBarDrink – parsování JSON obsahující informace o všech drincích prodávaných v určitém baru; v závěru nevyužit, protože sloužil k získání informacím o ingrediencích, s nimiž spojený graf jsme nakonec museli odstranit <?linebreak?>
+                      •	ParserBarOrder – získání všech objednávek v baru <?linebreak?>
+                      •	ParserGetMyBars – získání informací o všech barech které vlastní přihlášený uživatel <?linebreak?>
+                      •	ParserUserOrders – získání všech objednávek přihlášeného uživatele v konkrétním baru
+
+                </para></sect3><sect3>
+
+                <title>LoginProcedure</title>
+                <para>Třída reprezentující dynamiku odehrávající se těsně po korektním ověření a přihlášení uživatele. Dochází ke stáhnutí dat ze serveru, která jsou spojena s momentálně přihlášením uživatelem a jeho rolí – admin (vlastník barů), uživatel (návštěvník barů). Dochází také k aktualizaci seznamu všech existujících barů. Při vykonávání této třídy také upravujeme náš konfigurační soubor – ukládáme do něj informace o momentálně přihlášeném uživateli a posledním času aktualizace dat specifického uživatele. Tohoto datumu využíváme k zamezení výskytu duplikátů v databázi.
+					</para>
+            </sect3>
+        </sect2>
+		<sect2>
+            <title><emphasis role="underline">DB</emphasis></title>
+            <sect3>
+                <title>Read database</title>
+                <para>Třída sloužící k získání dat z eXist databáze za použití XML:DB API. Obsahuje pouze jednu veřejnou metodu provozující samotné čtení dat z předem specifikované kolekce. V rámci ulehčení parsování dat jsme po jejich přečtení transformovali získané resources do jednoho řetězce obsahující jeden korektní xml dokument, který byl následně zpracován v třídách sloužících k převodu řetězce do typu Document.
+                </para>
+            </sect3>
+            <sect3>
+                 <title>Store database</title>
+                 <para>Třída sloužící k ukládání dat do eXist databáze. Obsahuje veřejné metody na samotné vložení dat do databáze a pomocnou metodu na rekurzivní smazání databázové složky. Data ukládáme do tří kolekcí – admin, user a bar. Každá z těchto kolekcí využívá jinou schému. K přístupu k databázi používáme XML:DB API.
+                  </para>
+            </sect3>
+		</sect2>
+		<sect2>
+            <title><emphasis role="underline">Konfigurace eXist:DB</emphasis></title>
+            <sect3>
+                <para>V našem projektu používáme lokálně uloženou databázi eXist. Při její instalaci jsme se potýkali s pár problémy, která byla vyřešena zásahem do konfiguračního souboru. Řešením bylo nastavení podmínky minimálního volného místa na disku na 0 MB.
+                </para>
+            </sect3>
+		</sect2>
+
+    </sect1>
+</article>

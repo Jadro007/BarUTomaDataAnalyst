@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Class-Path: junit-4.11.jar hamcrest-core-1.3.jar hamcrest-library-1.3.
+ jar json-20141113.jar exist.jar xmldb.jar jta-1.1.jar pkg-repo.jar jn
+ a-4.1.0.jar junit-4.11.jar antlr-2.7.7.jar xalan-2.7.1.jar log4j-1.2.
+ 17.jar quartz-2.1.6.jar sunxacml-1.2.jar exist-modules.jar json-20141
+ 113.jar xercesSamples.jar commons-io-2.4.jar httpcore-4.4.1.jar httpm
+ ime-4.4.1.jar jcommon-1.0.16.jar fluent-hc-4.4.1.jar saxonhe-9.4.0.7.
+ jar slf4j-api-1.7.2.jar xml-apis-1.4.01.jar commons-pool-1.6.jar http
+ client-4.4.1.jar serializer-2.7.1.jar xml-resolver-1.2.jar commons-co
+ dec-1.7.jar exist-index-ngram.jar jfreechart-1.0.13.jar lucene-core-4
+ .4.0.jar xercesImpl-2.11.0.jar exist-index-lucene.jar jna-platform-4.
+ 1.0.jar lucene-facet-4.4.0.jar slf4j-log4j12-1.7.2.jar xmlrpc-client-
+ 3.1.3.jar xmlrpc-common-3.1.3.jar xmlrpc-server-3.1.3.jar gnu-crypto-
+ 2.0.1-min.jar httpclient-win-4.4.1.jar lucene-queries-4.4.0.jar commo
+ ns-logging-1.1.1.jar jcalendar-tz-1.3.3-41.jar httpclient-cache-4.4.1
+ .jar commons-fileupload-1.2.2.jar lucene-queryparser-4.4.0.jar common
+ s-collections-3.2.1.jar lucene-analyzers-common-4.4.0.jar jcommon-1.0
+ .16.jar jfreechart-1.0.13.jar jcommon-1.0.16.jar
+Main-Class: cz.muni.fi.PB138.main.gui.LoginWindow
+

@@ -1,0 +1,61 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="BarUTomaDataAnalyst:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/BarUTomaDataAnalyst_jar2</output-path>
+    <root id="root">
+      <element id="archive" name="BarUTomaDataAnalyst.jar">
+        <element id="module-output" name="BarUTomaDataAnalyst" />
+      </element>
+      <element id="library" level="project" name="jfree:jcommon:1.0.16" />
+      <element id="library" level="project" name="jfree:jfreechart:1.0.13" />
+      <element id="library" level="module" name="JUnit4" module-name="BarUTomaDataAnalyst" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/antlr-2.7.7.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/commons-codec-1.7.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/commons-collections-3.2.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/commons-fileupload-1.2.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/commons-io-2.4.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/commons-logging-1.1.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/commons-pool-1.6.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/exist-index-lucene.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/exist-index-ngram.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/exist-modules.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/exist.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/fluent-hc-4.4.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/gnu-crypto-2.0.1-min.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/httpclient-4.4.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/httpclient-cache-4.4.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/httpclient-win-4.4.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/httpcore-4.4.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/httpmime-4.4.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jcalendar-tz-1.3.3-41.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jcommon-1.0.16.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jfreechart-1.0.13.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jna-4.1.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jna-platform-4.1.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/json-20141113.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jta-1.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/junit-4.11.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/log4j-1.2.17.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/lucene-analyzers-common-4.4.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/lucene-core-4.4.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/lucene-facet-4.4.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/lucene-queries-4.4.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/lucene-queryparser-4.4.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/pkg-repo.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/quartz-2.1.6.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/saxonhe-9.4.0.7.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/serializer-2.7.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/slf4j-api-1.7.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/slf4j-log4j12-1.7.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/sunxacml-1.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/xalan-2.7.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/xercesImpl-2.11.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/xercesSamples.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/xml-apis-1.4.01.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/xml-resolver-1.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/xmldb.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/xmlrpc-client-3.1.3.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/xmlrpc-common-3.1.3.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/xmlrpc-server-3.1.3.jar" />
+    </root>
+  </artifact>
+</component>
