@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 /**
  *
  * Rest link /bar/GetMyBars
- * @author Martina Min�tov�
+ * @author Martina Minatova
  * @author Benjamin Varga
  * @version 20.6.2015
  */
@@ -23,6 +23,11 @@ public class ParserGetMyBars implements Parser {
 
     private static final Logger logger = Logger.getLogger(ParserGetMyBars.class.getName());
 
+    /**
+     * Parses json into list of all bars that logged user owns
+     * @param json JSON in format of string
+     * @return list of bars
+     */
     public List<Bar> parse(String json) {
         String name, info;
         UserInformation ui = new UserInformationImpl();

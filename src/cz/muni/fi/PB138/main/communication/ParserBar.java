@@ -16,6 +16,11 @@ public class ParserBar implements Parser {
 
     private static final Logger logger = Logger.getLogger(ParserBar.class.getName());
 
+    /**
+     * Gets list of bar ids from json
+     * @param json JSON in format of string
+     * @return list of bar ids
+     */
     @Override
     public List<Long> parse(String json) {
 

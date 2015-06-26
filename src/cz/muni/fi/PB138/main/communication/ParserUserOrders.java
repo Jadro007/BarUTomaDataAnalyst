@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 /**
  * All orders from bar for user
  * Rest link /bar/{barID}/order/?username={username} + TOKEN
- * @author Martina Min�tov�
+ * @author Martina Minatova
  * @author Benjamin Varga
  * @version 20.6.2015
  */
@@ -28,6 +28,11 @@ public class ParserUserOrders implements Parser {
 
     private Logger logger = Logger.getLogger(ParserBarOrder.class.getName());
 
+    /**
+     * Parses json into list of all orders that logged user made at corresponding bar. Orders don't contain id of bar.
+     * @param json JSON in format of string
+     * @return list of orders
+     */
     public List parse(String json) {
         UserInformation ui = new UserInformationImpl();
         JSONObject obj = new JSONObject(json);
@@ -82,7 +87,12 @@ public class ParserUserOrders implements Parser {
         }
         return orderList;
     }
-
+    /**
+     * Parses json into list of all orders that logged user made at corresponding bar. Orders are linked with bar id.
+     * @param json JSON in format of string
+     * @param barId id of bar
+     * @return list of orders
+     */
     public List parse(String json, long barId) {
         List<Order> list = parse(json);
         for(Order order: list) {

@@ -34,13 +34,17 @@ public class LoginProcedure {
         userId = ui.getUserId(userName);
     }
 
+    /**
+     * Fetches data from server and stores them in database. Based on role of user, updates only corresponding collections.
+     * Doesn't store duplicates. Used directly after login.
+     */
     public void UpdateDatabase() {
 
         ui.saveCurrentUserInformation(userId, isAdmin);
 
         if (isAdmin) UpdateAdmin();
 
-        UpdateUser();
+        if (LocalDate.now() != ui.getCurrentUserLastTimeOfUpdate()) UpdateUser();
 
         ui.saveCurrentUserLastTimeOfUpdate();
     }
@@ -57,18 +61,20 @@ public class LoginProcedure {
 
         jsonGetMyBars = httpRequest.getRequestWithToken(token, GET_MY_BARS_REQUEST);
         barList = new ParserGetMyBars().parse(jsonGetMyBars);
-        for (Bar bar : barList) {
-            long barId = bar.getId();
-            jsonBarOrder = httpRequest.getRequestWithToken(token, BAR_ORDER_PREFIX + barId + BAR_ORDER_POSTFIX);
-            List<Order> barOrders = parserBarOrder.parse(jsonBarOrder, barId);
-            orderListAllBars.addAll(barOrders);
-        }
+        if (LocalDate.now() != lastTimeOfUpdate) {
+            for (Bar bar : barList) {
+                long barId = bar.getId();
+                jsonBarOrder = httpRequest.getRequestWithToken(token, BAR_ORDER_PREFIX + barId + BAR_ORDER_POSTFIX);
+                List<Order> barOrders = parserBarOrder.parse(jsonBarOrder, barId);
+                orderListAllBars.addAll(barOrders);
+            }
 
-        //select only in correct date range
-        orderListAllBars.removeIf(o -> !o.getDatetime().isAfter(lastTimeOfUpdate));
-        if (!orderListAllBars.isEmpty()) {
-            InputStream adminStream = createDocument.createAdminDocument(orderListAllBars);
-            storeDatabase.store("admin", adminStream);
+            //select only in correct date range
+            orderListAllBars.removeIf(o -> !o.getDatetime().isAfter(lastTimeOfUpdate));
+            if (!orderListAllBars.isEmpty()) {
+                InputStream adminStream = createDocument.createAdminDocument(orderListAllBars);
+                storeDatabase.store("admin", adminStream);
+            }
         }
         InputStream barStream = createDocument.createBarDocument(barList);
         storeDatabase.store("bar", barStream);
@@ -93,7 +99,7 @@ public class LoginProcedure {
             orderList = parserUserOrders.parse(jsonUserOrder, id);
             orderListAll.addAll(orderList);
         }
-
+        //removing duplicates
         orderListAll.removeIf(o -> !o.getDatetime().isAfter(lastTimeOfUpdate));
 
         if (!orderListAll.isEmpty()) {
