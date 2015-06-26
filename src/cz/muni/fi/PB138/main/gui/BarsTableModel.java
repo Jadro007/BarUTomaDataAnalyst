@@ -103,6 +103,6 @@ public class BarsTableModel extends AbstractTableModel {
         for (int i = 0; i < barList.size(); i++) {
             checkList.add(Boolean.FALSE);
         }
-        return Collections.unmodifiableList(checkList);
+        return checkList;
     }
 }
