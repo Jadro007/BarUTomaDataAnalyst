@@ -33,16 +33,6 @@ public class ReadDatabase {
         }
     }
 
-    public void destroyDB(Collection collection) {
-        try {
-            DatabaseInstanceManager instanceManager =
-                    (DatabaseInstanceManager) collection.getService("DatabaseInstanceManager", "1.0");
-            instanceManager.shutdown();
-        } catch (XMLDBException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Read from database
      * @param collectionName collection name want I want to read
@@ -74,7 +64,13 @@ public class ReadDatabase {
             Document document = createDocument.transformToXML(data);
 
             // shut down the database
-            destroyDB(collection);
+            try {
+                DatabaseInstanceManager instanceManager =
+                        (DatabaseInstanceManager) collection.getService("DatabaseInstanceManager", "1.0");
+                instanceManager.shutdown();
+            } catch (XMLDBException e) {
+                e.printStackTrace();
+            }
 
             return document;
         } catch (XMLDBException e) {

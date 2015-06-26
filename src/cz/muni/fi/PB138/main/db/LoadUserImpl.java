@@ -1,6 +1,5 @@
 package cz.muni.fi.PB138.main.db;
 
-import cz.muni.fi.PB138.main.entities.Bar;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -100,6 +99,4 @@ public class LoadUserImpl implements LoadUser {
 
         return barIds;
     }
-
-
 }
