@@ -19,21 +19,41 @@ import static cz.muni.fi.PB138.main.gui.TimeIntervalType.DAY;
 import static cz.muni.fi.PB138.main.gui.TimeIntervalType.WEEK;
 
 /**
+ * Class enables to create chart from data selected by user. Creation of the chart proceeds in separate thread.
  * Created by Eva on 2.6.2015.
  */
 
-//TODO create loading??
 public class ChartWorker extends SwingWorker<Void, Integer> {
+    //options used for chart selected by user
     private ChartOption option;
+    //type of chart selected by user
     private ChartType type;
+    //list of bars selected by user
     private List<Bar> barList;
+    //starting date of data used for charts
     private Date from;
+    //ending date of data used for charts
     private Date to;
+    //maximum of displayed data to user restriction (i.e. best selling drinks at bar), if time interval is parameter of
+    //chart (ChartOption.graphParamName == null) attribute is used as type of time interval
     private int displayLimit;
+    //chart panel of chart
     private ChartPanel chartPanel;
 
+    /**
+     * Constructor of the class.
+     * @param option used for chart selected by user
+     * @param type of chart selected by user
+     * @param barList bars selected by user
+     * @param from date of data used for charts
+     * @param to date of data used for charts
+     * @param displayLimit maximum of displayed data to user restriction (i.e. best selling drinks at bar),
+     *                     if time interval is parameter of chart (ChartOption.graphParamName == null)
+     *                     attribute is used as type of time interval
+     * @param chartPanel panel of chart
+     */
     public ChartWorker(ChartOption option, ChartType type, List<Bar> barList, Date from, Date to, int displayLimit,
-        ChartPanel chartPanel) {
+                       ChartPanel chartPanel) {
         this.option = option;
         this.type = type;
         this.barList = barList;
@@ -49,6 +69,10 @@ public class ChartWorker extends SwingWorker<Void, Integer> {
         return null;
     }
 
+    /**
+     * Method creates JFreeChart using attributes of the class.
+     * @return JFreeChart with data selected by user
+     */
     private JFreeChart createChart() {
         CategoryDataset dataset = createDataset();
         JFreeChart chart;
@@ -58,8 +82,8 @@ public class ChartWorker extends SwingWorker<Void, Integer> {
             case BAR:
                 chart = ChartFactory.createBarChart(
                         option.getName(),
-                        option.getValueLabel(),
                         option.getRangeLabel(),
+                        option.getValueLabel(),
                         dataset,
                         PlotOrientation.VERTICAL,
                         true, true, false);
@@ -100,6 +124,10 @@ public class ChartWorker extends SwingWorker<Void, Integer> {
         return chart;
     }
 
+    /**
+     * Method creates Dataset for JFreeChart using attributes of the class.
+     * @return JFreeChart with data selected by user
+     */
     private CategoryDataset createDataset() {
         DefaultCategoryDataset categoryDataset = new DefaultCategoryDataset();
         List<TimeInterval> timeIntervalList;
@@ -107,7 +135,7 @@ public class ChartWorker extends SwingWorker<Void, Integer> {
         switch(option.getChartData()) {
             case DRUNK_DRINKS:
                 Map<String, Integer> drunkDrinksMap = LoadManager.getLoadUser().getMostPurchasedDrinks(TimeUtils.
-                                utilDateToLocalDate(from), TimeUtils.utilDateToLocalDate(to));
+                        utilDateToLocalDate(from), TimeUtils.utilDateToLocalDate(to));
                 i = 0;
                 for (Map.Entry<String, Integer> e : drunkDrinksMap.entrySet()) {
                     categoryDataset.setValue(e.getValue(), e.getKey(), "Drinks");
@@ -168,6 +196,13 @@ public class ChartWorker extends SwingWorker<Void, Integer> {
         return null;
     }
 
+    /**
+     * Method creates list of time intervals in length selected by user.
+     * @param displayLimit value of TimeIntervalType
+     * @param from date of time intervals
+     * @param to date of time intervals
+     * @return List<TimeInterval> of generated time intervals
+     */
     private static List<TimeInterval> getTimeIntervalList(int displayLimit, Date from, Date to) {
         List<TimeInterval> timeIntervalList;
         if (DAY.getValue() == displayLimit) {

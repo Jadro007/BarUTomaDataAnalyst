@@ -14,10 +14,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.*;
-import java.math.BigDecimal;
 import java.nio.charset.Charset;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,46 +26,14 @@ import java.util.logging.Logger;
  */
 public class CreateDocument {
 
-    public static final String ADMIN_XSD = "database\\admin.xsd";
-    public static final String USER_XSD = "database\\user.xsd";
-    public static final String BAR_XSD = "database\\bar.xsd";
+    public static final String ADMIN_XSD = "database/admin.xsd";
+    public static final String USER_XSD = "database/user.xsd";
+    public static final String BAR_XSD = "database/bar.xsd";
     public static final String SCHEMA_LOCATION = "xsi:noNamespaceSchemaLocation";
     public static final String XMLNS_XSI = "xmlns:xsi";
     public static final String SCHEMA_INSTANCE = "http://www.w3.org/2001/XMLSchema-instance";
 
     private static final Logger logger = Logger.getLogger(CreateDocument.class.getName());
-
-    //todo test zmazat
-    public static void main(String[] args) {
-        CreateDocument create = new CreateDocument();
-
-
-
-        Drink myDrink = new Drink("Pina Colada", new BigDecimal("120.00"), 0.16);
-        Drink myDrink2 = new Drink("Jager + Cola", new BigDecimal("55.00"), 0.12);
-        List<Drink> drinkList = new ArrayList<>();
-        drinkList.add(myDrink);
-        drinkList.add(myDrink2);
-
-        Order myOrder1 = new Order(LocalDate.now(), new BigDecimal("150.00"), 2, 5, drinkList);
-        Order myOrder2 = new Order(LocalDate.now(), new BigDecimal("50.00"), 2, 8, drinkList);
-        Order myOrder3 = new Order(LocalDate.now(), new BigDecimal("74.00"), 4, 5, drinkList);
-        List<Order> orderList = new ArrayList<>();
-        orderList.add(myOrder1);
-        orderList.add(myOrder2);
-        orderList.add(myOrder3);
-
-        System.out.println("ADMIN XML");
-        create.createAdminDocument(orderList);
-
-        /*System.out.println("\n USER XML");
-        InputStream inputStream = create.createUserDocument(orderList);
-
-        StoreDatabase storeDatabase = new StoreDatabase();
-        storeDatabase.store("user", inputStream);*/
-
-        //storeDatabase.deleteDatabaseData();
-    }
 
     /**
      * Create new empty xml document
@@ -118,24 +83,6 @@ public class CreateDocument {
     private Element createElementWithOneAttribute(Document document, String name, String attrName, String attrValue) {
         Element element = document.createElement(name);
         element.setAttribute(attrName, attrValue);
-        return element;
-    }
-
-    /**
-     * Create element with two attribute and text
-     * @param document XML document in memory
-     * @param name Name of element
-     * @param attrName1 Name of first attribute
-     * @param attrValue1 Value of first attribute
-     * @param attrName2 Name of second attribute
-     * @param attrValue2 Value of second attribute
-     * @param text Text
-     * @return new element
-     */
-    private Element createElementWithTwoAttributeAndText(Document document, String name, String attrName1, String attrValue1, String attrName2, String attrValue2, String text) {
-        Element element = createElementWithOneAttribute(document, name, attrName1, attrValue1);
-        element.setAttribute(attrName2, attrValue2);
-        element.setTextContent(text);
         return element;
     }
 
@@ -286,7 +233,7 @@ public class CreateDocument {
     }
 
     /**
-     *
+     * Calculate how much alcohol containing the orders
      * @param drinkList
      * @return
      */
@@ -298,7 +245,10 @@ public class CreateDocument {
         return "" + alcohol;
     }
 
-
+    /**
+     * Write the XML document to the console
+     * @param document
+     */
     public void transformToConsoleStream(Document document) {
         try {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -348,13 +298,12 @@ public class CreateDocument {
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data.getBytes(Charset.forName("utf-8")));
             StreamSource streamSource = new StreamSource(byteArrayInputStream);
             transformer.transform(streamSource, domResult);
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
-            e.printStackTrace();
+        } catch (TransformerConfigurationException ex) {
+            logger.log(Level.SEVERE, "Transform exception. ", ex);
+        } catch (TransformerException ex) {
+            logger.log(Level.SEVERE, "Transform exception. ", ex);
         }
-        System.out.println("Transform is OK \n \n");
-        //transformToConsoleStream(document);//todo ukazkovy vypis, upravit kodovanie
+        logger.log(Level.INFO, "Transform to XML is OK.");
         return document;
     }
 }

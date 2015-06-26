@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.0//EN"  "http://www.oasis-open.org/docbook/xml/4.0/docbookx.dtd">
+
+<article>
+  	<info>
+    	<title>Bars management and ordering</title>
+    	<author>
+      		<firstname>Benjamin</firstname>
+      		<surname>Varga</surname>
+    	</author>
+  	</info>
+
+	<sect1>
+    	<title>Vlastná práca</title>
+
+		<para>
+
+			Mojou úlohou na projekte bolo získavanie dát z REST API a vytvorenie XML DOM dokumentov zo spracovaných dát.
+
+		</para>
+    	<para>
+      		Pre získavanie dát som si vytvoril triedu 
+<emphasis role="bold">HTTPRequest</emphasis>, ktorá sa stará o volanie requestov.
+      		Metódy použité v tejto triede sú "getRequest", "getRequestWithToken", "postRequestToken", "hasRegistered" a "isUserAdmin".
+      		<itemizedlist>
+      			<listitem>
+      				Metódy "getRequest" a "getRequestWithToken" sú skoro rovnaké iba sa líšia v tom že tá prvá nám vracia odpoveď bez autorizácii 
+		      		a druhá s autorizáciou. Na autorizáciu sa používa token, ktorý sa pri vytváraní http spojenia pridá do hlavičky requestu. 
+      				Metóda nám vytvorí http spojenie cez ktorú vykonáme požadovaný get request. Každý request so status kódom 200 nám vráti dáta 
+      				vo formáte json. Keby nastal iný status kód tak metóda vyhodí výnimku ktorú zalogujem. 
+      			</listitem>
+      			<listitem>
+      				Metóda "postRequestToken" vytvára post request a do tela requestu pridá meno a heslo používateľa. 
+      				Keď taký užívateľ už existuje, t.j. je registrovaný, tak v odpovedi na request sa nachádza json ale metóda si rovno z json 
+      				vytiahne iba token a vráti ho ako návratovú hodnotu metódy.
+      			</listitem>
+      			<listitem>
+      				Metóda "hasRegistered" sa používa v okne prihlasovania, ktorá overí či užívateľ je naozaj zaregistrovaný.
+      			</listitem>
+      			<listitem>
+      				Metóda "isUserAdmin" overuje či užívateľ je zároveň aj adminom, to znamená že či vlastní nejaké bary.
+      			</listitem>
+      		</itemizedlist>
+    	</para>
+
+    	<para>
+    		Na vytváranie XML DOM dokumentov som si vytvoril triedu <emphasis role="bold">CreateDocument</emphasis>.
+    		Vytváral som tri typy dokumentov a to pre admina, pre usera a pre bar.
+    		Pre každý dokument som si najprv vytvoril koreňový element do ktorého som vložil informáciu kde sa nachádza k nemu XSD schéma, 
+    		a potom postupne podľa dát z objednávok som pridával potrebné elementy s dátami. 
+    		V triede sa tiež nachádzajú metódy pre transformovanie dokumentu a to výpis dokumentu na consolový výstup, 
+    		transformovanie dokument na vstupný prúd (využitie na ukladanie do databáze) 
+    		a transformovanie dokumentu dátového typu string na XML dokument (využitie po načítaní z databáze).
+    	</para>
+  </sect1>
+</article>

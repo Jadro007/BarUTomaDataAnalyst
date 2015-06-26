@@ -4,16 +4,18 @@ import cz.muni.fi.PB138.main.entities.Bar;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
 /**
+ * Class used for model of table of bars.
  * Created by Eva on 30.5.2015.
  */
 public class BarsTableModel extends AbstractTableModel {
 
-    //TODO worker
+    //list of all bars of user
     private static List<Bar> barList = LoadManager.getLoadAdmin().getAdminsBars();
-    private static List<Boolean> checkList = initCheckList();
+    //list of selected bars (items with same index = bar <-> is selected)
+    private static List<Boolean> selectionList = initSelectionList();
 
     @Override
     public int getRowCount() {
@@ -36,7 +38,7 @@ public class BarsTableModel extends AbstractTableModel {
             case 1:
                 return barList.get(row).getName();
             case 2:
-                return checkList.get(row);
+                return selectionList.get(row);
         }
         return null;
     }
@@ -74,22 +76,29 @@ public class BarsTableModel extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object value, int row, int column) {
-        //if (column !=  2 || row >= barList.size()) return;
-        checkList.set(row, (Boolean) value);
+        selectionList.set(row, (Boolean) value);
         fireTableCellUpdated(row, column);
     }
 
-    public List<Bar> getChckedBarList() {
-        List<Bar> checkedBarList = new ArrayList<>();
-        for (int i = 0; i < checkList.size(); i++) {
-            if (checkList.get(i)) {
-                checkedBarList.add(this.barList.get(i));
+    /**
+     * Returns list of bars with true selection value.
+     * @return List<Bar> of selected bars in table by user
+     */
+    public List<Bar> getSelectedBars() {
+        List<Bar> selectedBars = new ArrayList<>();
+        for (int i = 0; i < selectionList.size(); i++) {
+            if (selectionList.get(i)) {
+                selectedBars.add(this.barList.get(i));
             }
         }
-        return checkedBarList;
+        return Collections.unmodifiableList(selectedBars);
     }
 
-    private static List<Boolean> initCheckList() {
+    /**
+     * Auxiliary method for initialisation of selection list.
+     * @return List<Boolean> of false Booleans with length of bar list
+     */
+    private static List<Boolean> initSelectionList() {
         List<Boolean> checkList = new ArrayList<>();
         for (int i = 0; i < barList.size(); i++) {
             checkList.add(Boolean.FALSE);

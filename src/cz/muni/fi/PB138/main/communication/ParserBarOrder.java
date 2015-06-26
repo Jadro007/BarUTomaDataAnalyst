@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 /**
  * All orders from bar
  * Rest link /bar/{barID}/order
- * @author Martina Min�tov�
+ * @author Martina Minatova
  * @author Benjamin Varga
  * @version 20.6.2015
  */
@@ -26,6 +26,11 @@ public class ParserBarOrder implements Parser{
 
     private Logger logger = Logger.getLogger(ParserBarOrder.class.getName());
 
+    /**
+     * Parses json into list of all orders that were made at corresponding bar, orders don't contain barId
+     * @param json JSON in format of string
+     * @return list of orders
+     */
     public List parse(String json) {
         JSONObject obj = new JSONObject(json);
         List<Order> orderList = new ArrayList<>();
@@ -61,11 +66,7 @@ public class ParserBarOrder implements Parser{
                 Random random = new Random();
                 //double alcoholQuantity = Math.round(((random.nextDouble() % 1) * 10000) / 10000);
                 double alcoholQuantity = 0.1234;
-                /*try {
-                    alcoholQuantity = 0;//todo dorobit alkohol ked bud� ingrediencie
-                } catch (JSONException ex) {
-                    logger.log(Level.SEVERE, "", ex);
-                }*/
+
 
                 Drink myDrink = new Drink(drinkName, price, alcoholQuantity);
                 drinkList.add(myDrink);
@@ -85,6 +86,12 @@ public class ParserBarOrder implements Parser{
         return orderList;
     }
 
+    /**
+     * Parses json into list of all orders that were made at corresponding bar, orders are linked with barId
+     * @param json JSON in format of string
+     * @param barId id of bar where orders were made
+     * @return list of orders
+     */
     public List parse(String json, long barId) {
         List<Order> list = parse(json);
         for(Order order : list) {

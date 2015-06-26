@@ -4,10 +4,7 @@ import cz.muni.fi.PB138.main.db.LoadUser;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Class used for testing of GUI.
@@ -28,7 +25,7 @@ public class LoadUserChunkImpl implements LoadUser {
         drinksMap.put("Vodka with Juice", from.getMonthValue()*3);
         drinksMap.put("Tequila", to.getMonthValue()*2);
         drinksMap.put("Whisky", from.getDayOfMonth()*1);
-        return drinksMap;
+        return Collections.unmodifiableMap(drinksMap);
     }
 
     @Override
@@ -44,6 +41,6 @@ public class LoadUserChunkImpl implements LoadUser {
         barSet.add(new Long(8));
         barSet.add(new Long(9));
         barSet.add(new Long(10));
-        return barSet;
+        return Collections.unmodifiableSet(barSet);
     }
 }

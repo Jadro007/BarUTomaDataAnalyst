@@ -13,7 +13,7 @@ import org.json.*;
 /**
  *
  * Rest link /bar/{barID}/drink
- * @author Martina Minátová
+ * @author Martina Minatova
  * @author Benjamin Varga
  * @version 20.6.2015
  */
@@ -21,6 +21,11 @@ public class ParserBarDrink implements Parser {
 
     private static final Logger logger = Logger.getLogger(ParserBarDrink.class.getName());
 
+    /**
+     * Parses json into list of drinks that are sold at one bar
+     * @param json JSON in format of string
+     * @return list of drinks
+     */
     public List<Drink> parse(String json) {
 
         JSONObject obj = new JSONObject(json);
@@ -47,17 +52,8 @@ public class ParserBarDrink implements Parser {
             }
             price = price.multiply(BigDecimal.valueOf(multiplierToBase));
 
-            /*JSONArray jsonIngredients = jsonDrink.getJSONArray("IngredientsUsed");
-            for (int j = 0; j < jsonIngredients.length(); j++) {
-                //TODO: Ingredients
-            }*/
-
             double alcoholQuantity = 0.0;
-            /*try {
-                alcoholQuantity = 0;//todo dorobit alkohol ked budú ingrediencie
-            } catch (JSONException ex) {
-                logger.log(Level.SEVERE, "", ex);
-            }*/
+
 
             Drink drink = new Drink(name, price, alcoholQuantity);
             drinkList.add(drink);
