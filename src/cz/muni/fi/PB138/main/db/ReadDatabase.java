@@ -20,7 +20,7 @@ public class ReadDatabase {
             Class cl = Class.forName("org.exist.xmldb.DatabaseImpl");
             Database database = (Database) cl.newInstance();
             database.setProperty("create-database", "true");
-            database.setProperty("configuration", System.getProperty("user.dir") + "\\database\\conf.xml");
+            database.setProperty("configuration", System.getProperty("user.dir") + "/database/conf.xml");
             DatabaseManager.registerDatabase(database);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

@@ -18,6 +18,10 @@ public class UserInformationImpl implements UserInformation {
     public static final String NAME_PREFIX = "name_";
     public static final String LAST_ID = "last_id";
 
+    /**
+     * Gets id of logged user
+     * @return id
+     */
     @Override
     public long getCurrentUserId() {
         Properties properties = new Properties();
@@ -44,6 +48,10 @@ public class UserInformationImpl implements UserInformation {
         return userId;
     }
 
+    /**
+     * Checks if logged user is admin
+     * @return true if admin
+     */
     @Override
     public boolean isCurrentUserAdmin() {
         Properties properties = new Properties();
@@ -69,6 +77,10 @@ public class UserInformationImpl implements UserInformation {
         return false;
     }
 
+    /**
+     * Fetches from config file last time logged user updated database
+     * @return date of last update
+     */
     @Override
     public LocalDate getCurrentUserLastTimeOfUpdate() {
         Properties properties = new Properties();
@@ -98,6 +110,11 @@ public class UserInformationImpl implements UserInformation {
         return null;
     }
 
+    /**
+     * Saves into config file information about logged user - userRole and his id
+     * @param id userId
+     * @param isAdmin true if user role is admin
+     */
     @Override
     public void saveCurrentUserInformation(long id, boolean isAdmin) {
         Properties properties = new Properties();
@@ -139,6 +156,9 @@ public class UserInformationImpl implements UserInformation {
         }
     }
 
+    /**
+     * Saves today as last time logged user had his database updated into config file
+     */
     @Override
     public void saveCurrentUserLastTimeOfUpdate() {
         Properties properties = new Properties();
@@ -178,6 +198,11 @@ public class UserInformationImpl implements UserInformation {
         }
     }
 
+    /**
+     * Fetches id linked with user name from config file, or if doesn't exist yet, generate new unique one
+     * @param name user name
+     * @return id linked with name
+     */
     @Override
     public long getUserId(String name) {
         Properties properties = new Properties();
