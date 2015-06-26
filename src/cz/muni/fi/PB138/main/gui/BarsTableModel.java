@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class BarsTableModel extends AbstractTableModel {
 
-    //list of all bars
+    //list of all bars of user
     private static List<Bar> barList = LoadManager.getLoadAdmin().getAdminsBars();
     //list of selected bars (items with same index = bar <-> is selected)
     private static List<Boolean> selectionList = initSelectionList();
@@ -103,6 +103,6 @@ public class BarsTableModel extends AbstractTableModel {
         for (int i = 0; i < barList.size(); i++) {
             checkList.add(Boolean.FALSE);
         }
-        return Collections.unmodifiableList(checkList);
+        return checkList;
     }
 }
